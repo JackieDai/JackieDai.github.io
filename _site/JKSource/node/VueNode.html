@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>VueNode</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Vue基础</h1>
+
+<h3 id="toc_1">1.初体验</h3>
+
+<div><pre><code class="language-none">&lt;div class=&quot;jkBox&quot;&gt;
+    &lt;p&gt;{{message}}&lt;/p&gt;
+    &lt;p&gt;{{ni}}&lt;/p&gt;
+&lt;/div&gt;
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var jkVue = new Vue({
+        el:&#39;.jkBox&#39;,//此处对应的是选择器
+        data:{
+            message:&#39;hahaha&#39;,
+            ni:&#39;你好&#39;,
+        },
+    });
+&lt;/script&gt;</code></pre></div>
+
+<hr>
+
+<h3 id="toc_2">v-model 数据双向绑定</h3>
+
+<div><pre><code class="language-none">&lt;div id=&quot;app&quot;&gt;
+    &lt;p&gt;{{message}}&lt;/p&gt;
+    &lt;input type=&quot;text&quot; v-model=&quot;message&quot;&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    // 1. 创建Vue的实例
+    let vm = new Vue({
+        el: &#39;#app&#39;,
+        data: {  // vue中的model -&gt; 双向数据
+           message: &#39;Hello World!&#39;
+        }
+    });
+&lt;/script&gt;</code></pre></div>
+
+<p>如图:
+<img style="display: block; margin: 0 auto;" src="images/01.gif" alt="" />
+<hr></p>
+
+<h3 id="toc_3">v-once</h3>
+
+<div><pre><code class="language-none">
+&lt;div id=&quot;app&quot;&gt;
+    &lt;p v-once&gt;原始值: {{msg}}&lt;/p&gt;
+    &lt;p&gt;后面的: {{msg}}&lt;/p&gt;
+    &lt;input type=&quot;text&quot; v-model=&quot;msg&quot;&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Vue({
+       el: &#39;#app&#39;,
+        data: {
+           msg: &#39;今天的天气很好!&#39;
+        }
+    });
+&lt;/script&gt;</code></pre></div>
+
+<p>如图:
+<img style="display: block; margin: 0 auto;" src="images/02.gif" alt="" />
+<hr></p>
+
+<h3 id="toc_4">v-if</h3>
+
+<div><pre><code class="language-none">
+/**v-if的判断条件为TRUE的时候才会显示标签*/
+&lt;div id=&quot;app&quot;&gt;
+    &lt;p v-if=&#39;show&#39;&gt;显示&lt;/p&gt;
+    &lt;p v-if=&#39;hide&#39;&gt;隐藏&lt;/p&gt;
+    &lt;p v-if=&#39;height&gt;1.55&#39;&gt;小明的身高:{{height}}m&lt;/p&gt;
+    &lt;p v-if=&#39;height&gt;1.95&#39;&gt;小明的身高:{{height}}m&lt;/p&gt;
+&lt;/div&gt;
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var jkVue = new Vue({
+        el:&#39;#app&#39;,//注意选择器,
+        data : {
+            show:true,
+            hide:false,
+            height:1.88,
+        }
+    });
+&lt;/script&gt;</code></pre></div>
+
+<hr>
+
+<h3 id="toc_5">v-show 和 v-if 用法相似</h3>
+
+<div><pre><code class="language-none">/**v-show的判断条件为TRUE的时候才会显示标签*/
+
+&lt;div id=&quot;app&quot;&gt;
+    &lt;p v-show=&quot;show&quot;&gt;要显示出来!&lt;/p&gt;
+    &lt;p v-show=&quot;hide&quot;&gt;不要显示出来!&lt;/p&gt;
+    &lt;p v-show=&quot;height &gt; 1.55&quot;&gt;小明的身高: {{height}}m&lt;/p&gt;
+    &lt;p v-show=&quot;height1 &gt; 1.55&quot;&gt;小明的身高: {{height1}}m&lt;/p&gt;
+    &lt;!--&lt;p v-if=&quot;1&quot;&gt;小明的身高: {{height1}}m&lt;/p&gt;--&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Vue({
+       el: &#39;#app&#39;,
+        data: {
+            show: true,
+            hide: false,
+
+            height: 1.68,
+            height1: 1.50
+        }
+    });
+&lt;/script&gt;</code></pre></div>
+
+<hr>
+
+<h3 id="toc_6">v-else</h3>
+
+<div><pre><code class="language-none">&lt;div id=&quot;app&quot;&gt;
+    &lt;!--&lt;p v-else=&quot;height &gt; 1.7&quot;&gt;小明的身高是: {{height}}m&lt;/p&gt;--&gt;
+    &lt;p v-if=&quot;height &gt; 1.7&quot;&gt;小明的身高是: {{height}}m&lt;/p&gt;
+    &lt;p v-else&gt;小明的身高不足1.70m&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Vue({
+        el: &#39;#app&#39;,
+        data: {
+            height: 1.88
+        }
+    });
+&lt;/script&gt;</code></pre></div>
+
+<h3 id="toc_7">v-else-if</h3>
+
+<div><pre><code class="language-none">&lt;div class=&quot;app&quot;&gt;
+    &lt;p&gt;请输入成绩&lt;/p&gt;
+    &lt;p v-if=&quot;score &gt;= 90&quot;&gt;优秀&lt;/p&gt;
+    &lt;p v-else-if=&quot;score &gt;= 75&quot;&gt;良好&lt;/p&gt;
+    &lt;p v-else-if=&quot;score &gt;= 60&quot;&gt;及格&lt;/p&gt;
+    &lt;p v-else&gt;不及格&lt;/p&gt;
+    &lt;input type=&quot;text&quot; v-model=&quot;score&quot;&gt;
+&lt;/div&gt;
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Vue({
+        el:&#39;.app&#39;,
+        data:{
+            score:90,
+        },
+    });
+&lt;/script&gt;
+</code></pre></div>
+
+<p>如图:
+<img style="display: block; margin: 0 auto;" src="images/03.gif" alt="" />
+<hr></p>
+
+<h3 id="toc_8">v-for</h3>
+
+<p>摘自网络<a href="">https://cn.vuejs.org/v2/guide/list.html#%E7%94%A8-v-for</a></p>
+
+<h4 id="toc_9">用 v-for 把一个数组对应为一组元素</h4>
+
+<ul>
+<li>用 v-for 指令基于一个数组来渲染一个列表。v-for 指令需要使用 item in items 形式的特殊语法，其中 items 是源数据数组，而 item 则是被迭代的数组元素的别名。</li>
+</ul>
+
+<div><pre><code class="language-none">&lt;ul id=&quot;example-1&quot;&gt;
+  &lt;li v-for=&quot;item in items&quot;&gt;
+    {{ item.message }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+var example1 = new Vue({
+  el: &#39;#example-1&#39;,
+  data: {
+    items: [
+      { message: &#39;Foo&#39; },
+      { message: &#39;Bar&#39; }
+    ]
+  }
+})
+</code></pre></div>
+
+<p>结果
+- Foo
+- Bar</p>
+
+<p>在 v-for 块中，我们可以访问所有父作用域的属性。v-for 还支持一个可选的第二个参数，即当前项的索引。</p>
+
+<div><pre><code class="language-none">&lt;ul id=&quot;example-2&quot;&gt;
+  &lt;li v-for=&quot;(item, index) in items&quot;&gt;
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+var example2 = new Vue({
+  el: &#39;#example-2&#39;,
+  data: {
+    parentMessage: &#39;Parent&#39;,
+    items: [
+      { message: &#39;Foo&#39; },
+      { message: &#39;Bar&#39; }
+    ]
+  }
+})
+</code></pre></div>
+
+<p>结果
+- Parent - 0 - Foo
+- Parent - 1 - Bar</p>
+
+<p><br>
+你也可以用 of 替代 in 作为分隔符，因为它更接近 JavaScript 迭代器的语法：</p>
+
+<div><pre><code class="language-none">&lt;div v-for=&quot;item of items&quot;&gt;&lt;/div&gt;</code></pre></div>
+
+<hr>
+
+<h4 id="toc_10">在 v-for 里使用对象</h4>
+
+<p>你也可以用 v-for 来遍历一个对象的属性。</p>
+
+<div><pre><code class="language-none">&lt;ul id=&quot;v-for-object&quot; class=&quot;demo&quot;&gt;
+  &lt;li v-for=&quot;value in object&quot;&gt;
+    {{ value }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+new Vue({
+  el: &#39;#v-for-object&#39;,
+  data: {
+    object: {
+      title: &#39;How to do lists in Vue&#39;,
+      author: &#39;Jackie&#39;,
+      publishedAt: &#39;2019-08-29&#39;
+    }
+  }
+})</code></pre></div>
+
+<p>结果
+- How to do lists in Vue
+- Jackie
+- 2019-08-29</p>
+
+<p><br>
+你也可以提供第二个的参数为 property 名称 (也就是键名)：</p>
+
+<div><pre><code class="language-none">&lt;div v-for=&quot;(value, name) in object&quot;&gt;
+  {{ name }}: {{ value }}
+&lt;/div&gt;</code></pre></div>
+
+<p>结果
+- title: How to do lists in Vue
+- author: Jackie
+- publishedAt: 2019-08-29</p>
+
+<p><br>
+还可以用第三个参数作为索引：</p>
+
+<div><pre><code class="language-none">&lt;div v-for=&quot;(value, name, index) in object&quot;&gt;
+  {{ index }}. {{ name }}: {{ value }}
+&lt;/div&gt;</code></pre></div>
+
+<p>结果
+- 1.title: How to do lists in Vue
+- 2.author: Jackie
+- 2.publishedAt: 2019-08-29</p>
+
+<hr>
+
+<h3 id="toc_11">v-text和v-html</h3>
+
+<div><pre><code class="language-none">&lt;div id=&quot;app&quot;&gt;
+    &lt;p&gt;
+        {{msg}}哈哈JK,
+    &lt;/p&gt;
+    &lt;p v-text = &#39;msg&#39;&gt;呵呵呵&lt;/p&gt;
+    &lt;div v-html = &#39;html&#39; style=&quot;background-color: burlywood&quot;&gt;
+        jkjk哈哈
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;&quot;&gt;
+    new Vue ({
+        el:&#39;#app&#39;,
+        data:{
+            msg:&#39;今天天气不错&#39;,
+            html:&#39;&lt;input type=&quot;date&quot;&gt;&lt;input type=&quot;color&quot;&gt;&#39;,
+        }
+    });
+&lt;/script&gt;</code></pre></div>
+
+<p><img style="display: block; margin: 0 auto;" src="images/04.png" alt="" />
+<hr></p>
+
+<p>注意
+- 在HTML输出data中我们可以用{{xxx}},但是有的时候比如网络卡的时候，会暴露出我们的{{}},所以这个时候我们就需要v-text 和 v-html
+- 当我们要是渲染不出来的情况下他就会出现{{xxx}},但是我们要是用了v-text他要是渲染的慢，则加载不出来。页面上显示的就是null而不是{{message}}
+- v-html则是里面要嵌套HTML标签，这个要特别小心。在不安全的页面比如注册或登录页面千万不要用这个指令。因为会出现XSS攻击。</p>
+
+<p>摘自网络<a href="">https://www.jianshu.com/p/bbdbbf330185</a></p>
+
+<h3 id="toc_12">v-bind</h3>
+
+<div><pre><code class="language-none">&lt;style&gt;
+    .active {
+        background-color: yellow;
+        font-size: 20px;
+        color: aquamarine
+    }
+&lt;/style&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+    &lt;p v-for=&#39;(college,index) in colleges&#39; :class=&#39;index === activeIndex ? &quot;active&quot;:&quot;&quot;&#39;&gt;
+        {{college}}
+    &lt;/p&gt;
+    &lt;p :style=&#39;{color:fontColor}&#39;&gt;今天天气很好&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Vue ({
+        el:&#39;#app&#39;,
+        data:{
+            colleges:[
+                &#39;苏州&#39;,
+                &#39;船奇&#39;,
+                &#39;信息&#39;,
+                &#39;科技&#39;,
+                &#39;有限公司&#39;,
+            ],
+            activeIndex:0,
+            fontColor:&#39;green&#39;
+        }
+    });
+&lt;/script&gt;
+
+</code></pre></div>
+
+<hr>
+
+<h3 id="toc_13">v-on</h3>
+
+<div><pre><code class="language-none">&lt;div id=&quot;app&quot;&gt;
+    &lt;p :style=&#39;{color:fontColor}&#39;&gt; {{msg}} &lt;/p&gt;
+    &lt;button @click=&#39;changeContent()&#39;&gt;改变内容1&lt;/button&gt;
+    &lt;button @click=&#39;changeContentColor()&#39;&gt;改变颜色&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Vue({
+        el:&#39;#app&#39;,
+        data:{
+            msg:&#39;你好世界&#39;,
+            fontColor:&#39;red&#39;
+        },
+        methods :{//实例的所有函数实现
+            changeContent(){
+                this.msg = &#39;测试改掉哈&#39;
+            },
+             changeContentColor() {
+                this.fontColor = &#39;green&#39;
+             },
+
+
+        }
+    });
+&lt;/script&gt;
+</code></pre></div>
+
+
+
+
+</body>
+
+</html>
