@@ -21,9 +21,9 @@
     margin-top: 2em; */
 }
 
-.markdown-body > h1, .markdown-body h2 {
+/* .markdown-body > h1, .markdown-body h2 {
     border-bottom-color: var(--line-color);
-}
+} */
 
 
 .markdown-body blockquote {
