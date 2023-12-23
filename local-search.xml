@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>lua-luarocks在Project中的应用</title>
+    <link href="/2023/12/23/004lua/lua-luarocks%E5%9C%A8Project%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <url>/2023/12/23/004lua/lua-luarocks%E5%9C%A8Project%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://martin-fieber.de/blog/goodbye-snake-i-go-to-the-moon/">Reference</a></p><h2 id="Install-luarocks"><a href="#Install-luarocks" class="headerlink" title="Install luarocks"></a>Install luarocks</h2><p><strong>mission</strong>: use <code>luarocks</code> to manage third libs in lua project.</p><blockquote><p>Guarantee the <code>luarocks</code> have been installed in your mac. if not , using the follow command.</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ <span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>luarocks<br></code></pre></td></tr></table></figure></blockquote><p>Generally, the libs installed using <code>luarocks</code> will locate at global position. <del>But in real situation, we’d like install lib is each Project locally not in global.</del>  But in a real-world scenario, we prefer to install libs locally for each project rather than globally.</p><h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><blockquote><p>I will install all packages inside a <code>lua_modules</code> folder <u>in the root of a project</u>, using the <code>--tree</code> option of the LuaRocks CLI. As an example, installing the <a href="https://luarocks.org/modules/kikito/inspect">inspect</a> package.</p></blockquote><ol><li><p><code>cd</code> the root of your Project.</p></li><li><p>excute <code>luarocks install --tree=lua_modules inspect</code></p><p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230851976.png"></p><blockquote><p><code>tree=lua_modules</code> means the libs will be installed at that folder.</p></blockquote></li><li><p>create <code>setup.lua</code> and <code>test.lua</code> files.</p><ol><li><p>we need make configrations for <code>pageage</code> in <code>setup.lua</code> file</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- setup.lua</span><br><span class="hljs-keyword">local</span> version = <span class="hljs-built_in">_VERSION</span>:<span class="hljs-built_in">match</span>(<span class="hljs-string">&quot;%d+%.%d+&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;version&#x27;</span>,version) <span class="hljs-comment">-- version5.4</span><br><br><span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span> = <span class="hljs-string">&#x27;lua_modules/share/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?.lua;lua_modules/share/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?/init.lua;&#x27;</span><br>  .. <span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span><br><span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span> = <span class="hljs-string">&#x27;lua_modules/lib/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?.so;&#x27;</span> .. <span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;package.path == &#x27;</span>,<span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span>) <span class="hljs-comment">-- package.path ==lua_modules/share/lua/5.4/?.lua;lua_modules/share/lua/5.4/?/init.lua;/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;package.cpath == &#x27;</span>,<span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span>) <span class="hljs-comment">-- package.cpath == lua_modules/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;./?.so</span><br></code></pre></td></tr></table></figure></li><li><p>test the lib in <code>test.lua</code>file</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">--[[</span><br><span class="hljs-comment">    <span class="hljs-doctag">NOTE:</span></span><br><span class="hljs-comment">    make sure setup.lua must be loaded. or `require &quot;inspect&quot;` cause error!</span><br><span class="hljs-comment">]]</span><br><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;setup&quot;</span>)<br><br><span class="hljs-keyword">local</span> inspect = <span class="hljs-built_in">require</span> <span class="hljs-string">&quot;inspect&quot;</span><br><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;<br><br><span class="hljs-built_in">print</span>(inspect(a))<br><br><span class="hljs-comment">--[[</span><br><span class="hljs-comment">result:</span><br><span class="hljs-comment">&#123; 1, 2 &#125;</span><br><span class="hljs-comment">]]</span><br></code></pre></td></tr></table></figure></li></ol></li><li><p>the demo dir as follows:</p><p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230910092.png"></p></li></ol><blockquote><p>If you install libs locally, there is nothing when you excute <code>luarocks list</code>;</p><p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230913600.png"></p><p><del>But if you install globally, there are the libs you installed before when excute that command.</del></p><p>But if you install globally, the libraries you installed before will be available when executing that command.</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Lua</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>tools</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>lua-优秀博客</title>
+    <link href="/2023/12/23/004lua/lua-%E4%BC%98%E7%A7%80%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2023/12/23/004lua/lua-%E4%BC%98%E7%A7%80%E5%8D%9A%E5%AE%A2/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Lua-project-setup-with-LuaRocks"><a href="#Lua-project-setup-with-LuaRocks" class="headerlink" title="Lua project setup with LuaRocks"></a>Lua project setup with LuaRocks</h2><p><a href="https://martin-fieber.de/blog/lua-project-setup-with-luarocks/">参考链接</a></p><blockquote><p>这个blog里面还有其他关于 lua 的相关介绍</p></blockquote><hr>]]></content>
+    
+    
+    <categories>
+      
+      <category>Lua</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>tools</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>计算markdown标题数量&amp;给markdown注入内容</title>
     <link href="/2023/12/21/003tools/001_caculate_H_count/"/>
     <url>/2023/12/21/003tools/001_caculate_H_count/</url>

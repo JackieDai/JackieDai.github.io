@@ -28,4 +28,7 @@
 
 .markdown-body blockquote {
     border-left: 0.25em solid var(--link-hover-color);
+    border-right: 0.1em solid var(--link-hover-color);
+    padding: 1.5em;
+    background-color: rgba(48, 169, 222, 0.1);
 }
