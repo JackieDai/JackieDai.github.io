@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>lua-Operators(运算符)</title>
+    <link href="/2024/01/03/004lua/lua-Operators-%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    <url>/2024/01/03/004lua/lua-Operators-%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Arthmetic-Operators"><a href="#Arthmetic-Operators" class="headerlink" title="Arthmetic Operators"></a>Arthmetic Operators</h2><p>Similiar to other programing languages, there are also <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> in Lua. On top of that, lua also has <code>^</code> (exponent) operator.</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a = <span class="hljs-number">2</span><br><span class="hljs-built_in">print</span>(a ^ <span class="hljs-number">1</span>)    <span class="hljs-comment">-- 2.0</span><br><span class="hljs-built_in">print</span>(a ^ <span class="hljs-number">2</span>)    <span class="hljs-comment">-- 4.0</span><br><span class="hljs-built_in">print</span>(a ^ <span class="hljs-number">3</span>)    <span class="hljs-comment">-- 8.0</span><br><span class="hljs-built_in">print</span>(a ^ <span class="hljs-number">4</span>)    <span class="hljs-comment">-- 16.0</span><br></code></pre></td></tr></table></figure><h2 id="Relational-Operators"><a href="#Relational-Operators" class="headerlink" title="Relational Operators"></a>Relational Operators</h2><p>This section is the same to other programing language. </p><blockquote><p><strong>Note: unequal operator is <code>~=</code></strong></p></blockquote><h2 id="Logical-Operators"><a href="#Logical-Operators" class="headerlink" title="Logical Operators"></a>Logical Operators</h2><p>This section has a great distinction from others.</p><blockquote><p><strong>NOTE</strong>:</p><p>Only <strong><code>nil</code></strong> or <strong><code>false</code></strong> will be recognized as false.</p></blockquote><h5 id="and"><a href="#and" class="headerlink" title="and"></a><code>and</code></h5><p>Similiar to other language <code>&amp;&amp;</code></p><p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202401031606374.png"></p><h5 id="or"><a href="#or" class="headerlink" title="or"></a><code>or</code></h5><p>Similiar to other language <code>||</code></p><p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202401031613705.png"></p><h5 id="not"><a href="#not" class="headerlink" title="not"></a><code>not</code></h5><p>Similiar to other language <code>!</code></p><h2 id="Misc-Operators"><a href="#Misc-Operators" class="headerlink" title="Misc Operators"></a>Misc Operators</h2><ol><li><p><code>.. </code>    concatenation</p><blockquote><p>Concatenates two strings.</p></blockquote><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a, b = <span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&#x27;lua&#x27;</span><br><span class="hljs-keyword">local</span> c = a .. <span class="hljs-string">&quot;-&quot;</span> .. b<br><span class="hljs-built_in">print</span>(c) <span class="hljs-comment">-- hello-lua</span><br></code></pre></td></tr></table></figure></li><li><p><code>#</code>   length</p><blockquote><p>An unary operator that return <strong>the length of the a string or a table.</strong></p></blockquote><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a = <span class="hljs-string">&quot;hello&quot;</span><br><span class="hljs-keyword">local</span> b = #a<br><span class="hljs-built_in">print</span>(b) <span class="hljs-comment">-- 5</span><br><br><span class="hljs-keyword">local</span> t = &#123;<span class="hljs-string">&quot;hello&quot;</span>,<span class="hljs-string">&quot;lua&quot;</span>,<span class="hljs-string">&quot;python&quot;</span>&#125;<br><span class="hljs-keyword">local</span> c = #t<br><span class="hljs-built_in">print</span>(c) <span class="hljs-comment">-- 3</span><br></code></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Lua</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>lua</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Year-End Summary for 2023</title>
     <link href="/2023/12/26/005personal/Year-End-Summary-for-2023/"/>
     <url>/2023/12/26/005personal/Year-End-Summary-for-2023/</url>
