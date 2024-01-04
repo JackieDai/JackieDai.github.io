@@ -16,25 +16,24 @@
   <meta name="author" content="lingxiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="luarocks">
+    <meta name="description" content="while, for, repeat..until, nested">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lua-luarocks在Project中的应用">
-<meta property="og:url" content="https://jackiedai.github.io/2023/12/23/004lua/lua-luarocks%E5%9C%A8Project%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:title" content="lua-Loop(循环)">
+<meta property="og:url" content="https://jackiedai.github.io/2024/01/03/004lua/lua-Loop-%E5%BE%AA%E7%8E%AF/index.html">
 <meta property="og:site_name" content="lingxiao的视界">
-<meta property="og:description" content="luarocks">
+<meta property="og:description" content="while, for, repeat..until, nested">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312220858875.png">
-<meta property="article:published_time" content="2023-12-23T00:19:27.000Z">
-<meta property="article:modified_time" content="2023-12-23T01:47:37.283Z">
+<meta property="article:published_time" content="2024-01-03T08:43:39.000Z">
+<meta property="article:modified_time" content="2024-01-04T07:49:57.076Z">
 <meta property="article:author" content="lingxiao">
 <meta property="article:tag" content="lua">
-<meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312220858875.png">
   
   
   
-  <title>lua-luarocks在Project中的应用 - lingxiao的视界</title>
+  <title>lua-Loop(循环) - lingxiao的视界</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">lua-luarocks在Project中的应用</span>
+            <span id="subtitle">lua-Loop(循环)</span>
           
         </div>
 
@@ -215,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-23 08:19" pubdate>
-          2023年12月23日 早上
+        <time datetime="2024-01-03 16:43" pubdate>
+          2024年1月3日 下午
         </time>
       </span>
     
@@ -227,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          199 字
+          133 字
         
       </span>
     
@@ -275,49 +274,50 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">lua-luarocks在Project中的应用</h1>
+            <h1 id="seo-header">lua-Loop(循环)</h1>
             
             
               <div class="markdown-body">
                 
-                <p><a target="_blank" rel="noopener" href="https://martin-fieber.de/blog/goodbye-snake-i-go-to-the-moon/">Reference</a></p>
-<h2 id="Install-luarocks"><a href="#Install-luarocks" class="headerlink" title="Install luarocks"></a>Install luarocks</h2><p><strong>mission</strong>: use <code>luarocks</code> to manage third libs in lua project.</p>
+                <h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><h5 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax:"></a>Syntax:</h5><blockquote>
+<p>while(condition)<br>do<br>   statement(s)<br>end</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua">a = <span class="hljs-number">10</span><br><span class="hljs-keyword">while</span>( a &lt; <span class="hljs-number">20</span> )<br><span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;value of a:&quot;</span>, a)<br>   a = a+<span class="hljs-number">1</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/lua/lua_for_loop.htm">参考链接1</a></p>
 <blockquote>
-<p>Guarantee the <code>luarocks</code> have been installed in your mac. if not , using the follow command.</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ <span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>luarocks<br></code></pre></td></tr></table></figure>
+<p>The <strong>for</strong> statement has two variants(变种): <u>the <em>numeric</em> <strong>for</strong></u> and <u>the <em>generic</em> <strong>for</strong></u>.</p>
 </blockquote>
-<p>Generally, the libs installed using <code>luarocks</code> will locate at global position. <del>But in real situation, we’d like install lib is each Project locally not in global.</del>  But in a real-world scenario, we prefer to install libs locally for each project rather than globally.</p>
-<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><blockquote>
-<p>I will install all packages inside a <code>lua_modules</code> folder <u>in the root of a project</u>, using the <code>--tree</code> option of the LuaRocks CLI. As an example, installing the <a target="_blank" rel="noopener" href="https://luarocks.org/modules/kikito/inspect">inspect</a> package.</p>
-</blockquote>
-<ol>
-<li><p><code>cd</code> the root of your Project.</p>
-</li>
-<li><p>excute <code>luarocks install --tree=lua_modules inspect</code></p>
-<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230851976.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Numeric-for-数值for循环"><a href="#Numeric-for-数值for循环" class="headerlink" title="Numeric for (数值for循环)"></a>Numeric <strong>for</strong> (数值for循环)</h4><p><a target="_blank" rel="noopener" href="https://www.lua.org/pil/4.3.4.html">官方文档</a></p>
 <blockquote>
-<p><code>tree=lua_modules</code> means the libs will be installed at that folder.</p>
-</blockquote>
-</li>
-<li><p>create <code>setup.lua</code> and <code>test.lua</code> files.</p>
-<ol>
-<li><p>we need make configrations for <code>pageage</code> in <code>setup.lua</code> file</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- setup.lua</span><br><span class="hljs-keyword">local</span> version = <span class="hljs-built_in">_VERSION</span>:<span class="hljs-built_in">match</span>(<span class="hljs-string">&quot;%d+%.%d+&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;version&#x27;</span>,version) <span class="hljs-comment">-- version	5.4</span><br><br><span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span> = <span class="hljs-string">&#x27;lua_modules/share/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?.lua;lua_modules/share/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?/init.lua;&#x27;</span><br>  .. <span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span><br><span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span> = <span class="hljs-string">&#x27;lua_modules/lib/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?.so;&#x27;</span> .. <span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;package.path == &#x27;</span>,<span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span>) <span class="hljs-comment">-- package.path ==	lua_modules/share/lua/5.4/?.lua;lua_modules/share/lua/5.4/?/init.lua;/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;package.cpath == &#x27;</span>,<span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span>) <span class="hljs-comment">-- package.cpath == lua_modules/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;./?.so</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>test the lib in <code>test.lua</code>file</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">--[[</span><br><span class="hljs-comment">    <span class="hljs-doctag">NOTE:</span></span><br><span class="hljs-comment">    make sure setup.lua must be loaded. or `require &quot;inspect&quot;` cause error!</span><br><span class="hljs-comment">]]</span><br><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;setup&quot;</span>)<br><br><span class="hljs-keyword">local</span> inspect = <span class="hljs-built_in">require</span> <span class="hljs-string">&quot;inspect&quot;</span><br><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;<br><br><span class="hljs-built_in">print</span>(inspect(a))<br><br><span class="hljs-comment">--[[</span><br><span class="hljs-comment">result:</span><br><span class="hljs-comment">	&#123; 1, 2 &#125;</span><br><span class="hljs-comment">]]</span><br></code></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>the demo dir as follows:</p>
-<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230910092.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-</ol>
+<p> for var&#x3D;exp1,exp2,exp3 do<br>   something<br> end</p>
 <blockquote>
-<p>If you install libs locally, there is nothing when you excute <code>luarocks list</code>;</p>
-<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230913600.png" srcset="/img/loading.gif" lazyload></p>
-<p><del>But if you install globally, there are the libs you installed before when excute that command.</del></p>
-<p>But if you install globally, the libraries you installed before will be available when executing that command.</p>
+<ul>
+<li>exp1: initial condition</li>
+<li>exp2:  final condition</li>
+<li>exp3:  step<ul>
+<li>this exp is optional,when absent, Lua assumes one as the step value.</li>
+</ul>
+</li>
+</ul>
 </blockquote>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">--[[</span><br><span class="hljs-comment">exp1: i = 10</span><br><span class="hljs-comment">exp2: 4</span><br><span class="hljs-comment">exp3: -2</span><br><span class="hljs-comment">]]</span><br><span class="hljs-keyword">for</span> i = <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">-2</span> <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(i) <span class="hljs-comment">-- 10,8,6,4</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- Omit exp3</span><br><span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, <span class="hljs-number">3</span> <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(i) <span class="hljs-comment">-- 1,2,3</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Generic-for-泛型for循环"><a href="#Generic-for-泛型for循环" class="headerlink" title="Generic for (泛型for循环)"></a>Generic <strong>for</strong> (泛型for循环)</h3><p><a target="_blank" rel="noopener" href="https://www.lua.org/pil/4.3.5.html">官方文档</a></p>
+<p>The generic <strong>for</strong> loop allows you to <u>traverse(遍历) all values</u> returned by <strong>an iterator function.</strong></p>
+<h5 id="ipairs"><a href="#ipairs" class="headerlink" title="ipairs()"></a>ipairs()</h5><blockquote>
+<p>When the traversed value is nil, the for loop will terminate.</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-literal">nil</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.14</span>&#125;<br><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span>(a) <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(value) <span class="hljs-comment">-- one, two</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="pairs"><a href="#pairs" class="headerlink" title="pairs()"></a>pairs()</h5><blockquote>
+<p>When the traversed value is nil, the for loop will omit the nil value and continue to the rest.</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-literal">nil</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.14</span>&#125;<br><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(a) <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(value) <span class="hljs-comment">-- one, two, 1, 2, 3.14</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="repeat…until"><a href="#repeat…until" class="headerlink" title="repeat…until"></a>repeat…until</h2><p>Similiar to other programing language.</p>
+<h2 id="nested-loop"><a href="#nested-loop" class="headerlink" title="nested loop"></a>nested loop</h2><p>Similiar to other programing language.</p>
 
                 
               </div>
@@ -353,8 +353,6 @@
       
         <a href="/tags/lua/" class="print-no-link">#lua</a>
       
-        <a href="/tags/tools/" class="print-no-link">#tools</a>
-      
     </div>
   
 </div>
@@ -365,8 +363,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>lua-luarocks在Project中的应用</div>
-      <div>https://jackiedai.github.io/2023/12/23/004lua/lua-luarocks在Project中的应用/</div>
+      <div>lua-Loop(循环)</div>
+      <div>https://jackiedai.github.io/2024/01/03/004lua/lua-Loop-循环/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +376,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月23日</div>
+          <div>2024年1月3日</div>
         </div>
       
       
@@ -410,18 +408,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/26/005personal/Year-End-Summary-for-2023/" title="Year-End Summary for 2023">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Year-End Summary for 2023</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/23/004lua/lua-%E4%BC%98%E7%A7%80%E5%8D%9A%E5%AE%A2/" title="lua-优秀博客">
-                        <span class="hidden-mobile">lua-优秀博客</span>
+                      <a href="/2024/01/03/004lua/lua-Operators-%E8%BF%90%E7%AE%97%E7%AC%A6/" title="lua-Operators(运算符)">
+                        <span class="hidden-mobile">lua-Operators(运算符)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
