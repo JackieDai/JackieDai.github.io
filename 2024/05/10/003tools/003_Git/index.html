@@ -16,24 +16,24 @@
   <meta name="author" content="lingXiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这个开发过程中常用的一些方法">
+    <meta name="description" content="不要每次push都输入&#96;rsa的密码&#96;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Schooner注意点">
-<meta property="og:url" content="https://jackiedai.github.io/2024/05/08/008personal/Dev001/index.html">
+<meta property="og:title" content="Git 通过 SSH Clone,Push 和 Pull 事宜">
+<meta property="og:url" content="https://jackiedai.github.io/2024/05/10/003tools/003_Git/index.html">
 <meta property="og:site_name" content="lingXiao">
-<meta property="og:description" content="这个开发过程中常用的一些方法">
+<meta property="og:description" content="不要每次push都输入&#96;rsa的密码&#96;">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/tools.png">
-<meta property="article:published_time" content="2024-05-08T03:54:38.000Z">
-<meta property="article:modified_time" content="2024-05-15T02:22:08.034Z">
+<meta property="article:published_time" content="2024-05-10T07:41:56.000Z">
+<meta property="article:modified_time" content="2024-05-10T07:46:50.010Z">
 <meta property="article:author" content="lingXiao">
-<meta property="article:tag" content="dev">
+<meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jackiedai.github.io/img/tools.png">
   
   
   
-  <title>Schooner注意点 - lingXiao</title>
+  <title>Git 通过 SSH Clone,Push 和 Pull 事宜 - lingXiao</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Schooner注意点</span>
+            <span id="subtitle">Git 通过 SSH Clone,Push 和 Pull 事宜</span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-08 11:54" pubdate>
-          May 8, 2024 am
+        <time datetime="2024-05-10 15:41" pubdate>
+          May 10, 2024 pm
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          59 words
+          230 words
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          1 mins
+          2 mins
         
       </span>
     
@@ -274,16 +274,36 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Schooner注意点</h1>
+            <h1 id="seo-header">Git 通过 SSH Clone,Push 和 Pull 事宜</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Technology, Coverage, and TestParameters columns<br>这三者的组合称为一个测试项，NOTE: 必须唯一</p>
-<hr>
-<p>当前情况下，如果要在limits.csv 里设置 condition，那么condition必须在Init和Group的阶段</p>
-<p>Orphaned Records<br>表示 Limit Table 中没有 匹配到对应的 测试项</p>
-<hr>
+                <h3 id="解决：通过SSH方式-clone-的code-每次提交都需要输入rsa的密码"><a href="#解决：通过SSH方式-clone-的code-每次提交都需要输入rsa的密码" class="headerlink" title="解决：通过SSH方式 clone 的code,每次提交都需要输入rsa的密码"></a>解决：通过SSH方式 clone 的code,每次提交都需要输入rsa的密码</h3><h4 id="MacOS在-每一次-git-push-的时候-Enter-passphrase-for-key-‘-Users-lingxiao-ssh-id-rsa’-都需要输入密码，如何只输入一次，在下一次push-的时候-就直接读取缓存"><a href="#MacOS在-每一次-git-push-的时候-Enter-passphrase-for-key-‘-Users-lingxiao-ssh-id-rsa’-都需要输入密码，如何只输入一次，在下一次push-的时候-就直接读取缓存" class="headerlink" title="MacOS在 每一次 git push 的时候 Enter passphrase for key ‘&#x2F;Users&#x2F;lingxiao&#x2F;.ssh&#x2F;id_rsa’:   都需要输入密码，如何只输入一次，在下一次push 的时候 就直接读取缓存"></a>MacOS在 每一次 git push 的时候 Enter passphrase for key ‘&#x2F;Users&#x2F;lingxiao&#x2F;.ssh&#x2F;id_rsa’:   都需要输入密码，如何只输入一次，在下一次push 的时候 就直接读取缓存</h4><blockquote>
+<p>可以使用ssh-agent来管理你的SSH密钥并将其缓存在内存中，以避免每次都需要输入密码。以下是在macOS上设置ssh-agent的步骤：</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>启动ssh-agent：打开终端，并运行以下命令：</li>
+</ul>
+</blockquote>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(ssh-agent -s)</span>&quot;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ul>
+<li>添加你的SSH私钥到ssh-agent中：<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">ssh-<span class="hljs-keyword">add</span><span class="language-bash"> ~/.ssh/id_rsa </span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>如果你的私钥不是默认的id_rsa，请将上面的命令中的id_rsa替换为你的私钥文件名。</p>
+</blockquote>
+<blockquote>
+<p>输入你的SSH私钥密码。</p>
+</blockquote>
+<blockquote>
+<p>现在，你的SSH私钥已经添加到了ssh-agent中，并且密码已经被缓存。你可以尝试进行git push操作，应该不再需要输入密码了。</p>
+</blockquote>
 
                 
               </div>
@@ -292,32 +312,11 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/DevelopmentTool/" class="category-chain-item">DevelopmentTool</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/dev/" class="print-no-link">#dev</a>
+        <a href="/tags/tools/" class="print-no-link">#tools</a>
       
     </div>
   
@@ -329,8 +328,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Schooner注意点</div>
-      <div>https://jackiedai.github.io/2024/05/08/008personal/Dev001/</div>
+      <div>Git 通过 SSH Clone,Push 和 Pull 事宜</div>
+      <div>https://jackiedai.github.io/2024/05/10/003tools/003_Git/</div>
     </div>
     <div class="license-meta">
       
@@ -342,7 +341,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 8, 2024</div>
+          <div>May 10, 2024</div>
         </div>
       
       
@@ -374,9 +373,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/10/003tools/002_Xcode/" title="Xcode13 之后显示 Products 目录">
+                      <a href="/2024/05/11/004lua/lua-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" title="lua-字符串操作">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Xcode13 之后显示 Products 目录</span>
+                        <span class="hidden-mobile">lua-字符串操作</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -384,8 +383,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/21/007unix_shell/Unix-Files-And-Dirs-Managements/" title="Unix Files And Dirs Managements">
-                        <span class="hidden-mobile">Unix Files And Dirs Managements</span>
+                      <a href="/2024/05/10/003tools/002_Xcode/" title="Xcode13 之后显示 Products 目录">
+                        <span class="hidden-mobile">Xcode13 之后显示 Products 目录</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
