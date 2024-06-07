@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CSV,Yaml,编译优化.相关优化细节">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P158 Schooner 优化">
+<meta property="og:url" content="https://jackiedai.github.io/2024/06/07/008personal/Dev003/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="CSV,Yaml,编译优化.相关优化细节">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/tools.png">
+<meta property="article:published_time" content="2024-06-07T02:21:38.000Z">
+<meta property="article:modified_time" content="2024-06-07T05:19:40.784Z">
+<meta property="article:author" content="lingXiao">
+<meta property="article:tag" content="dev">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/tools.png">
+  
+  
+  
+  <title>P158 Schooner 优化 - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">P158 Schooner 优化</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-07 10:21" pubdate>
+          June 7, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P158 Schooner 优化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>优化之前问题</p>
+<ol>
+<li>csv 过于臃肿，如果牵扯到调整ERS循环的情况，那真的就是<code>一行代码</code>改一天</li>
+<li>Yaml文件问题<ol>
+<li><code>testParameters</code>不同；<code>actions:</code> 只有某一项或者多项参数不同，其余均相同。但是还是需要根据<code>testParameters</code> 编写Yaml,导致大量冗余代码</li>
+<li><code>testParameters</code>不同；<code>inputs</code> 是需要从外界传入<code>find.output(...)</code>只有某一项或者多项参数不同，其余均相同，但是还是需要根据<code>testParameters</code> 编写Yaml,导致大量冗余代码</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="CSV优化"><a href="#CSV优化" class="headerlink" title="CSV优化"></a>CSV优化</h2><p>参考 <a target="_blank" rel="noopener" href="https://github.com/JackieDai/SchoonerCSVTool">Demo</a>  readme</p>
+<ul>
+<li>根据ERS 分步编写CSV</li>
+<li>CSV中定义部分逻辑，</li>
+</ul>
+<h2 id="Yaml优化"><a href="#Yaml优化" class="headerlink" title="Yaml优化"></a>Yaml优化</h2><h3 id="1-参数抽取"><a href="#1-参数抽取" class="headerlink" title="1. 参数抽取"></a>1. 参数抽取</h3><p>以<code>Calibration.yaml</code>为例</p>
+<ul>
+<li><p>优化前</p>
+<p>优化前的代码可以参考 <code>v1.9</code> 分支 <code>commit: 253682fc7b67b893440e13cec235cc2e5be35269</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">-</span>	<span class="hljs-comment">#ReadADCcalfromDSMStoretoPDCA</span><br>  <span class="hljs-attr">technology:</span>	<span class="hljs-string">Calibration</span><br>  <span class="hljs-attr">coverage:</span>	<span class="hljs-string">ReadADCcalfromDSMStoretoPDCA</span><br>  <span class="hljs-attr">testParameters:</span>	<span class="hljs-string">&quot;*&quot;</span><br>  <span class="hljs-attr">outputs:</span><br>      <span class="hljs-attr">result:</span><br>        <span class="hljs-attr">lookup:</span> [<span class="hljs-string">sendCommand_action</span>]<br>  <span class="hljs-attr">sequence:</span><br>    <span class="hljs-attr">actions:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">sendCommand_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">DutSendCommand.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-string">-</span>	<span class="hljs-string">&quot;calib adc_get&quot;</span><br><br><span class="hljs-string">-</span>	<span class="hljs-comment">#CALIINV64GAIN</span><br>  <span class="hljs-attr">technology:</span>	<span class="hljs-string">Calibration</span><br>  <span class="hljs-attr">coverage:</span>	<span class="hljs-string">&quot;ReadADCcalfromDSMStoretoPDCA&quot;</span><br>  <span class="hljs-attr">testParameters:</span>	<span class="hljs-string">&quot;&amp;CALIINV64GAIN&quot;</span><br>  <span class="hljs-attr">outputs:</span><br>    <span class="hljs-attr">IINV64GAIN:</span><br>      <span class="hljs-attr">lookup:</span> [<span class="hljs-string">paras_action</span>]<br>  <span class="hljs-attr">inputs:</span><br>    <span class="hljs-attr">result:</span>	<span class="hljs-string">&#x27;find.output(&quot;Calibration&quot;, &quot;ReadADCcalfromDSMStoretoPDCA&quot;, &quot;&quot;, &quot;result&quot;)&#x27;</span><br>  <span class="hljs-attr">sequence:</span><br>    <span class="hljs-attr">actions:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">paras_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">RegexGroup.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-string">-</span>	<span class="hljs-attr">lookup:</span> [<span class="hljs-string">inputs</span>, <span class="hljs-string">result</span>]<br>            <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;i_inv_64_gain=(.*) i_inv_64_offset&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">RunEvalCalculate_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">CalculatePuckADCValue.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">paras_action</span>]<br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">record_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">CreateRecord.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">RunEvalCalculate_action</span>]<br><br><span class="hljs-string">-</span>	<span class="hljs-comment">#&amp;CALIINV64OFFSET</span><br>  <span class="hljs-attr">technology:</span>	<span class="hljs-string">Calibration</span><br>  <span class="hljs-attr">coverage:</span>	<span class="hljs-string">&quot;ReadADCcalfromDSMStoretoPDCA&quot;</span><br>  <span class="hljs-attr">testParameters:</span>	<span class="hljs-string">&quot;&amp;CALIINV64OFFSET&quot;</span><br>  <span class="hljs-attr">outputs:</span><br>    <span class="hljs-attr">IINV64OFFSET:</span><br>      <span class="hljs-attr">lookup:</span> [<span class="hljs-string">paras_action</span>]<br>  <span class="hljs-attr">inputs:</span><br>    <span class="hljs-attr">result:</span>	<span class="hljs-string">&#x27;find.output(&quot;Calibration&quot;, &quot;ReadADCcalfromDSMStoretoPDCA&quot;, &quot;&quot;, &quot;result&quot;)&#x27;</span><br>  <span class="hljs-attr">sequence:</span><br>    <span class="hljs-attr">actions:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">paras_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">RegexGroup.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-string">-</span>	<span class="hljs-attr">lookup:</span> [<span class="hljs-string">inputs</span>, <span class="hljs-string">result</span>]<br>            <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;i_inv_64_offset=(.*) i_inv_16_gain&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">RunEvalCalculate_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">CalculatePuckADCValue.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">paras_action</span>]<br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">record_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">CreateRecord.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">RunEvalCalculate_action</span>]<br><br><span class="hljs-comment">#...omit..</span><br><span class="hljs-comment"># total code line number is 313</span><br><br></code></pre></td></tr></table></figure>
+
+<p>观察上述代码可以发现 除却第一个配置，后续12个yaml 基本都是重复的，除了<code>testParameters</code> 和 <code>paras_action</code>中第二个参数不一样之外，其他都一样，</p>
+</li>
+<li><p>优化后:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">-</span>	<span class="hljs-comment">#ReadADCcalfromDSMStoretoPDCA</span><br>  <span class="hljs-attr">technology:</span>	<span class="hljs-string">Calibration</span><br>  <span class="hljs-attr">coverage:</span>	<span class="hljs-string">ReadADCcalfromDSMStoretoPDCA</span><br>  <span class="hljs-attr">testParameters:</span>	<span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-attr">outputs:</span><br>      <span class="hljs-attr">result:</span><br>        <span class="hljs-attr">lookup:</span> [<span class="hljs-string">sendCommand_action</span>]<br>  <span class="hljs-attr">sequence:</span><br>    <span class="hljs-attr">actions:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">sendCommand_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">DutSendCommand.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-string">-</span>	<span class="hljs-string">&quot;calib adc_get&quot;</span><br><br><span class="hljs-string">-</span>	<span class="hljs-comment">#FetchCalibrationValue</span><br>  <span class="hljs-attr">technology:</span>	<span class="hljs-string">Calibration</span><br>  <span class="hljs-attr">coverage:</span>	<span class="hljs-string">&quot;ReadADCcalfromDSMStoretoPDCA&quot;</span><br>  <span class="hljs-attr">testParameters:</span>	<span class="hljs-string">&quot;*&quot;</span><br>  <span class="hljs-attr">outputs:</span><br>    <span class="hljs-attr">result:</span><br>      <span class="hljs-attr">lookup:</span> [<span class="hljs-string">paras_action</span>]<br>  <span class="hljs-attr">inputs:</span><br>    <span class="hljs-attr">result:</span>	<span class="hljs-string">&#x27;find.output(&quot;Calibration&quot;, &quot;ReadADCcalfromDSMStoretoPDCA&quot;, &quot;&quot;, &quot;result&quot;)&#x27;</span><br>    <span class="hljs-attr">category:</span> <span class="hljs-string">testParameters</span><br>  <span class="hljs-attr">sequence:</span><br>    <span class="hljs-attr">actions:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">fecth_Regex_pattern_Action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">FetchRegexPattern.lua</span><br>          <span class="hljs-attr">args:</span> <br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">inputs</span>, <span class="hljs-string">category</span>]<br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">paras_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">RegexGroup.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-string">-</span>	<span class="hljs-attr">lookup:</span> [<span class="hljs-string">inputs</span>, <span class="hljs-string">result</span>]<br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">fecth_Regex_pattern_Action</span>]<br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">RunEvalCalculate_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">CalculatePuckADCValue.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">paras_action</span>]<br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">record_action:</span><br>          <span class="hljs-attr">filename:</span> <span class="hljs-string">CreateRecord.lua</span><br>          <span class="hljs-attr">args:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">lookup:</span> [<span class="hljs-string">RunEvalCalculate_action</span>]<br><span class="hljs-comment"># total line is 43</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>优化之后最直观的表现是 yaml 文件中仅有43行代码；</p>
+<p>优化后的思路是：</p>
+<ul>
+<li><p>将 <code>testParameters</code> 通过参数传入, 观察第 24行代码 <code>category: testParameters</code></p>
+</li>
+<li><p>定义一个方法<code>fecth_Regex_pattern_Action</code>用来获取对应的正则，内部的部分代码如下</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span><span class="hljs-params">(category)</span></span><br>    <span class="hljs-keyword">local</span> pattern = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> category:<span class="hljs-built_in">find</span>(<span class="hljs-string">&quot;CALIINV64GAIN&quot;</span>) <span class="hljs-keyword">then</span><br>        pattern = <span class="hljs-string">&quot;i_inv_64_gain=(.*) i_inv_64_offset&quot;</span><br>    <span class="hljs-keyword">elseif</span> category:<span class="hljs-built_in">find</span>(<span class="hljs-string">&quot;CALIINV64OFFSET&quot;</span>) <span class="hljs-keyword">then</span><br>        pattern = <span class="hljs-string">&quot;i_inv_64_offset=(.*) i_inv_16_gain&quot;</span><br>    <span class="hljs-keyword">elseif</span> category:<span class="hljs-built_in">find</span>(<span class="hljs-string">&quot;CALIINV16GAIN&quot;</span>) <span class="hljs-keyword">then</span><br>        pattern = <span class="hljs-string">&quot;i_inv_16_gain=(.*) i_inv_16_offset&quot;</span><br>    <span class="hljs-comment">-- omit others</span><br>    <span class="hljs-keyword">return</span> pattern<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-编译器优化"><a href="#2-编译器优化" class="headerlink" title="2. 编译器优化"></a>2. 编译器优化</h3><p>参考DEMO P158 分支：<code>lx_analyze</code>, <code>HF_before.yaml</code> 和 <code>LF_before.yaml</code> 两个文件是优化之前的，<code>HF.yaml </code>和 <code>LF.yaml </code>是优化之后的</p>
+<ul>
+<li><p>优化前的部分代码</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">technology:</span>	<span class="hljs-string">LF</span><br>  <span class="hljs-attr">coverage:</span>	  <span class="hljs-string">CalculateDCEfficiency</span><br>  <span class="hljs-attr">testParameters:</span>	<span class="hljs-string">&quot;&amp;LF_EFF_21_290mA_DCDC_EFF&quot;</span><br>  <span class="hljs-attr">inputs:</span><br>    <span class="hljs-attr">vrect_fixture:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;RecordVrectFixture&quot;, &quot;&amp;LF_EFF_21_290mA_VRECT_FIXTURE&quot;, &quot;vrect_fixture&quot;)&#x27;</span><br>    <span class="hljs-attr">imain_fixture:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;RecordImainFixture&quot;, &quot;&amp;LF_EFF_21_290mA_IMAIN_FIXTURE&quot;, &quot;imain_fixture&quot;)&#x27;</span><br>    <span class="hljs-attr">vpwr_adc:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;ReadVPWRAdc&quot;, &quot;&amp;LF_EFF_21_290mA_VPWR_ADC&quot;, &quot;vpwr_adc&quot;)&#x27;</span><br>    <span class="hljs-attr">ibus_fixture:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;RecordIbusFixture&quot;, &quot;&amp;LF_EFF_21_290mA_IBUS_FIXTURE&quot;, &quot;ibus_fixture&quot;)&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>能够看到<code>inputs</code>的四个参数中，负载值(21_290) 跟<code>testParameters</code><strong>一直。但是Schooner 并没有 参数化传递 <code>&quot;find.output(...)&quot;</code>的方法</strong>，所以这部分ERS循环n次就需要编辑n次,导致冗余代码过多，后期维护修改及其繁琐，而且容易漏改</p>
+</li>
+</ul>
+<p>解决方法: 定制化编译工具. 在 <code>Atlas2/Modules/Schooner/Compiler/Compiler.lua</code> 文件中的<code>function M.checkInputs(testDef, conditionTable, dependentTests)</code> 的方法里添加，我们需要格式化 yaml 参数的部分</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 这个方法是检查 yaml 中Inputs 的信息的</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">M.checkInputs</span><span class="hljs-params">(testDef, conditionTable, dependentTests)</span></span><br>    <span class="hljs-comment">-- omit some code</span><br>    <span class="hljs-keyword">elseif</span> inputExpr:<span class="hljs-built_in">match</span>(<span class="hljs-string">&#x27;^find%.output%(.+%)$&#x27;</span>) ~= <span class="hljs-literal">nil</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">local</span> argsString = inputExpr:<span class="hljs-built_in">match</span>(<span class="hljs-string">&#x27;^find%.output%((.+)%)$&#x27;</span>)<br>        <span class="hljs-keyword">local</span> customComplier = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ALE.CompilerCustom&#x27;</span>)<br>        argsString = customComplier.transformArgsString(sourceTestDef, argsString)<br>        <span class="hljs-keyword">local</span> dependency = M.parseFindOutput(argsString, sourceTestDef)<br>   <span class="hljs-comment">-- omit some code</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>ALE.CompilerCustom</code> 是我们需要定制化的逻辑，代码如下:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CompilerCustom.transformArgsString</span><span class="hljs-params">(sourceTestDef, argsString)</span></span><br>    <span class="hljs-comment">-- <span class="hljs-doctag">NOTE:</span> 这个pattern 不能改的!!! 除非跟定义时候一致，否则会出错</span><br>    <span class="hljs-keyword">local</span> pattern = <span class="hljs-string">&quot;&#123;(.-)&#125;&quot;</span><br>  <br>    <span class="hljs-keyword">for</span> matchLogic <span class="hljs-keyword">in</span> argsString:<span class="hljs-built_in">gmatch</span>(pattern) <span class="hljs-keyword">do</span><br><br>        <span class="hljs-keyword">local</span> pattern_tp, duty, load_mA = <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;&quot;</span> ,<span class="hljs-string">&quot;&quot;</span><br><br>        <span class="hljs-keyword">local</span> testParameters = sourceTestDef.testParameters<br><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">string</span>.<span class="hljs-built_in">find</span>(testParameters, <span class="hljs-string">&quot;&amp;LF_EFF_&quot;</span>) ~= <span class="hljs-literal">nil</span> <span class="hljs-keyword">then</span><br>            pattern_tp = <span class="hljs-string">&quot;_(%d+)_([%d]+)mA&quot;</span><br>        <span class="hljs-keyword">elseif</span> <span class="hljs-built_in">string</span>.<span class="hljs-built_in">find</span>(testParameters, <span class="hljs-string">&quot;&amp;HF_EFF_&quot;</span>) <span class="hljs-keyword">then</span><br>            pattern_tp = <span class="hljs-string">&quot;_(%d+)mV_([%d]+)mA&quot;</span><br>        <span class="hljs-keyword">end</span><br>    <br>        duty, load_mA = sourceTestDef.testParameters:<span class="hljs-built_in">match</span>(pattern_tp)<br>        <span class="hljs-keyword">if</span> matchLogic == <span class="hljs-string">&quot;duty&quot;</span> <span class="hljs-keyword">then</span><br>            argsString = argsString:<span class="hljs-built_in">gsub</span>(<span class="hljs-string">&quot;&#123;duty&#125;&quot;</span>,duty)<br>        <span class="hljs-keyword">elseif</span> matchLogic == <span class="hljs-string">&quot;load&quot;</span> <span class="hljs-keyword">then</span><br>            argsString = argsString:<span class="hljs-built_in">gsub</span>(<span class="hljs-string">&quot;&#123;load&#125;&quot;</span>,load_mA)<br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> argsString<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p>优化后的yaml文件里的写法</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">-</span>	<span class="hljs-comment">#CalculateDCEfficiency</span><br>  <span class="hljs-attr">technology:</span>	<span class="hljs-string">LF</span><br>  <span class="hljs-attr">coverage:</span>	  <span class="hljs-string">CalculateDCEfficiency</span><br>  <span class="hljs-attr">testParameters:</span>	<span class="hljs-string">&quot;*&quot;</span><br>  <span class="hljs-attr">inputs:</span><br>    <span class="hljs-attr">vrect_fixture:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;RecordVrectFixture&quot;, &quot;&amp;LF_EFF_&#123;duty&#125;_&#123;load&#125;mA_VRECT_FIXTURE&quot;, &quot;vrect_fixture&quot;)&#x27;</span><br>    <span class="hljs-attr">imain_fixture:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;RecordImainFixture&quot;, &quot;&amp;LF_EFF_&#123;duty&#125;_&#123;load&#125;mA_IMAIN_FIXTURE&quot;, &quot;imain_fixture&quot;)&#x27;</span><br>    <span class="hljs-attr">vpwr_adc:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;ReadVPWRAdc&quot;, &quot;&amp;LF_EFF_&#123;duty&#125;_&#123;load&#125;mA_VPWR_ADC&quot;, &quot;vpwr_adc&quot;)&#x27;</span><br>    <span class="hljs-attr">ibus_fixture:</span> <span class="hljs-string">&#x27;find.output(&quot;Common&quot;, &quot;RecordIbusFixture&quot;, &quot;&amp;LF_EFF_&#123;duty&#125;_&#123;load&#125;mA_IBUS_FIXTURE&quot;, &quot;ibus_fixture&quot;)&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>因此，后续就不惧ERS如何更新。</p>
+<hr>
+<p>综上，用程式生成的CSV和Ymal的输入参数格式化，在ERS繁多的情况下，会大大提升开发效率。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/DevelopmentTool/" class="category-chain-item">DevelopmentTool</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/dev/" class="print-no-link">#dev</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P158 Schooner 优化</div>
+      <div>https://jackiedai.github.io/2024/06/07/008personal/Dev003/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 7, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/15/008personal/Dev002/" title="安装不同Atlas版本的注意事项">
+                        <span class="hidden-mobile">安装不同Atlas版本的注意事项</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
