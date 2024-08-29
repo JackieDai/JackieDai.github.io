@@ -7,8 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -50,7 +53,7 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
@@ -75,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -88,7 +91,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -226,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          133 words
+          132 words
         
       </span>
     
@@ -279,23 +286,32 @@
             
               <div class="markdown-body">
                 
-                <h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><h5 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax:"></a>Syntax:</h5><blockquote>
-<p>while(condition)<br>do<br>   statement(s)<br>end</p>
+                <h2 id="while">while</h2>
+<h5 id="Syntax">Syntax:</h5>
+<blockquote>
+<p>while(condition)<br>
+do<br>
+statement(s)<br>
+end</p>
 </blockquote>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua">a = <span class="hljs-number">10</span><br><span class="hljs-keyword">while</span>( a &lt; <span class="hljs-number">20</span> )<br><span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;value of a:&quot;</span>, a)<br>   a = a+<span class="hljs-number">1</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/lua/lua_for_loop.htm">参考链接1</a></p>
+<h2 id="for">for</h2>
+<p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/lua/lua_for_loop.htm">参考链接1</a></p>
 <blockquote>
 <p>The <strong>for</strong> statement has two variants(变种): <u>the <em>numeric</em> <strong>for</strong></u> and <u>the <em>generic</em> <strong>for</strong></u>.</p>
 </blockquote>
-<h4 id="Numeric-for-数值for循环"><a href="#Numeric-for-数值for循环" class="headerlink" title="Numeric for (数值for循环)"></a>Numeric <strong>for</strong> (数值for循环)</h4><p><a target="_blank" rel="noopener" href="https://www.lua.org/pil/4.3.4.html">官方文档</a></p>
+<h4 id="Numeric-for-数值for循环">Numeric <strong>for</strong> (数值for循环)</h4>
+<p><a target="_blank" rel="noopener" href="https://www.lua.org/pil/4.3.4.html">官方文档</a></p>
 <blockquote>
-<p> for var&#x3D;exp1,exp2,exp3 do<br>   something<br> end</p>
+<p>for var=exp1,exp2,exp3 do<br>
+something<br>
+end</p>
 <blockquote>
 <ul>
 <li>exp1: initial condition</li>
 <li>exp2:  final condition</li>
-<li>exp3:  step<ul>
+<li>exp3:  step
+<ul>
 <li>this exp is optional,when absent, Lua assumes one as the step value.</li>
 </ul>
 </li>
@@ -303,21 +319,23 @@
 </blockquote>
 </blockquote>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">--[[</span><br><span class="hljs-comment">exp1: i = 10</span><br><span class="hljs-comment">exp2: 4</span><br><span class="hljs-comment">exp3: -2</span><br><span class="hljs-comment">]]</span><br><span class="hljs-keyword">for</span> i = <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">-2</span> <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(i) <span class="hljs-comment">-- 10,8,6,4</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- Omit exp3</span><br><span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, <span class="hljs-number">3</span> <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(i) <span class="hljs-comment">-- 1,2,3</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="Generic-for-泛型for循环"><a href="#Generic-for-泛型for循环" class="headerlink" title="Generic for (泛型for循环)"></a>Generic <strong>for</strong> (泛型for循环)</h3><p><a target="_blank" rel="noopener" href="https://www.lua.org/pil/4.3.5.html">官方文档</a></p>
+<h3 id="Generic-for-泛型for循环">Generic <strong>for</strong> (泛型for循环)</h3>
+<p><a target="_blank" rel="noopener" href="https://www.lua.org/pil/4.3.5.html">官方文档</a></p>
 <p>The generic <strong>for</strong> loop allows you to <u>traverse(遍历) all values</u> returned by <strong>an iterator function.</strong></p>
-<h5 id="ipairs"><a href="#ipairs" class="headerlink" title="ipairs()"></a>ipairs()</h5><blockquote>
+<h5 id="ipairs">ipairs()</h5>
+<blockquote>
 <p>When the traversed value is nil, the for loop will terminate.</p>
 </blockquote>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-literal">nil</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.14</span>&#125;<br><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span>(a) <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(value) <span class="hljs-comment">-- one, two</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="pairs"><a href="#pairs" class="headerlink" title="pairs()"></a>pairs()</h5><blockquote>
+<h5 id="pairs">pairs()</h5>
+<blockquote>
 <p>When the traversed value is nil, the for loop will omit the nil value and continue to the rest.</p>
 </blockquote>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-string">&quot;one&quot;</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-literal">nil</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.14</span>&#125;<br><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(a) <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">print</span>(value) <span class="hljs-comment">-- one, two, 1, 2, 3.14</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="repeat…until"><a href="#repeat…until" class="headerlink" title="repeat…until"></a>repeat…until</h2><p>Similiar to other programing language.</p>
-<h2 id="nested-loop"><a href="#nested-loop" class="headerlink" title="nested loop"></a>nested loop</h2><p>Similiar to other programing language.</p>
+<h2 id="repeat…until">repeat…until</h2>
+<p>Similiar to other programing language.</p>
+<h2 id="nested-loop">nested loop</h2>
+<p>Similiar to other programing language.</p>
 
                 
               </div>
@@ -389,7 +407,7 @@
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
+                    <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
@@ -559,7 +577,6 @@
     <div class="footer-content">
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
   
   
   

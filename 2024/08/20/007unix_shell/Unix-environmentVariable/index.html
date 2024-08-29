@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Unix 下环境变量,系统的环境变量，用户自定义的环境变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unix Environment Variables(环境变量)">
+<meta property="og:url" content="https://jackiedai.github.io/2024/08/20/007unix_shell/Unix-environmentVariable/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="Unix 下环境变量,系统的环境变量，用户自定义的环境变量">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/unix_icon.png">
+<meta property="article:published_time" content="2024-08-20T03:54:38.000Z">
+<meta property="article:modified_time" content="2024-08-20T03:12:39.631Z">
+<meta property="article:author" content="lingXiao">
+<meta property="article:tag" content="unix">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/unix_icon.png">
+  
+  
+  
+  <title>Unix Environment Variables(环境变量) - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Unix Environment Variables(环境变量)</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-20 11:54" pubdate>
+          August 20, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Unix Environment Variables(环境变量)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/unix/unix-environment.htm">本文参考链接</a></p>
+</blockquote>
+<p>首先来了解下，当电脑启动时，发生了什么？</p>
+<p>下图是系统的基础架构图</p>
+<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/unix_architecture.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>当用户登录系统之后，shell 会经历一个初始化的阶段，用来设置环境，通常是执行以下两个目录</p>
+<ul>
+<li>
+<p><code>/etc/profile</code></p>
+<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202408201027040.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p><code>profile</code></p>
+<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202408201029357.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>The shell checks to see whether the file <strong>/etc/profile</strong> exists.If it exists, the shell reads it. Otherwise, this file is skipped. No error message is displayed.</li>
+<li>The shell checks to see whether the file <strong>.profile</strong> exists in your <u>home director</u>y. Your home directory is the directory that you start out in after you log in.If it exists, the shell reads it; otherwise, the shell skips it. No error message is displayed.</li>
+</ul>
+</blockquote>
+<h2 id="etc-profile">/etc/profile</h2>
+<blockquote>
+<p>在Unix系统中，<code>/etc/profile</code> 是一个全局的启动脚本，用于为所有用户设置系统范围的环境变量和启动程序。具体来说，它做了以下几件事情：</p>
+<ol>
+<li>
+<p><strong>环境变量设置</strong>：它通常会定义一些环境变量，比如 <code>PATH</code>、<code>EDITOR</code>、<code>LANG</code> 等，这些变量对所有用户都会生效。</p>
+</li>
+<li>
+<p><strong>启动程序</strong>：可以在 <code>/etc/profile</code> 中添加要在每次用户登录时自动执行的命令或程序，例如启动特定的应用程序或脚本。</p>
+</li>
+<li>
+<p><strong>配置用户会话</strong>：它设置的环境变量和配置会影响所有用户的会话和登录过程。</p>
+</li>
+<li>
+<p><strong>执行其他脚本</strong>：有时 <code>/etc/profile</code> 会调用其他脚本，比如 <code>/etc/profile.d/</code> 目录中的脚本，以便分离和组织配置。</p>
+</li>
+<li>
+<p><strong>条件判断</strong>：根据系统的配置或条件，可以在 <code>/etc/profile</code> 中添加特定的逻辑，以满足不同的需求或环境条件。</p>
+</li>
+</ol>
+<p>这个文件在用户登录时被读取和执行，但具体的操作和设置可能会因Unix的不同版本和配置而有所不同。</p>
+</blockquote>
+<h2 id="Home-profile">/Home/profile</h2>
+<blockquote>
+<p>在用户目录下的 <code>.profile</code> 脚本是用户级的启动脚本，它在用户登录时被执行。这个脚本的作用包括：</p>
+<ol>
+<li>
+<p><strong>设置用户级环境变量</strong>：用户可以在 <code>.profile</code> 中定义环境变量，如 <code>PATH</code>、<code>EDITOR</code> 等，这些变量只对该用户有效。</p>
+</li>
+<li>
+<p><strong>配置用户环境</strong>：可以设置其他环境配置，如命令别名、函数等，来定制用户的工作环境。</p>
+</li>
+<li>
+<p><strong>启动程序</strong>：可以在 <code>.profile</code> 中指定登录时要自动执行的程序或脚本，比如启动个人化的应用程序或自定义的初始化脚本。</p>
+</li>
+<li>
+<p><strong>执行其他脚本</strong>：用户可以在 <code>.profile</code> 中调用其他脚本，以组织和分离配置内容。例如，可以用 <code>source</code> 命令引入其他文件。</p>
+</li>
+<li>
+<p><strong>条件配置</strong>：可以在 <code>.profile</code> 中根据系统环境或条件进行配置，以适应不同的工作环境。</p>
+</li>
+</ol>
+<p>与 <code>/etc/profile</code> 不同，<code>.profile</code> 是特定于每个用户的，允许每个用户根据个人需求定制其环境配置。注意，<code>.profile</code> 文件主要用于登录 shell，若使用其他类型的 shell（如 <code>zsh</code>），可能会使用不同的配置文件，如 <code>.zshrc</code>。</p>
+</blockquote>
+<h2 id="环境变量之-PATH">环境变量之  PATH</h2>
+<blockquote>
+<p>环境变量 <code>PATH</code> 是一个非常重要的环境变量，它在Unix/Linux系统中用于指定可执行文件的搜索路径。具体来说，<code>PATH</code> 变量告诉操作系统在什么路径下查找命令和程序。以下是 <code>PATH</code> 环境变量的详细介绍：</p>
+<h3 id="1-基本概念">1. <strong>基本概念</strong></h3>
+<ul>
+<li>
+<p><strong>作用</strong>：当你在终端中输入一个命令（例如 <code>ls</code> 或 <code>python</code>）时，系统会按照 <code>PATH</code> 变量中定义的路径顺序去查找这个命令对应的可执行文件。如果找到了，就执行这个文件；如果找不到，就会显示一个错误信息（通常是 “command not found”）。</p>
+</li>
+<li>
+<p><strong>格式</strong>：<code>PATH</code> 变量是由多个目录路径组成的，每个路径之间用冒号 <code>:</code> 分隔。例如：<code>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code>。</p>
+</li>
+</ul>
+<h3 id="2-设置-PATH">2. <strong>设置 <code>PATH</code></strong></h3>
+<ul>
+<li>
+<p><strong>查看当前 <code>PATH</code></strong>：在终端中运行 <code>echo $PATH</code> 可以查看当前的 <code>PATH</code> 设置。</p>
+</li>
+<li>
+<p><strong>修改 <code>PATH</code></strong>：你可以通过编辑 <code>~/.bashrc</code>、<code>~/.zshrc</code> 或其他 shell 配置文件来添加或修改 <code>PATH</code>。例如：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:/home/username/bin<br></code></pre></td></tr></table></figure>
+<p>这会将 <code>/home/username/bin</code> 目录添加到现有的 <code>PATH</code> 中。你可以将这行代码添加到配置文件中，并使用 <code>source ~/.bashrc</code> 使更改生效。</p>
+</li>
+</ul>
+<h3 id="3-优先级">3. <strong>优先级</strong></h3>
+<ul>
+<li><strong>顺序重要</strong>：<code>PATH</code> 变量中的目录顺序很重要。系统会按照 <code>PATH</code> 中的顺序查找可执行文件，因此如果有多个目录中包含同名的命令，系统会执行第一个找到的命令。</li>
+</ul>
+<h3 id="4-应用场景">4. <strong>应用场景</strong></h3>
+<ul>
+<li>
+<p><strong>用户自定义命令</strong>：你可以将自己编写的脚本或程序所在的目录添加到 <code>PATH</code> 中，从而可以在任何位置直接运行这些脚本或程序，而不需要输入完整路径。</p>
+</li>
+<li>
+<p><strong>软件安装</strong>：许多软件在安装时会自动将它们的可执行文件路径添加到 <code>PATH</code> 中，以方便用户直接调用。</p>
+</li>
+</ul>
+<h3 id="5-例子">5. <strong>例子</strong></h3>
+<ul>
+<li>
+<p><strong>查看 <code>PATH</code></strong>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>临时修改 <code>PATH</code></strong>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> PATH=/home/username/myprograms:<span class="hljs-variable">$PATH</span><br></code></pre></td></tr></table></figure>
+<p>这会将 <code>/home/username/myprograms</code> 目录添加到 <code>PATH</code> 的前面，优先查找这个目录中的程序。</p>
+<blockquote>
+<p><code>export</code> 是一个用于在 Unix 和 Linux 系统中的 shell 环境中设置和管理环境变量的命令</p>
+</blockquote>
+</li>
+<li>
+<p><strong>永久修改 <code>PATH</code></strong>：<br>
+将上述 <code>export PATH=...</code> 语句添加到 <code>~/.bashrc</code> 或 <code>~/.zshrc</code> 文件中，并执行 <code>source ~/.bashrc</code> 或 <code>source ~/.zshrc</code> 使其生效。</p>
+</li>
+</ul>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Unix/" class="category-chain-item">Unix</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/unix/" class="print-no-link">#unix</a>
+      
+        <a href="/tags/shell/" class="print-no-link">#shell</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Unix Environment Variables(环境变量)</div>
+      <div>https://jackiedai.github.io/2024/08/20/007unix_shell/Unix-environmentVariable/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 20, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/29/012%E8%BF%9B%E5%88%B6/001.%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" title="进制转换">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">进制转换</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/20/011Python/001%E5%A4%9A%E7%89%88%E6%9C%ACPython%E7%AE%A1%E7%90%86/" title="多版本Python管理">
+                        <span class="hidden-mobile">多版本Python管理</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

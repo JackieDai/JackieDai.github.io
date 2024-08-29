@@ -7,8 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -27,8 +30,8 @@
 <meta property="article:published_time" content="2023-12-23T00:19:27.000Z">
 <meta property="article:modified_time" content="2023-12-23T01:47:37.283Z">
 <meta property="article:author" content="lingXiao">
-<meta property="article:tag" content="tools">
 <meta property="article:tag" content="lua">
+<meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312220858875.png">
   
@@ -51,7 +54,7 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
@@ -76,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -89,7 +92,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -281,41 +288,50 @@
               <div class="markdown-body">
                 
                 <p><a target="_blank" rel="noopener" href="https://martin-fieber.de/blog/goodbye-snake-i-go-to-the-moon/">Reference</a></p>
-<h2 id="Install-luarocks"><a href="#Install-luarocks" class="headerlink" title="Install luarocks"></a>Install luarocks</h2><p><strong>mission</strong>: use <code>luarocks</code> to manage third libs in lua project.</p>
+<h2 id="Install-luarocks">Install luarocks</h2>
+<p><strong>mission</strong>: use <code>luarocks</code> to manage third libs in lua project.</p>
 <blockquote>
 <p>Guarantee the <code>luarocks</code> have been installed in your mac. if not , using the follow command.</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ <span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>luarocks<br></code></pre></td></tr></table></figure>
 </blockquote>
-<p>Generally, the libs installed using <code>luarocks</code> will locate at global position. <del>But in real situation, we’d like install lib is each Project locally not in global.</del>  But in a real-world scenario, we prefer to install libs locally for each project rather than globally.</p>
-<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><blockquote>
+<p>Generally, the libs installed using <code>luarocks</code> will locate at global position. <s>But in real situation, we’d like install lib is each Project locally not in global.</s>  But in a real-world scenario, we prefer to install libs locally for each project rather than globally.</p>
+<h2 id="Exercise">Exercise</h2>
+<blockquote>
 <p>I will install all packages inside a <code>lua_modules</code> folder <u>in the root of a project</u>, using the <code>--tree</code> option of the LuaRocks CLI. As an example, installing the <a target="_blank" rel="noopener" href="https://luarocks.org/modules/kikito/inspect">inspect</a> package.</p>
 </blockquote>
 <ol>
-<li><p><code>cd</code> the root of your Project.</p>
+<li>
+<p><code>cd</code> the root of your Project.</p>
 </li>
-<li><p>excute <code>luarocks install --tree=lua_modules inspect</code></p>
-<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230851976.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>excute <code>luarocks install --tree=lua_modules inspect</code></p>
+<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230851976.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p><code>tree=lua_modules</code> means the libs will be installed at that folder.</p>
 </blockquote>
 </li>
-<li><p>create <code>setup.lua</code> and <code>test.lua</code> files.</p>
+<li>
+<p>create <code>setup.lua</code> and <code>test.lua</code> files.</p>
 <ol>
-<li><p>we need make configrations for <code>pageage</code> in <code>setup.lua</code> file</p>
+<li>
+<p>we need make configrations for <code>pageage</code> in <code>setup.lua</code> file</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- setup.lua</span><br><span class="hljs-keyword">local</span> version = <span class="hljs-built_in">_VERSION</span>:<span class="hljs-built_in">match</span>(<span class="hljs-string">&quot;%d+%.%d+&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;version&#x27;</span>,version) <span class="hljs-comment">-- version	5.4</span><br><br><span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span> = <span class="hljs-string">&#x27;lua_modules/share/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?.lua;lua_modules/share/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?/init.lua;&#x27;</span><br>  .. <span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span><br><span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span> = <span class="hljs-string">&#x27;lua_modules/lib/lua/&#x27;</span><br>  .. version ..<br>  <span class="hljs-string">&#x27;/?.so;&#x27;</span> .. <span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;package.path == &#x27;</span>,<span class="hljs-built_in">package</span>.<span class="hljs-built_in">path</span>) <span class="hljs-comment">-- package.path ==	lua_modules/share/lua/5.4/?.lua;lua_modules/share/lua/5.4/?/init.lua;/usr/local/share/lua/5.4/?.lua;/usr/local/share/lua/5.4/?/init.lua;/usr/local/lib/lua/5.4/?.lua;/usr/local/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;package.cpath == &#x27;</span>,<span class="hljs-built_in">package</span>.<span class="hljs-built_in">cpath</span>) <span class="hljs-comment">-- package.cpath == lua_modules/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;./?.so</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>test the lib in <code>test.lua</code>file</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">--[[</span><br><span class="hljs-comment">    <span class="hljs-doctag">NOTE:</span></span><br><span class="hljs-comment">    make sure setup.lua must be loaded. or `require &quot;inspect&quot;` cause error!</span><br><span class="hljs-comment">]]</span><br><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;setup&quot;</span>)<br><br><span class="hljs-keyword">local</span> inspect = <span class="hljs-built_in">require</span> <span class="hljs-string">&quot;inspect&quot;</span><br><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;<br><br><span class="hljs-built_in">print</span>(inspect(a))<br><br><span class="hljs-comment">--[[</span><br><span class="hljs-comment">result:</span><br><span class="hljs-comment">	&#123; 1, 2 &#125;</span><br><span class="hljs-comment">]]</span><br></code></pre></td></tr></table></figure></li>
+<li>
+<p>test the lib in <code>test.lua</code>file</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">--[[</span><br><span class="hljs-comment">    <span class="hljs-doctag">NOTE:</span></span><br><span class="hljs-comment">    make sure setup.lua must be loaded. or `require &quot;inspect&quot;` cause error!</span><br><span class="hljs-comment">]]</span><br><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;setup&quot;</span>)<br><br><span class="hljs-keyword">local</span> inspect = <span class="hljs-built_in">require</span> <span class="hljs-string">&quot;inspect&quot;</span><br><span class="hljs-keyword">local</span> a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;<br><br><span class="hljs-built_in">print</span>(inspect(a))<br><br><span class="hljs-comment">--[[</span><br><span class="hljs-comment">result:</span><br><span class="hljs-comment">	&#123; 1, 2 &#125;</span><br><span class="hljs-comment">]]</span><br></code></pre></td></tr></table></figure>
+</li>
 </ol>
 </li>
-<li><p>the demo dir as follows:</p>
-<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230910092.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>the demo dir as follows:</p>
+<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230910092.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <blockquote>
 <p>If you install libs locally, there is nothing when you excute <code>luarocks list</code>;</p>
-<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230913600.png" srcset="/img/loading.gif" lazyload></p>
-<p><del>But if you install globally, there are the libs you installed before when excute that command.</del></p>
+<p><img src="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312230913600.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><s>But if you install globally, there are the libs you installed before when excute that command.</s></p>
 <p>But if you install globally, the libraries you installed before will be available when executing that command.</p>
 </blockquote>
 
@@ -351,9 +367,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tools/" class="print-no-link">#tools</a>
-      
         <a href="/tags/lua/" class="print-no-link">#lua</a>
+      
+        <a href="/tags/tools/" class="print-no-link">#tools</a>
       
     </div>
   
@@ -391,7 +407,7 @@
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
+                    <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
@@ -561,7 +577,6 @@
     <div class="footer-content">
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
   
   
   

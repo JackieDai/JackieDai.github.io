@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="主要分析测试站的生命周期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MatchBox+Atlas启动流程">
+<meta property="og:url" content="https://jackiedai.github.io/2024/08/06/009Atlas/Atlas003/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="主要分析测试站的生命周期">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/tools.png">
+<meta property="article:published_time" content="2024-08-06T06:05:38.000Z">
+<meta property="article:modified_time" content="2024-08-07T02:43:38.017Z">
+<meta property="article:author" content="lingXiao">
+<meta property="article:tag" content="atlas2">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/tools.png">
+  
+  
+  
+  <title>MatchBox+Atlas启动流程 - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">MatchBox+Atlas启动流程</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-06 14:05" pubdate>
+          August 6, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MatchBox+Atlas启动流程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>写在前面</h1>
+<p>查看文档，已经知道AtlasCore启动AtlasGroupProcess和AtlasDetectionProcess用来分别执行<code>group.lua</code>和<code>detect.lua</code></p>
+<p>AtlasDetectionProcess 的作用主要是根据相应的URL找到Device和Resouce,并将其映射到相对应的Group上，相当于测试的准备工作</p>
+<p>而AtlasGroupProcess则控制整个测试周期，</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">groupStateMachineMainPerSetup</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;GroupStateMachine : Init&quot;</span>)<br>    ...omit code...<br>  <br>    <span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;GroupStateMachine : GroupSetup&quot;</span>)<br>    <br>    ...omit code...<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;GroupStateMachine : TestLoopStart&quot;</span>)<br>   <br>		 ...omit code...<br>    <span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;GroupStateMachine : GroupTeardown&quot;</span>)<br>  	 ...omit code...<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p>主要就分为4大步骤</p>
+<ol>
+<li>初始化 GSM</li>
+<li>设置Group</li>
+<li>开启测试循环,直到退出循环</li>
+<li>测试结束</li>
+</ol>
+<blockquote>
+<p>个人理解：通过观察log <code>/Library/Logs/Atlas/active/atlas.log </code>可知，AtlasDetectionProcess 的操作应该是在 【GroupSetup 方法完成之前】完成的</p>
+</blockquote>
+<h2 id="GroupStateMachine-Init">GroupStateMachine : Init</h2>
+<p>初始化一些函数签名，以及一些初始条件</p>
+<h2 id="GroupStateMachine-GroupSetup">GroupStateMachine : GroupSetup</h2>
+<p>主要作用是</p>
+<ol>
+<li>获取GROUP的Resource <code>Group.getResources()</code></li>
+<li>给GROUP设置插件,这里会调用<code>group.lua</code>中自定义的<code>function groupSetup(resourcesURLs)</code>方法，其内部主要功能
+<ol>
+<li>加载CSV并检查格式</li>
+<li>加载Group 插件，其中最主要的是加载Group所需的插件</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>通过查看<code>Atlas.log</code>文件发现，<code>Detection</code>在GroupSetup函数执行完成之前已经完成了DEVICE和Resource与Group关联的操作了。</p>
+<p>TODO: 这里不是很确定，后续需要多次观察</p>
+</blockquote>
+<p>个人理解：</p>
+<p>Group是一个序列化测试项和共享资源的容器，那么我们在创建或者说设置组的时候，说明测试项和共享资源均已经准备完毕。这里所说的测试项是指我们的CSV文件，这里的资源包括，治具，产品，插件等。</p>
+<h2 id="GroupStateMachine-TestLoopStart">GroupStateMachine : TestLoopStart</h2>
+<p>这部分是产品测试逻辑的核心，想象一下，在设备开始测试的时候需要哪些设备？大概需要哪些逻辑？</p>
+<ol>
+<li>
+<p>我们首先可以确定的是，结束测试循环的条件即<code>groupShouldExit</code>,这个函数会返回boolean 类型的值</p>
+<ul>
+<li><strong>true</strong> == Matchbox will exit from current group script after teardown group plugins,and Atlas2 will start group script again.</li>
+<li><strong>false</strong> == Matchbox will loop inside current group script to next device detection, reusing existing group plugin.</li>
+</ul>
+<p>由上可知，true ,每当group测试完成之后，都会释放资源，而 false 不会。在<code>Matchbox</code>框架中，默认返回的是&quot;false&quot;, 当然这个值也可以在<code>Plugins.lua</code>对应的方法中重写.</p>
+</li>
+<li>
+<p>接下里，循环体里面可能会需要哪些逻辑呢？</p>
+<h3 id="getSlots">getSlots</h3>
+<p>在groupsetup步骤时，我们已经知道<code>Group</code>的容器已经存在所需的插件了,接下来是去获取 Group中的穴位也即<code>slot</code>（这是我们在 station configuration plist 中 key == SlotConfig中配置的，当前测试站位中一般一个Group 对应 一个slot）;</p>
+<h3 id="fetchAndExcuteDevice">fetchAndExcuteDevice</h3>
+<p>当获取到slot之后，就应该去寻找并关联当前Group和slot对应的DUT，找到之后，开始loop循环测试项直至不满足循环条件退出(循环的条件用户可自定义,这个条件是侦测设备次数，默认只循环一次)。</p>
+<p>具体的循环体，包含以下步骤</p>
+<h4 id="GroupStateMachine-DeviceSetup">GroupStateMachine : DeviceSetup</h4>
+<p>这里主要做两件事</p>
+<ul>
+<li>
+<p>Group.startDevice; Group 启动设备</p>
+<p>这个过程中会命名<code>DeviceName</code><strong>，格式为G=1:S=Slot1</strong>(<code>local deviceName = &quot;G=&quot; .. Group.index .. &quot;:S=&quot; .. slot</code>)</p>
+</li>
+<li>
+<p>deviceFT.setup； 主要是加载 设备的 插件</p>
+</li>
+</ul>
+<p>理解：</p>
+<p>​	为执行测试<code>ExecuteTest</code>做准备工作，需要设备标识(即<code>DeviceName</code>),需要操作设备的插件(如，串口插件)</p>
+<h4 id="GroupStateMachine-GroupStart">GroupStateMachine : GroupStart</h4>
+<p>这里也是为 <code>ExecuteTest</code>做准备工作，同时允许用户做一些自定义的逻辑操作</p>
+<p>run before each test cycle</p>
+<h4 id="GroupStateMachine-ExecuteTest">GroupStateMachine : ExecuteTest ****</h4>
+<p>这里是整个测试框架的核心部分，主要是调度和执行任务。具体参考源码和官方文档，简要逻辑如下</p>
+<ol>
+<li>Group 调度某一个设备<code>Group.scheduler(deviceName)</code></li>
+<li>将该设备所有的测试项加工好放进任务包 <code>dag</code>中，(这个加工的过程主要是序列化测试项事件会调用<code>SequenceControl.scheduleTests</code>)</li>
+<li>Group 去执行 任务包中的任务</li>
+</ol>
+<p>理解：Group 启动之后一定是去执行 DEVICE的 任务的，所以GROUP会根据DeviceName去调度设备，Device要把需要测试的TestCoverage通过GroupSequenceControl序列化放入任务包中(在这里DEVICE做了两个操作scheduleDAG,scheduleFinalDAG将测试项传递给Group)，最后再由Group去执行任务包，也就是执行测试项。</p>
+<h4 id="GroupStateMachine-GroupStop">GroupStateMachine : GroupStop</h4>
+<p>run after each test cycle when all slots finish testing</p>
+<h4 id="GroupStateMachine-DeviceTeardown">GroupStateMachine : DeviceTeardown</h4>
+<p>Group停止调度DEVICE，释放Device的资源和插件</p>
+<ul>
+<li>
+<p>Group.stopDevice</p>
+</li>
+<li>
+<p>deviceFT.teardown for each device</p>
+<p>关闭相应串口，断开相应Socket链接 等操作</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="GroupStateMachine-GroupTeardown">GroupStateMachine : GroupTeardown</h2>
+<p>释放Group资源</p>
+<h1>总结</h1>
+<p>纵然有很多启动细节，没法查看，但是根据源码和log分析依然能够觅寻些许蛛丝马迹。</p>
+<p>在程序启动过程中，首先是<code>AtlasCore</code>启动，AtlasCore 会去启动<code>AtlasGroupProcess</code>和<code>AtlasDetectionProcess</code>，这两个进程是相对独立的，他们会根据<code>station configuration plist</code>的配置，去分别配置相对应的Group环境，以及侦测对应的DUT和Resources.</p>
+<p>在上述过程完成之后，GSM会执行文章所述的四大步骤即：</p>
+<ul>
+<li>GSM init</li>
+<li>GSM setUp</li>
+<li>GSM loop test</li>
+<li>GSM teardown</li>
+</ul>
+<p>GSM setUp 的过程中，主要是Check CSV 的 formatter，确保CSV格式正确，这相当于是预先检查的机制; 另外一个主要的任务是加载Group所需要用的插件，这些插件会贯穿Group的整一个生命周期，直到 teardown 时释放</p>
+<p>GSM loopTest 是核心部分，即对DEVICE测试；这里的逻辑主要分为两大部；</p>
+<ul>
+<li>
+<p>第一部分是Group这个容器获取Slots信息，这些信息都是在<code>station configuration plist</code>文件中配置的；</p>
+</li>
+<li>
+<p>第二部分是DEVICE的生命周期，这里的流程些许复杂。首先给设备命名，Group启动设备，设备在加载自己所需要的插件，这一步骤称之为<code>DeviceSetUp</code>是为执行Device测试做准备;其次是<code>Group start</code>操作，用户在Device开始测试之前的逻辑部分可以写在这里；第三就是核心逻辑部分 &quot;执行测试项&quot;具体过程看上文分析。接下来就是<code>GroupStop</code>(用来编写结束测试时的逻辑部分)以及<code>Device.teardown</code>的操作(释放DEVICE的资源和插件)</p>
+<blockquote>
+<ol>
+<li>Group.getSlots()</li>
+<li>Device.setup()</li>
+<li>Group.start()</li>
+<li>Group.excuteTestItem()</li>
+<li>Group.stop()</li>
+<li>Device.teardown()</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Atlas2/" class="category-chain-item">Atlas2</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/atlas2/" class="print-no-link">#atlas2</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MatchBox+Atlas启动流程</div>
+      <div>https://jackiedai.github.io/2024/08/06/009Atlas/Atlas003/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 6, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/08/010%E6%9D%82%E8%AE%B0/0001/" title="爷爷种的绿化树">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">爷爷种的绿化树</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/06/009Atlas/Atlas002/" title="Detection And Route">
+                        <span class="hidden-mobile">Detection And Route</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

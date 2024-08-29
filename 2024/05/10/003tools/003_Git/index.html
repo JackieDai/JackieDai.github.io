@@ -7,8 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -50,7 +53,7 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
@@ -75,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -88,7 +91,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -226,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          230 words
+          226 words
         
       </span>
     
@@ -279,7 +286,9 @@
             
               <div class="markdown-body">
                 
-                <h3 id="解决：通过SSH方式-clone-的code-每次提交都需要输入rsa的密码"><a href="#解决：通过SSH方式-clone-的code-每次提交都需要输入rsa的密码" class="headerlink" title="解决：通过SSH方式 clone 的code,每次提交都需要输入rsa的密码"></a>解决：通过SSH方式 clone 的code,每次提交都需要输入rsa的密码</h3><h4 id="MacOS在-每一次-git-push-的时候-Enter-passphrase-for-key-‘-Users-lingxiao-ssh-id-rsa’-都需要输入密码，如何只输入一次，在下一次push-的时候-就直接读取缓存"><a href="#MacOS在-每一次-git-push-的时候-Enter-passphrase-for-key-‘-Users-lingxiao-ssh-id-rsa’-都需要输入密码，如何只输入一次，在下一次push-的时候-就直接读取缓存" class="headerlink" title="MacOS在 每一次 git push 的时候 Enter passphrase for key ‘&#x2F;Users&#x2F;lingxiao&#x2F;.ssh&#x2F;id_rsa’:   都需要输入密码，如何只输入一次，在下一次push 的时候 就直接读取缓存"></a>MacOS在 每一次 git push 的时候 Enter passphrase for key ‘&#x2F;Users&#x2F;lingxiao&#x2F;.ssh&#x2F;id_rsa’:   都需要输入密码，如何只输入一次，在下一次push 的时候 就直接读取缓存</h4><blockquote>
+                <h3 id="解决：通过SSH方式-clone-的code-每次提交都需要输入rsa的密码">解决：通过SSH方式 clone 的code,每次提交都需要输入rsa的密码</h3>
+<h4 id="MacOS在-每一次-git-push-的时候-Enter-passphrase-for-key-‘-Users-lingxiao-ssh-id-rsa’-都需要输入密码，如何只输入一次，在下一次push-的时候-就直接读取缓存">MacOS在 每一次 git push 的时候 Enter passphrase for key ‘/Users/lingxiao/.ssh/id_rsa’:   都需要输入密码，如何只输入一次，在下一次push 的时候 就直接读取缓存</h4>
+<blockquote>
 <p>可以使用ssh-agent来管理你的SSH密钥并将其缓存在内存中，以避免每次都需要输入密码。以下是在macOS上设置ssh-agent的步骤：</p>
 </blockquote>
 <blockquote>
@@ -292,8 +301,9 @@
 </blockquote>
 <blockquote>
 <ul>
-<li>添加你的SSH私钥到ssh-agent中：<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">ssh-<span class="hljs-keyword">add</span><span class="language-bash"> ~/.ssh/id_rsa </span><br></code></pre></td></tr></table></figure></li>
+<li>添加你的SSH私钥到ssh-agent中：</li>
 </ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">ssh-<span class="hljs-keyword">add</span><span class="language-bash"> ~/.ssh/id_rsa </span><br></code></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>如果你的私钥不是默认的id_rsa，请将上面的命令中的id_rsa替换为你的私钥文件名。</p>
@@ -354,7 +364,7 @@
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
+                    <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
@@ -524,7 +534,6 @@
     <div class="footer-content">
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
   
   
   

@@ -7,8 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -27,8 +30,8 @@
 <meta property="article:published_time" content="2024-05-11T00:27:03.000Z">
 <meta property="article:modified_time" content="2024-05-21T07:53:14.139Z">
 <meta property="article:author" content="lingXiao">
-<meta property="article:tag" content="tools">
 <meta property="article:tag" content="lua">
+<meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202312220858875.png">
   
@@ -51,7 +54,7 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
@@ -76,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -89,7 +92,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -288,7 +295,8 @@
 <li>negative value is allowed and that’s mean from the end of the string</li>
 </ul>
 </blockquote>
-<h2 id="string-format-formatstring-···"><a href="#string-format-formatstring-···" class="headerlink" title="string.format (formatstring, ···)"></a>string.format (formatstring, ···)</h2><p><code>string.format(formatstring, ...)</code> 是 Lua 中用于格式化字符串的函数。它接受一个格式化字符串 <code>formatstring</code> 和一系列参数 <code>...</code>，并返回根据格式化字符串生成的字符串。</p>
+<h2 id="string-format-formatstring-···">string.format (formatstring, ···)</h2>
+<p><code>string.format(formatstring, ...)</code> 是 Lua 中用于格式化字符串的函数。它接受一个格式化字符串 <code>formatstring</code> 和一系列参数 <code>...</code>，并返回根据格式化字符串生成的字符串。</p>
 <p><code>formatstring</code> 是一个包含转换说明符的字符串，用于指定输出字符串的格式。转换说明符由百分号（%）开头，后面跟着一个或多个字符，用于指定要格式化的数据类型和格式。</p>
 <p>以下是一些常见的转换说明符：</p>
 <ul>
@@ -300,49 +308,46 @@
 </ul>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 格式化字符串</span><br><span class="hljs-keyword">local</span> formatted_str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;Hello, %s! You are %d years old.&quot;</span>, <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">30</span>)<br><span class="hljs-built_in">print</span>(formatted_str)  <span class="hljs-comment">-- Output: Hello, Alice! You are 30 years old.</span><br><br><span class="hljs-comment">-- 使用多个参数进行格式化</span><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">pi</span> = <span class="hljs-number">3.14159</span><br><span class="hljs-keyword">local</span> radius = <span class="hljs-number">5</span><br><span class="hljs-keyword">local</span> area = <span class="hljs-built_in">pi</span> * radius * radius<br><span class="hljs-keyword">local</span> formatted_area = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;The area of a circle with radius %.2f is %.2f&quot;</span>, radius, area)<br><span class="hljs-built_in">print</span>(formatted_area)  <span class="hljs-comment">-- Output: The area of a circle with radius 5.00 is 78.54</span><br></code></pre></td></tr></table></figure>
-
 <p>在这个示例中，我们使用了 <code>string.format</code> 函数来生成格式化的字符串。第一个例子中，我们使用了 <code>%s</code> 和 <code>%d</code> 转换说明符来格式化字符串和整数。第二个例子中，我们使用了 <code>%f</code> 转换说明符来格式化浮点数，并指定了保留两位小数的格式。</p>
-<h2 id="string-byte-转成ASCII"><a href="#string-byte-转成ASCII" class="headerlink" title="string.byte - 转成ASCII"></a>string.byte - 转成ASCII</h2><p><code>string.byte</code> 是 Lua 中用于获取字符串中指定位置的字符的 ASCII 码值的函数。它可以接受一个字符串和一个可选的起始位置作为参数，并返回指定位置处字符的 ASCII 码值。</p>
+<h2 id="string-byte-转成ASCII">string.byte - 转成ASCII</h2>
+<p><code>string.byte</code> 是 Lua 中用于获取字符串中指定位置的字符的 ASCII 码值的函数。它可以接受一个字符串和一个可选的起始位置作为参数，并返回指定位置处字符的 ASCII 码值。</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">string</span>.<span class="hljs-built_in">byte</span>(s [, i [, j]])<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li><code>s</code>：要获取字符的字符串。</li>
 <li><code>i</code>（可选）：起始位置，默认为 1。</li>
 <li><code>j</code>（可选）：结束位置，默认为 <code>i</code>。</li>
 </ul>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> str = <span class="hljs-string">&quot;Hello, Lua!&quot;</span><br><span class="hljs-keyword">local</span> byte1 = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">byte</span>(str, <span class="hljs-number">1</span>)  <span class="hljs-comment">-- 获取第一个字符的 ASCII 码值</span><br><span class="hljs-built_in">print</span>(byte1)  <span class="hljs-comment">-- Output: 72</span><br><span class="hljs-keyword">local</span> byte5 = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">byte</span>(str, <span class="hljs-number">5</span>)  <span class="hljs-comment">-- 获取第五个字符的 ASCII 码值</span><br><span class="hljs-built_in">print</span>(byte5)  <span class="hljs-comment">-- Output: 111</span><br></code></pre></td></tr></table></figure>
-
 <p>在示例中，字符串 “Hello, Lua!” 中的第一个字符是 ‘H’，其 ASCII 码值是 72，而第五个字符是 ‘o’，其 ASCII 码值是 111。</p>
 <p>如果不指定 <code>i</code> 和 <code>j</code> 参数，则默认获取第一个字符的 ASCII 码值。如果字符串为空或 <code>i</code> 大于字符串长度，则返回 <code>nil</code>。</p>
-<h2 id="string-char-···-ASCII转字符串"><a href="#string-char-···-ASCII转字符串" class="headerlink" title="string.char (···)  ASCII转字符串"></a>string.char (···)  ASCII转字符串</h2><p><code>string.char</code> 函数用于将 ASCII 码值转换为对应的字符。它可以接受一个或多个整数参数，并返回这些整数对应的字符组成的字符串。</p>
+<h2 id="string-char-···-ASCII转字符串">string.char (···)  ASCII转字符串</h2>
+<p><code>string.char</code> 函数用于将 ASCII 码值转换为对应的字符。它可以接受一个或多个整数参数，并返回这些整数对应的字符组成的字符串。</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">string</span>.<span class="hljs-built_in">char</span>(n1, n2, ...)<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li><code>n1</code>, <code>n2</code>, …：要转换为字符的整数值。</li>
 </ul>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> char1 = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">char</span>(<span class="hljs-number">72</span>)  <span class="hljs-comment">-- 将 ASCII 码值 72 转换为字符</span><br><span class="hljs-built_in">print</span>(char1)  <span class="hljs-comment">-- Output: H</span><br><br><span class="hljs-keyword">local</span> char2 = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">char</span>(<span class="hljs-number">65</span>, <span class="hljs-number">66</span>, <span class="hljs-number">67</span>)  <span class="hljs-comment">-- 将 ASCII 码值 65, 66, 67 转换为字符</span><br><span class="hljs-built_in">print</span>(char2)  <span class="hljs-comment">-- Output: ABC</span><br></code></pre></td></tr></table></figure>
-
-<p>在示例中，<code>string.char(72)</code> 将 ASCII 码值 72 转换为字符 ‘H’，而 <code>string.char(65, 66, 67)</code> 将 ASCII 码值 65、66 和 67 转换为字符 ‘A’、’B’ 和 ‘C’ 组成的字符串。</p>
+<p>在示例中，<code>string.char(72)</code> 将 ASCII 码值 72 转换为字符 ‘H’，而 <code>string.char(65, 66, 67)</code> 将 ASCII 码值 65、66 和 67 转换为字符 ‘A’、‘B’ 和 ‘C’ 组成的字符串。</p>
 <p>如果参数不是整数，<code>string.char</code> 将会将其转换为整数后再进行处理。超出 ASCII 码范围的值会被模 256 处理，因此 ASCII 码值的有效范围是 0 到 255。</p>
-<h2 id="string-dump-function-strip"><a href="#string-dump-function-strip" class="headerlink" title="string.dump (function [, strip])"></a>string.dump (function [, strip])</h2><p><code>string.dump(function [, strip])</code> 是 Lua 中的一个函数，用于将指定函数编译为二进制代码的字符串表示形式。</p>
+<h2 id="string-dump-function-strip">string.dump (function [, strip])</h2>
+<p><code>string.dump(function [, strip])</code> 是 Lua 中的一个函数，用于将指定函数编译为二进制代码的字符串表示形式。</p>
 <ul>
 <li><code>function</code>: 要编译的 Lua 函数。</li>
 <li><code>strip</code>（可选参数）：布尔值，表示是否剔除调试信息。如果为 <code>true</code>，则编译的二进制代码中将不包含调试信息，使得生成的二进制代码更加紧凑。默认为 <code>false</code>，即保留调试信息。</li>
 </ul>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 定义一个简单的 Lua 函数</span><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span><span class="hljs-params">(a, b)</span></span><br>    <span class="hljs-keyword">return</span> a + b<br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 将函数编译为二进制代码的字符串表示形式</span><br><span class="hljs-keyword">local</span> binary_str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">dump</span>(add)<br><br><span class="hljs-comment">-- 输出编译后的二进制代码字符串</span><br><span class="hljs-built_in">print</span>(binary_str)<br></code></pre></td></tr></table></figure>
-
 <p>这样就会打印出编译后的二进制代码的字符串表示形式。需要注意的是，<code>string.dump</code> 函数会将函数编译为与 Lua 版本相关的二进制代码格式，因此生成的二进制代码字符串可能不可移植，只能在相同 Lua 版本之间使用。</p>
 <blockquote>
 <p>如何使用呢?</p>
 <p>使用 <code>string.dump</code> 函数的主要目的是将 Lua 函数编译为二进制代码字符串，然后可以将这个字符串保存到文件中或通过网络传输，并在需要时重新加载这个函数。这在某些情况下可能会有用，比如需要在不同的 Lua 环境之间传递函数，或者需要对函数进行加密以保护知识产权。</p>
 <p>下面是一个简单的示例，演示了如何使用 <code>string.dump</code> 函数：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 定义一个简单的 Lua 函数</span><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span><span class="hljs-params">(a, b)</span></span><br>    <span class="hljs-keyword">return</span> a + b<br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 将函数编译为二进制代码的字符串表示形式</span><br><span class="hljs-keyword">local</span> binary_str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">dump</span>(add)<br><br><span class="hljs-comment">-- 保存二进制代码字符串到文件</span><br><span class="hljs-keyword">local</span> file = <span class="hljs-built_in">io</span>.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;compiled_function.bin&quot;</span>, <span class="hljs-string">&quot;wb&quot;</span>)<br>file:<span class="hljs-built_in">write</span>(binary_str)<br>file:<span class="hljs-built_in">close</span>()<br><br><span class="hljs-comment">-- 从文件中加载二进制代码字符串并恢复为函数</span><br>file = <span class="hljs-built_in">io</span>.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;compiled_function.bin&quot;</span>, <span class="hljs-string">&quot;rb&quot;</span>)<br><span class="hljs-keyword">local</span> loaded_binary_str = file:<span class="hljs-built_in">read</span>(<span class="hljs-string">&quot;*all&quot;</span>)<br>file:<span class="hljs-built_in">close</span>()<br><br><span class="hljs-comment">-- 加载二进制代码字符串并将其转换为函数</span><br><span class="hljs-keyword">local</span> loaded_function = <span class="hljs-built_in">load</span>(loaded_binary_str)<br><br><span class="hljs-comment">-- 调用恢复的函数</span><br><span class="hljs-keyword">local</span> result = loaded_function(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>)<br><span class="hljs-built_in">print</span>(result)  <span class="hljs-comment">-- Output: 30</span><br></code></pre></td></tr></table></figure>
-
 <p>在这个示例中，我们首先定义了一个名为 <code>add</code> 的简单 Lua 函数。然后，使用 <code>string.dump</code> 函数将这个函数编译为二进制代码的字符串表示形式，并将其保存到文件 <code>&quot;compiled_function.bin&quot;</code> 中。接着，我们从文件中读取这个二进制代码字符串，并使用 <code>load</code> 函数将其加载为函数。最后，我们调用恢复的函数，并传入参数进行计算。</p>
 <p>需要注意的是，<code>load</code> 函数加载的函数是匿名函数，因此我们将其赋值给一个变量以便后续调用。此外，加载的函数可能不会保留原始函数的上值（upvalues），因此在实际使用中需要注意。</p>
 </blockquote>
-<h2 id="string-find-s-pattern-init-plain"><a href="#string-find-s-pattern-init-plain" class="headerlink" title="string.find (s, pattern [, init [, plain]])"></a>string.find (s, pattern [, init [, plain]])</h2><p><code>string.find(s, pattern [, init [, plain]])</code> 是 Lua 中用于在字符串 <code>s</code> 中查找匹配 <code>pattern</code> 的模式的函数。它返回匹配的起始索引和结束索引（如果找到了），如果未找到匹配，则返回 <code>nil</code>。</p>
+<h2 id="string-find-s-pattern-init-plain">string.find (s, pattern [, init [, plain]])</h2>
+<p><code>string.find(s, pattern [, init [, plain]])</code> 是 Lua 中用于在字符串 <code>s</code> 中查找匹配 <code>pattern</code> 的模式的函数。它返回匹配的起始索引和结束索引（如果找到了），如果未找到匹配，则返回 <code>nil</code>。</p>
 <ul>
 <li><code>s</code>: 要搜索的目标字符串。</li>
 <li><code>pattern</code>: 要匹配的模式字符串。</li>
@@ -351,9 +356,9 @@
 </ul>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;Hello, Lua!&quot;</span><br><span class="hljs-keyword">local</span> pattern = <span class="hljs-string">&quot;Lua&quot;</span><br><br><span class="hljs-comment">-- 在字符串 s 中查找模式 pattern</span><br><span class="hljs-keyword">local</span> start, finish = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">find</span>(s, pattern)<br><br><span class="hljs-keyword">if</span> start <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Pattern found at position:&quot;</span>, start, <span class="hljs-string">&quot;-&quot;</span>, finish)<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Pattern not found.&quot;</span>)<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<p>这个示例中，字符串 <code>s</code> 中的模式 <code>&quot;Lua&quot;</code> 被查找。如果找到了，则打印出匹配的起始和结束索引，否则打印 <code>&quot;Pattern not found.&quot;</code>。	</p>
-<h2 id="string-gmatch-s-pattern-init"><a href="#string-gmatch-s-pattern-init" class="headerlink" title="string.gmatch (s, pattern [, init])"></a>string.gmatch (s, pattern [, init])</h2><p><code>string.gmatch(s, pattern [, init])</code> 是 Lua 中用于迭代匹配字符串中所有模式的函数。它返回一个迭代器函数，每次调用都会返回下一个匹配项的位置和值，直到没有匹配项为止。</p>
+<p>这个示例中，字符串 <code>s</code> 中的模式 <code>&quot;Lua&quot;</code> 被查找。如果找到了，则打印出匹配的起始和结束索引，否则打印 <code>&quot;Pattern not found.&quot;</code>。</p>
+<h2 id="string-gmatch-s-pattern-init">string.gmatch (s, pattern [, init])</h2>
+<p><code>string.gmatch(s, pattern [, init])</code> 是 Lua 中用于迭代匹配字符串中所有模式的函数。它返回一个迭代器函数，每次调用都会返回下一个匹配项的位置和值，直到没有匹配项为止。</p>
 <ul>
 <li><code>s</code>: 要搜索的目标字符串。</li>
 <li><code>pattern</code>: 要匹配的模式字符串。</li>
@@ -361,9 +366,9 @@
 </ul>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;Lua is a powerful scripting language.&quot;</span><br><span class="hljs-keyword">local</span> pattern = <span class="hljs-string">&quot;%a+&quot;</span><br><br><span class="hljs-comment">-- 使用 gmatch 迭代匹配所有单词</span><br><span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> <span class="hljs-built_in">string</span>.<span class="hljs-built_in">gmatch</span>(s, pattern) <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">print</span>(word)<br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- Output:</span><br><span class="hljs-comment">-- Lua</span><br><span class="hljs-comment">-- is</span><br><span class="hljs-comment">-- a</span><br><span class="hljs-comment">-- powerful</span><br><span class="hljs-comment">-- scripting</span><br><span class="hljs-comment">-- language</span><br></code></pre></td></tr></table></figure>
-
 <p>在这个示例中，我们使用 <code>string.gmatch</code> 函数迭代匹配字符串 <code>s</code> 中的所有单词。模式 <code>&quot;%a+&quot;</code> 匹配一个或多个字母字符。每次迭代，迭代器函数返回下一个匹配的单词，直到没有更多匹配项为止。</p>
-<h2 id="string-gsub-s-pattern-repl-n"><a href="#string-gsub-s-pattern-repl-n" class="headerlink" title="string.gsub (s, pattern, repl [, n])"></a>string.gsub (s, pattern, repl [, n])</h2><p><code>string.gsub(s, pattern, repl [, n])</code> 是 Lua 中用于全局替换字符串中模式匹配项的函数。它返回一个新的字符串，其中所有匹配模式 <code>pattern</code> 的子串都被替换为 <code>repl</code>。</p>
+<h2 id="string-gsub-s-pattern-repl-n">string.gsub (s, pattern, repl [, n])</h2>
+<p><code>string.gsub(s, pattern, repl [, n])</code> 是 Lua 中用于全局替换字符串中模式匹配项的函数。它返回一个新的字符串，其中所有匹配模式 <code>pattern</code> 的子串都被替换为 <code>repl</code>。</p>
 <ul>
 <li><code>s</code>: 要进行替换操作的目标字符串。</li>
 <li><code>pattern</code>: 要匹配的模式字符串。</li>
@@ -373,25 +378,25 @@
 <p>如果 <code>repl</code> 是一个字符串，则它会简单地替换匹配的子串。如果 <code>repl</code> 是一个函数，则在每次匹配时调用该函数，将匹配的子串作为参数传递给它，然后用它的返回值替换匹配的子串。</p>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;Lua is a powerful scripting language. Lua is fun!&quot;</span><br><span class="hljs-keyword">local</span> pattern = <span class="hljs-string">&quot;Lua&quot;</span><br><span class="hljs-keyword">local</span> repl = <span class="hljs-string">&quot;Python&quot;</span><br><br><span class="hljs-comment">-- 全局替换所有匹配项</span><br><span class="hljs-keyword">local</span> replaced_str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">gsub</span>(s, pattern, repl)<br><span class="hljs-built_in">print</span>(replaced_str)<br><span class="hljs-comment">-- Output: Python is a powerful scripting language. Python is fun!</span><br><br><span class="hljs-comment">-- 替换前两个匹配项</span><br><span class="hljs-keyword">local</span> replaced_str_limit = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">gsub</span>(s, pattern, repl, <span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(replaced_str_limit)<br><span class="hljs-comment">-- Output: Python is a powerful scripting language. Lua is fun!</span><br><br><span class="hljs-comment">-- 使用函数替换匹配项</span><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upper_replace</span><span class="hljs-params">(match)</span></span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">match</span>:<span class="hljs-built_in">upper</span>()<br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">local</span> replaced_func_str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">gsub</span>(s, pattern, upper_replace)<br><span class="hljs-built_in">print</span>(replaced_func_str)<br><span class="hljs-comment">-- Output: LUA is a powerful scripting language. LUA is fun!</span><br></code></pre></td></tr></table></figure>
-
 <p>在这个示例中，我们使用了 <code>string.gsub</code> 函数来对字符串 <code>s</code> 进行全局替换。首先，我们简单地将所有匹配的 “Lua” 替换为 “Python”。然后，我们限制替换前两个匹配项。最后，我们使用一个函数将匹配的子串转换为大写。</p>
-<h2 id="string-len-s"><a href="#string-len-s" class="headerlink" title="string.len (s)"></a>string.len (s)</h2><p><code>string.len(s)</code> 是 Lua 中用于获取字符串长度的函数。它返回字符串 <code>s</code> 的长度，即其中包含的字符数（不包括末尾的空字符）。</p>
+<h2 id="string-len-s">string.len (s)</h2>
+<p><code>string.len(s)</code> 是 Lua 中用于获取字符串长度的函数。它返回字符串 <code>s</code> 的长度，即其中包含的字符数（不包括末尾的空字符）。</p>
 <ul>
 <li><code>s</code>: 要获取长度的字符串。</li>
 </ul>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;Hello, Lua!&quot;</span><br><span class="hljs-keyword">local</span> length = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">len</span>(s)<br><span class="hljs-built_in">print</span>(length)  <span class="hljs-comment">-- Output: 12</span><br></code></pre></td></tr></table></figure>
-
 <p>在这个示例中，字符串 “Hello, Lua!” 包含 12 个字符，因此调用 <code>string.len(s)</code> 返回 12。</p>
-<h2 id="string-lower-s"><a href="#string-lower-s" class="headerlink" title="string.lower (s)"></a>string.lower (s)</h2><p><code>string.lower(s)</code> 是 Lua 中用于将字符串转换为小写形式的函数。它返回字符串 <code>s</code> 的小写形式。</p>
+<h2 id="string-lower-s">string.lower (s)</h2>
+<p><code>string.lower(s)</code> 是 Lua 中用于将字符串转换为小写形式的函数。它返回字符串 <code>s</code> 的小写形式。</p>
 <ul>
 <li><code>s</code>: 要转换为小写的字符串。</li>
 </ul>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;Hello, Lua!&quot;</span><br><span class="hljs-keyword">local</span> lower_str = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">lower</span>(s)<br><span class="hljs-built_in">print</span>(lower_str)  <span class="hljs-comment">-- Output: hello, lua!</span><br></code></pre></td></tr></table></figure>
-
 <p>在这个示例中，字符串 “Hello, Lua!” 被转换为小写形式，并输出结果。</p>
-<h2 id="string-match-s-pattern-init"><a href="#string-match-s-pattern-init" class="headerlink" title="string.match (s, pattern [, init])"></a>string.match (s, pattern [, init])</h2><p><code>string.match(s, pattern [, init])</code> 是 Lua 中用于从字符串中查找第一个匹配模式的函数。它返回字符串 <code>s</code> 中第一个匹配模式 <code>pattern</code> 的子串，如果未找到匹配，则返回 <code>nil</code>。</p>
+<h2 id="string-match-s-pattern-init">string.match (s, pattern [, init])</h2>
+<p><code>string.match(s, pattern [, init])</code> 是 Lua 中用于从字符串中查找第一个匹配模式的函数。它返回字符串 <code>s</code> 中第一个匹配模式 <code>pattern</code> 的子串，如果未找到匹配，则返回 <code>nil</code>。</p>
 <ul>
 <li><code>s</code>: 要搜索的目标字符串。</li>
 <li><code>pattern</code>: 要匹配的模式字符串。</li>
@@ -399,47 +404,53 @@
 </ul>
 <p>示例使用：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;The quick brown fox jumps over the lazy dog.&quot;</span><br><span class="hljs-keyword">local</span> pattern = <span class="hljs-string">&quot;%a+&quot;</span><br><br><span class="hljs-comment">-- 匹配第一个单词</span><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">match</span> = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">match</span>(s, pattern)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">match</span>)  <span class="hljs-comment">-- Output: The</span><br><br><span class="hljs-comment">-- 从第10个字符开始匹配</span><br><span class="hljs-keyword">local</span> match_init = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">match</span>(s, pattern, <span class="hljs-number">10</span>)<br><span class="hljs-built_in">print</span>(match_init)  <span class="hljs-comment">-- Output: brown</span><br></code></pre></td></tr></table></figure>
-
 <p>在这个示例中，我们使用 <code>string.match</code> 函数从字符串 <code>s</code> 中查找第一个匹配模式 <code>%a+</code> 的子串，这个模式匹配一个或多个字母字符。第一个调用返回字符串的第一个单词 “The”，而第二个调用从第 10 个字符开始搜索并返回第二个单词 “brown”。</p>
-<h2 id="string-sub-s-i-j"><a href="#string-sub-s-i-j" class="headerlink" title="string.sub (s, i [, j])"></a>string.sub (s, i [, j])</h2><p><code>string.sub</code> 是 Lua 中一个用于截取字符串的函数。它的详细用法如下：</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, i [, j])<br></code></pre></td></tr></table></figure>
-
+<h2 id="string-sub-s-i-j">string.sub (s, i [, j])</h2>
+<p><code>string.sub</code> 是 Lua 中一个用于截取字符串的函数。它的详细用法如下：</p>
+<h3 id="语法">语法</h3>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, i [, j])<br></code></pre></td></tr></table></figure>
 <ul>
 <li><code>s</code>：要操作的字符串。</li>
 <li><code>i</code>：截取的起始位置（包含）。</li>
 <li><code>j</code>：（可选）截取的结束位置（包含），如果省略，则默认为字符串的末尾。</li>
 </ul>
-<h3 id="参数细节"><a href="#参数细节" class="headerlink" title="参数细节"></a>参数细节</h3><ul>
-<li>**起始位置 <code>i</code>**：可以是正数或负数。<ul>
+<h3 id="参数细节">参数细节</h3>
+<ul>
+<li><strong>起始位置 <code>i</code></strong>：可以是正数或负数。
+<ul>
 <li>正数表示从字符串的第 <code>i</code> 个字符开始。</li>
 <li>负数表示从字符串的倒数第 <code>|i|</code> 个字符开始。</li>
 </ul>
 </li>
-<li>**结束位置 <code>j</code>**：可以是正数或负数。<ul>
+<li><strong>结束位置 <code>j</code></strong>：可以是正数或负数。
+<ul>
 <li>正数表示到字符串的第 <code>j</code> 个字符结束。</li>
 <li>负数表示到字符串的倒数第 <code>|j|</code> 个字符结束。</li>
 <li>如果省略 <code>j</code>，则表示到字符串的末尾。</li>
 </ul>
 </li>
 </ul>
-<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><ul>
+<h3 id="返回值">返回值</h3>
+<ul>
 <li>返回一个新的字符串，它是从位置 <code>i</code> 到 <code>j</code> 之间的子串（包括 <code>i</code> 和 <code>j</code>）。</li>
 </ul>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>以下是一些示例来说明 <code>string.sub</code> 的用法：</p>
-<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;Hello, World!&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>))  <span class="hljs-comment">-- 输出: Hello</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">8</span>))     <span class="hljs-comment">-- 输出: World!</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-6</span>, <span class="hljs-number">-2</span>))<span class="hljs-comment">-- 输出: World</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="使用正数索引"><a href="#使用正数索引" class="headerlink" title="使用正数索引"></a>使用正数索引</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;abcdef&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>))  <span class="hljs-comment">-- 输出: bcd</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">3</span>))     <span class="hljs-comment">-- 输出: cdef</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="使用负数索引"><a href="#使用负数索引" class="headerlink" title="使用负数索引"></a>使用负数索引</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;abcdef&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-4</span>, <span class="hljs-number">-2</span>))<span class="hljs-comment">-- 输出: cde</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-3</span>))    <span class="hljs-comment">-- 输出: def</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="省略-j-参数"><a href="#省略-j-参数" class="headerlink" title="省略 j 参数"></a>省略 <code>j</code> 参数</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;abcdef&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">3</span>))     <span class="hljs-comment">-- 输出: cdef</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-3</span>))    <span class="hljs-comment">-- 输出: def</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<h3 id="示例">示例</h3>
+<p>以下是一些示例来说明 <code>string.sub</code> 的用法：</p>
+<h4 id="基本用法">基本用法</h4>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;Hello, World!&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>))  <span class="hljs-comment">-- 输出: Hello</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">8</span>))     <span class="hljs-comment">-- 输出: World!</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-6</span>, <span class="hljs-number">-2</span>))<span class="hljs-comment">-- 输出: World</span><br></code></pre></td></tr></table></figure>
+<h4 id="使用正数索引">使用正数索引</h4>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;abcdef&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>))  <span class="hljs-comment">-- 输出: bcd</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">3</span>))     <span class="hljs-comment">-- 输出: cdef</span><br></code></pre></td></tr></table></figure>
+<h4 id="使用负数索引">使用负数索引</h4>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;abcdef&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-4</span>, <span class="hljs-number">-2</span>))<span class="hljs-comment">-- 输出: cde</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-3</span>))    <span class="hljs-comment">-- 输出: def</span><br></code></pre></td></tr></table></figure>
+<h4 id="省略-j-参数">省略 <code>j</code> 参数</h4>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> s = <span class="hljs-string">&quot;abcdef&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">3</span>))     <span class="hljs-comment">-- 输出: cdef</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(s, <span class="hljs-number">-3</span>))    <span class="hljs-comment">-- 输出: def</span><br></code></pre></td></tr></table></figure>
+<h3 id="注意事项">注意事项</h3>
+<ul>
 <li>索引 <code>i</code> 和 <code>j</code> 是从 1 开始的，而不是从 0 开始（这是与某些其他编程语言的区别）。</li>
 <li>如果 <code>i</code> 或 <code>j</code> 超出字符串的范围，Lua 不会报错，而是会尽可能地返回有效的子串。</li>
 </ul>
 <p>通过这些示例和说明，可以更清楚地理解 <code>string.sub</code> 的用法及其在字符串操作中的强大功能。</p>
-<p>&#x2F;&#x2F; TODO @lingxiao </p>
+<p>// TODO @lingxiao</p>
 <ol>
 <li>lua 中 Patterns 的应用</li>
 </ol>
@@ -476,9 +487,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tools/" class="print-no-link">#tools</a>
-      
         <a href="/tags/lua/" class="print-no-link">#lua</a>
+      
+        <a href="/tags/tools/" class="print-no-link">#tools</a>
       
     </div>
   
@@ -516,7 +527,7 @@
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
+                    <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
@@ -535,7 +546,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/15/008personal/Dev002/" title="安装不同Atlas版本的注意事项">
+                      <a href="/2024/05/15/008private/Dev002/" title="安装不同Atlas版本的注意事项">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">安装不同Atlas版本的注意事项</span>
                         <span class="visible-mobile">Previous</span>
@@ -686,7 +697,6 @@
     <div class="footer-content">
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
   
   
   

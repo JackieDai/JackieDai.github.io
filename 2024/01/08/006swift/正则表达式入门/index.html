@@ -7,8 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -25,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/JackieDai/blogAssets/main/202401081345700.png">
 <meta property="article:published_time" content="2024-01-08T05:17:00.000Z">
-<meta property="article:modified_time" content="2024-05-22T03:14:30.878Z">
+<meta property="article:modified_time" content="2024-06-07T07:38:44.824Z">
 <meta property="article:author" content="lingXiao">
 <meta property="article:tag" content="regExp">
 <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +53,7 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
@@ -75,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -88,7 +91,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.0.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -279,240 +286,278 @@
             
               <div class="markdown-body">
                 
-                <h1 id="simple-regExp"><a href="#simple-regExp" class="headerlink" title="simple_regExp"></a>simple_regExp</h1><p><a target="_blank" rel="noopener" href="https://github.com/qdlaoyao/js-regex-mini-book">文章参考链接</a><br><a target="_blank" rel="noopener" href="https://github.com/JackieDai/simple_regExp">Demo链接</a></p>
+                <h1>simple_regExp</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/qdlaoyao/js-regex-mini-book">文章参考链接</a><br>
+<a target="_blank" rel="noopener" href="https://github.com/JackieDai/simple_regExp">Demo链接</a></p>
 <blockquote>
 <p>正则表达式（Regular Expression，简称为RegExp或Regex）是一种强大而灵活的文本模式匹配工具。它是由一系列字符和特殊符号组成的字符串，用于描述和匹配一系列符合某种规律的字符串。正则表达式通常用于字符串的搜索、匹配、替换和提取操作，是处理文本的强大工具。</p>
 <p>正则表达式的一些基本概念和元字符包括：</p>
 <ol>
-<li><p><strong>字符字面量：</strong> 普通字符表示它们自身，例如字母、数字、标点符号等。</p>
+<li>
+<p><strong>字符字面量：</strong> 普通字符表示它们自身，例如字母、数字、标点符号等。</p>
 </li>
-<li><p><strong>特殊字符：</strong> 一些字符具有特殊的含义，如 <code>.</code>、<code>*</code>、<code>+</code>、<code>?</code>、<code>|</code> 等，称为元字符，它们在正则表达式中有特定的作用。</p>
+<li>
+<p><strong>特殊字符：</strong> 一些字符具有特殊的含义，如 <code>.</code>、<code>*</code>、<code>+</code>、<code>?</code>、<code>|</code> 等，称为元字符，它们在正则表达式中有特定的作用。</p>
 </li>
-<li><p><strong>字符类：</strong> 用 <code>[]</code> 表示，匹配方括号中的任意一个字符。</p>
+<li>
+<p><strong>字符类：</strong> 用 <code>[]</code> 表示，匹配方括号中的任意一个字符。</p>
 <ul>
 <li><code>[aeiou]</code> 匹配任意一个元音字母。</li>
 </ul>
 </li>
-<li><p><strong>范围：</strong> 在字符类中使用 <code>-</code> 表示范围，例如 <code>[0-9]</code> 表示匹配任意一个数字。</p>
+<li>
+<p><strong>范围：</strong> 在字符类中使用 <code>-</code> 表示范围，例如 <code>[0-9]</code> 表示匹配任意一个数字。</p>
 </li>
-<li><p><strong>量词：</strong> 用于指定匹配字符的数量，如 <code>*</code>（零次或多次）、<code>+</code>（一次或多次）、<code>?</code>（零次或一次）、<code>&#123;n&#125;</code>（恰好n次）等。</p>
+<li>
+<p><strong>量词：</strong> 用于指定匹配字符的数量，如 <code>*</code>（零次或多次）、<code>+</code>（一次或多次）、<code>?</code>（零次或一次）、<code>&#123;n&#125;</code>（恰好n次）等。</p>
 <ul>
 <li><code>a*</code> 匹配零个或多个连续的字母 “a”。</li>
 </ul>
 </li>
-<li><p><strong>转义字符：</strong> 有些字符在正则表达式中有特殊含义，如果要匹配它们本身，需要使用反斜杠 <code>\</code> 进行转义。</p>
+<li>
+<p><strong>转义字符：</strong> 有些字符在正则表达式中有特殊含义，如果要匹配它们本身，需要使用反斜杠 <code>\</code> 进行转义。</p>
 <ul>
 <li><code>\.</code> 匹配点号字符。</li>
 </ul>
 </li>
-<li><p><strong>分组：</strong> 使用 <code>()</code> 可以将一组字符看作一个整体，用于控制量词的作用范围。</p>
+<li>
+<p><strong>分组：</strong> 使用 <code>()</code> 可以将一组字符看作一个整体，用于控制量词的作用范围。</p>
 <ul>
-<li><code>(ab)+</code> 匹配 “ab”、”abab”、”ababab” 等。</li>
+<li><code>(ab)+</code> 匹配 “ab”、“abab”、“ababab” 等。</li>
 </ul>
 </li>
 </ol>
 <p>正则表达式是一种强大的工具，但由于其灵活性和复杂性，有时可能比较晦涩难懂。熟练掌握正则表达式可以在文本处理和搜索中提供高效而灵活的解决方案。</p>
 </blockquote>
-<h2 id="匹配模式"><a href="#匹配模式" class="headerlink" title="匹配模式"></a>匹配模式</h2><h3 id="横向匹配-m-n-连续出现最少-m-次，最多-n-次"><a href="#横向匹配-m-n-连续出现最少-m-次，最多-n-次" class="headerlink" title="横向匹配 {m,n}  连续出现最少 m 次，最多 n 次"></a>横向匹配 <code>&#123;m,n&#125;</code>  连续出现最少 m 次，最多 n 次</h3><blockquote>
-<p> 横向模糊指的是，一个正则可匹配的字符串的长度不是固定的，可以是多种情况的。</p>
-<p> 其实现的方式是使用量词。譬如 {m,n}，表示<strong>连续出现</strong>最少 m 次，最多 n 次。</p>
-<p> 比如正则 “ab{2,5}c” 表示匹配这样一个字符串:第一个字符是 “a”，接下来是 2 到 5 个字符 “b”，最后是字符 “c”</p>
+<h2 id="匹配模式">匹配模式</h2>
+<h2 id="横向匹配-m-n-连续出现最少-m-次，最多-n-次">横向匹配 <code>&#123;m,n&#125;</code>  连续出现最少 m 次，最多 n 次</h2>
+<blockquote>
+<p>横向模糊指的是，一个正则可匹配的字符串的长度不是固定的，可以是多种情况的。</p>
+<p>其实现的方式是使用量词。譬如 {m,n}，表示<strong>连续出现</strong>最少 m 次，最多 n 次。</p>
+<p>比如正则 “ab{2,5}c” 表示匹配这样一个字符串:第一个字符是 “a”，接下来是 2 到 5 个字符 “b”，最后是字符 “c”</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> config: <span class="hljs-type">RegExpConfig</span> <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>    pattern: <span class="hljs-string">&quot;ab&#123;2,5&#125;c&quot;</span>,<br>    inputString: <span class="hljs-string">&quot;abc abbc abbbc abbbbc abbbbbc abbbbbbc&quot;</span><br>)<br><br><span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;abbc&quot;</span>, <span class="hljs-string">&quot;abbbc&quot;</span>, <span class="hljs-string">&quot;abbbbc&quot;</span>, <span class="hljs-string">&quot;abbbbbc&quot;</span>]<br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, result)<br></code></pre></td></tr></table></figure>
-
-<h3 id="纵向匹配-abc-字符-“a”、”b”、”c”-中的任何一个"><a href="#纵向匹配-abc-字符-“a”、”b”、”c”-中的任何一个" class="headerlink" title="纵向匹配 [abc] &#x3D;&#x3D; 字符 “a”、”b”、”c” 中的任何一个"></a>纵向匹配 <code>[abc]</code> &#x3D;&#x3D; 字符 “a”、”b”、”c” 中的任何一个</h3><blockquote>
+<h2 id="纵向匹配-abc-字符-“a”、“b”、“c”-中的任何一个">纵向匹配 <code>[abc]</code> == 字符 “a”、“b”、“c” 中的任何一个</h2>
+<blockquote>
 <p>纵向模糊指的是，一个正则匹配的字符串，具体到某一位字符时，它可以不是某个确定的字符，可以有多种可能。</p>
-<p>其实现的方式是使用字符组。譬如 [abc]，表示该字符是可以字符 “a”、”b”、”c” 中的任何一个。比如 “a[123]b” 可以匹配如下三种字符串： “a1b”、”a2b”、”a3b”。</p>
+<p>其实现的方式是使用字符组。譬如 [abc]，表示该字符是可以字符 “a”、“b”、“c” 中的任何一个。比如 “a[123]b” 可以匹配如下三种字符串： “a1b”、“a2b”、“a3b”。</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> config: <span class="hljs-type">RegExpConfig</span> <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>    pattern: <span class="hljs-string">&quot;a[123]b&quot;</span>,<br>    inputString: <span class="hljs-string">&quot;a0b a1b a2b a3b a4b&quot;</span><br>)<br><span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;a1b&quot;</span>, <span class="hljs-string">&quot;a2b&quot;</span>, <span class="hljs-string">&quot;a3b&quot;</span>]<br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, result)<br></code></pre></td></tr></table></figure>
-
-<h2 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h2><blockquote>
+<h2 id="字符组">字符组</h2>
+<blockquote>
 <p>字符组（字符类），但只是其中一个字符。</p>
-<p>例如 [abc]，表示匹配一个字符，它可以是 “a”、”b”、”c” 之一</p>
+<p>例如 [abc]，表示匹配一个字符，它可以是 “a”、“b”、“c” 之一</p>
 </blockquote>
-<h3 id="范围表示法"><a href="#范围表示法" class="headerlink" title="- 范围表示法"></a><code>-</code> 范围表示法</h3><blockquote>
+<h2 id="范围表示法"><code>-</code> 范围表示法</h2>
+<blockquote>
 <p>“12345678900abcdefghijklmnopqistuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ”</p>
-<p> 匹配出上述字符串中 1-6， a-f, A-F 的字符</p>
+<p>匹配出上述字符串中 1-6， a-f, A-F 的字符</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-comment">// let pattern = &quot;[123456abcdefABCDEF]&quot;  这种写法 太low, 可以通过 连字符“-” 来连接</span><br><span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;[1-6a-fA-F]&quot;</span><br><br><span class="hljs-keyword">let</span> config: <span class="hljs-type">RegExpConfig</span> <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>    pattern: pattern,<br>    inputString: <span class="hljs-string">&quot;12345678900abcdefghijklmnopqistuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><br>)<br><br><span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> [<br>    <span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;2&quot;</span>,<span class="hljs-string">&quot;3&quot;</span>,<span class="hljs-string">&quot;4&quot;</span>,<span class="hljs-string">&quot;5&quot;</span>,<span class="hljs-string">&quot;6&quot;</span>,<br>    <span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>,<span class="hljs-string">&quot;d&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;f&quot;</span>,<br>    <span class="hljs-string">&quot;A&quot;</span>,<span class="hljs-string">&quot;B&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;F&quot;</span><br>]<br><br><span class="hljs-comment">//        XCTAssertTrue(config.can_match)</span><br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, r)<br></code></pre></td></tr></table></figure>
-
-<p>那么要匹配 “a”、”-“、”z” 这三者中任意一个字符，该怎么做呢？</p>
+<p>那么要匹配 “a”、“-”、“z” 这三者中任意一个字符，该怎么做呢？</p>
 <p>不能写成 [a-z]，因为其表示小写字符中的任何一个字符。 可以写成如下的方式：[-az] 或 [az-] 或 [a-z]</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;[-za]&quot;</span><br><br><span class="hljs-keyword">let</span> inputString <span class="hljs-operator">=</span> <span class="hljs-string">&quot;-12345678900abcdefghijklmnopqis-tuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><br><br><span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;z&quot;</span>]<br><span class="hljs-keyword">let</span> config: <span class="hljs-type">RegExpConfig</span> <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(pattern: pattern, inputString: inputString)<br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, result)<br></code></pre></td></tr></table></figure>
-
-<h3 id="脱字符"><a href="#脱字符" class="headerlink" title="^ 脱字符"></a><code>^</code> 脱字符</h3><p>  在正则表达式中，<code>^</code> 符号有两个不同的用途，具体取决于它出现的位置：</p>
+<h2 id="脱字符"><code>^</code> 脱字符</h2>
+<p>在正则表达式中，<code>^</code> 符号有两个不同的用途，具体取决于它出现的位置：</p>
 <ol>
-<li><p><strong>在字符串的开始位置（脱字符）：</strong> 当 <code>^</code> 出现在正则表达式的开头时，它表示匹配字符串的开始位置。例如，正则表达式 <code>^abc</code> 将匹配以 “abc” 开始的字符串。</p>
+<li>
+<p><strong>在字符串的开始位置（脱字符）：</strong> 当 <code>^</code> 出现在正则表达式的开头时，它表示匹配字符串的开始位置。例如，正则表达式 <code>^abc</code> 将匹配以 “abc” 开始的字符串。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">^abc<br></code></pre></td></tr></table></figure>
-
 <ul>
-<li>匹配：”abc123”, “abcdef”, 等等。</li>
-<li>不匹配：”123abc”, “xyzabc”, 等等。</li>
+<li>匹配：“abc123”, “abcdef”, 等等。</li>
+<li>不匹配：“123abc”, “xyzabc”, 等等。</li>
 </ul>
 </li>
-<li><p><strong>在字符集([])内的位置：</strong> 当 <code>^</code> 出现在字符集的开头时，它表示对字符集进行否定操作，即匹配除了列出的字符之外的任何字符。例如，正则表达式 <code>[^0-9]</code> 将匹配任何非数字字符。</p>
+<li>
+<p><strong>在字符集([])内的位置：</strong> 当 <code>^</code> 出现在字符集的开头时，它表示对字符集进行否定操作，即匹配除了列出的字符之外的任何字符。例如，正则表达式 <code>[^0-9]</code> 将匹配任何非数字字符。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">[^0-9]<br></code></pre></td></tr></table></figure>
-
 <ul>
-<li>匹配：”a”, “X”, “$”, 等等。</li>
-<li>不匹配：”1”, “9”, “0”, 等等。</li>
+<li>匹配：“a”, “X”, “$”, 等等。</li>
+<li>不匹配：“1”, “9”, “0”, 等等。</li>
 </ul>
 </li>
 </ol>
 <p>总之，<code>^</code> 的含义取决于它在正则表达式中的位置。在开头表示字符串的开始，而在字符集内表示否定。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;[^abcd]&quot;</span><br><span class="hljs-keyword">let</span> inputString <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1234abcdABCD&quot;</span><br><span class="hljs-keyword">let</span> config <span class="hljs-operator">=</span> <span class="hljs-type">RegExpConfig</span>(pattern: pattern, inputString: inputString)<br><span class="hljs-comment">//        XCTAssertTrue(config.can_match)</span><br><span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> [<br>    <span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;2&quot;</span>,<span class="hljs-string">&quot;3&quot;</span>,<span class="hljs-string">&quot;4&quot;</span>,<br>    <span class="hljs-string">&quot;A&quot;</span>,<span class="hljs-string">&quot;B&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>,<span class="hljs-string">&quot;D&quot;</span><br>]<br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, r)<br></code></pre></td></tr></table></figure>
-
-<h3 id="d-0-9"><a href="#d-0-9" class="headerlink" title="\d  &#x3D;&#x3D; [0-9]"></a><code>\d</code>  &#x3D;&#x3D; <code>[0-9]</code></h3><h3 id="D-0-9"><a href="#D-0-9" class="headerlink" title="\D  &#x3D;&#x3D; [^0-9]"></a><code>\D</code>  &#x3D;&#x3D; <code>[^0-9]</code></h3><h3 id="w-0-9a-zA-Z-数字、大小写字母和下划线"><a href="#w-0-9a-zA-Z-数字、大小写字母和下划线" class="headerlink" title="\w  &#x3D;&#x3D; [0-9a-zA-Z_]   数字、大小写字母和下划线"></a><code>\w</code>  &#x3D;&#x3D; [0-9a-zA-Z_]   数字、大小写字母和下划线</h3><h3 id="W-0-9a-zA-Z-不是-数字、大小写字母和下划线"><a href="#W-0-9a-zA-Z-不是-数字、大小写字母和下划线" class="headerlink" title="\W  &#x3D;&#x3D; [^0-9a-zA-Z_]  不是 数字、大小写字母和下划线"></a><code>\W</code>  &#x3D;&#x3D; <code>[^0-9a-zA-Z_]</code>  不是 数字、大小写字母和下划线</h3><h3 id="s-表示空白符"><a href="#s-表示空白符" class="headerlink" title="\s  表示空白符"></a><code>\s</code>  表示空白符</h3><h3 id="S-非空白符"><a href="#S-非空白符" class="headerlink" title="\S  非空白符"></a><code>\S</code>  非空白符</h3><h3 id="通配符"><a href="#通配符" class="headerlink" title=".  通配符"></a><code>.</code>  通配符</h3><blockquote>
+<h2 id="d-0-9"><code>\d</code>  == <code>[0-9]</code></h2>
+<h2 id="D-0-9"><code>\D</code>  == <code>[^0-9]</code></h2>
+<h2 id="w-0-9a-zA-Z-数字、大小写字母和下划线"><code>\w</code>  == [0-9a-zA-Z_]   数字、大小写字母和下划线</h2>
+<h2 id="W-0-9a-zA-Z-不是-数字、大小写字母和下划线"><code>\W</code>  == <code>[^0-9a-zA-Z_]</code>  不是 数字、大小写字母和下划线</h2>
+<h2 id="s-表示空白符"><code>\s</code>  表示空白符</h2>
+<h2 id="S-非空白符"><code>\S</code>  非空白符</h2>
+<h2 id="通配符"><code>.</code>  通配符</h2>
+<blockquote>
 <p>在正则表达式中，<code>.</code> <u>是一个特殊的元字符，表示匹配除换行符 <code>\n</code> 之外的任意单个字符</u>。它是一个通配符，可以用来匹配任何字符，包括字母、数字、标点符号等。</p>
 <p>下面是一些关于<code>.</code>的用法示例：</p>
 <ol>
-<li><p><strong>匹配任意字符：</strong></p>
+<li>
+<p><strong>匹配任意字符：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">a.b<br></code></pre></td></tr></table></figure>
 <ul>
-<li>匹配：”aab”, “abb”, “acb”, “a1b”, 等等。</li>
-<li>不匹配：”abc”, “a\nb”, 等等。</li>
+<li>匹配：“aab”, “abb”, “acb”, “a1b”, 等等。</li>
+<li>不匹配：“abc”, “a\nb”, 等等。</li>
 </ul>
 </li>
-<li><p><strong>使用<code>.</code>匹配特定数量的字符：</strong></p>
+<li>
+<p><strong>使用<code>.</code>匹配特定数量的字符：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">..t<br></code></pre></td></tr></table></figure>
 <ul>
-<li>匹配：”cat”, “bat”, “$$t”, 等等。</li>
-<li>不匹配：”at”, “t”, 等等。</li>
+<li>匹配：“cat”, “bat”, “$$t”, 等等。</li>
+<li>不匹配：“at”, “t”, 等等。</li>
 </ul>
 </li>
-<li><p><strong>非贪婪匹配：</strong></p>
+<li>
+<p><strong>非贪婪匹配：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">.*?<br></code></pre></td></tr></table></figure>
 <p>这个例子中，<code>*</code> 是一个量词，表示匹配前面的字符零次或更多次，而 <code>?</code> 是用来实现非贪婪匹配的，表示匹配尽量少的字符。</p>
 </li>
-<li><p><strong>匹配任意字符，包括换行符：</strong><br>在一些正则表达式引擎中，可以使用 <code>.</code> 加上相关标记（例如 <code>(?s)</code>）来匹配包括换行符在内的任意字符。</p>
+<li>
+<p><strong>匹配任意字符，包括换行符：</strong><br>
+在一些正则表达式引擎中，可以使用 <code>.</code> 加上相关标记（例如 <code>(?s)</code>）来匹配包括换行符在内的任意字符。</p>
 </li>
 </ol>
 <p>这些都是关于<code>.</code>在正则表达式中的一些基本用法。在实际使用时，要根据具体的需求选择合适的模式。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs swift">config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>    pattern: <span class="hljs-string">&quot;.&quot;</span>,<br>    inputString: <span class="hljs-string">&quot;!@#$%^&amp;*()e4<span class="hljs-subst">\n</span>&quot;</span><br>)<br><br><span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;!&quot;</span>,<span class="hljs-string">&quot;@&quot;</span>,<span class="hljs-string">&quot;#&quot;</span>,<span class="hljs-string">&quot;$&quot;</span>,<span class="hljs-string">&quot;%&quot;</span>,<span class="hljs-string">&quot;^&quot;</span>,<span class="hljs-string">&quot;&amp;&quot;</span>,<span class="hljs-string">&quot;*&quot;</span>,<span class="hljs-string">&quot;(&quot;</span>,<span class="hljs-string">&quot;)&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;4&quot;</span>,<span class="hljs-string">&quot;<span class="hljs-subst">\n</span>&quot;</span>]<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> XCTAssertEqual failed: (&quot;[&quot;!&quot;, &quot;@&quot;, &quot;#&quot;, &quot;$&quot;, &quot;%&quot;, &quot;^&quot;, &quot;&amp;&quot;, &quot;*&quot;, &quot;(&quot;, &quot;)&quot;, &quot;e&quot;, &quot;4&quot;]&quot;) is not equal to (&quot;[&quot;!&quot;, &quot;@&quot;, &quot;#&quot;, &quot;$&quot;, &quot;%&quot;, &quot;^&quot;, &quot;&amp;&quot;, &quot;*&quot;, &quot;(&quot;, &quot;)&quot;, &quot;e&quot;, &quot;4&quot;, &quot;\n&quot;]&quot;)</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> 由上可知， .  不匹配 换行符  \n</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">//        XCTAssertTrue(config.match_result)</span><br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, r)<br></code></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="量词-：-Measure-Count"><a href="#量词-：-Measure-Count" class="headerlink" title="量词 ： Measure Count"></a>量词 ： Measure Count</h2><h3 id="m-至少连续出现-m-词"><a href="#m-至少连续出现-m-词" class="headerlink" title="{m,} 至少连续出现 m 词"></a><code>&#123;m,&#125;</code> 至少连续出现 <code>m</code> 词</h3><h3 id="m-连续出现-m-次"><a href="#m-连续出现-m-次" class="headerlink" title="{m}  连续出现 m 次"></a><code>&#123;m&#125;</code>  连续出现<code> m</code> 次</h3><h3 id="0-1-连续出现次数-要么0-要么1"><a href="#0-1-连续出现次数-要么0-要么1" class="headerlink" title="? &#x3D;&#x3D; {0, 1} 连续出现次数 要么0 要么1"></a><code>?</code> &#x3D;&#x3D; <code>&#123;0, 1&#125;</code> 连续出现次数 要么0 要么1</h3><h3 id="1-至少连续出现-1-次"><a href="#1-至少连续出现-1-次" class="headerlink" title="+ &#x3D;&#x3D; {1,} 至少连续出现 1 次"></a><code>+</code> &#x3D;&#x3D; <code>&#123;1,&#125;</code> 至少连续出现 1 次</h3><h3 id="等价于-0-，表示出现任意次，有可能不出现"><a href="#等价于-0-，表示出现任意次，有可能不出现" class="headerlink" title="*等价于 {0,}，表示出现任意次，有可能不出现"></a><code>*</code>等价于 <code>&#123;0,&#125;</code>，表示出现任意次，有可能不出现</h3><h2 id="贪婪匹配与惰性匹配"><a href="#贪婪匹配与惰性匹配" class="headerlink" title="贪婪匹配与惰性匹配"></a>贪婪匹配与惰性匹配</h2><h3 id="贪婪匹配：-尽可能多的-匹配-出-满足条件的-要求"><a href="#贪婪匹配：-尽可能多的-匹配-出-满足条件的-要求" class="headerlink" title="贪婪匹配： 尽可能多的 匹配 出 满足条件的 要求"></a>贪婪匹配： 尽可能多的 匹配 出 满足条件的 要求</h3><p>如下案例</p>
+<h2 id="量词-：-Measure-Count">量词 ： Measure Count</h2>
+<h2 id="m-至少连续出现-m-词"><code>&#123;m,&#125;</code> 至少连续出现 <code>m</code> 词</h2>
+<h2 id="m-连续出现-m-次"><code>&#123;m&#125;</code>  连续出现<code> m</code> 次</h2>
+<h2 id="0-1-连续出现次数-要么0-要么1"><code>?</code> == <code>&#123;0, 1&#125;</code> 连续出现次数 要么0 要么1</h2>
+<h2 id="1-至少连续出现-1-次"><code>+</code> == <code>&#123;1,&#125;</code> 至少连续出现 1 次</h2>
+<h2 id="等价于-0-，表示出现任意次，有可能不出现"><code>*</code>等价于 <code>&#123;0,&#125;</code>，表示出现任意次，有可能不出现</h2>
+<h2 id="贪婪匹配与惰性匹配">贪婪匹配与惰性匹配</h2>
+<h2 id="贪婪匹配：-尽可能多的-匹配-出-满足条件的-要求">贪婪匹配： 尽可能多的 匹配 出 满足条件的 要求</h2>
+<p>如下案例</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs swift">config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>    pattern: <span class="hljs-string">&quot;<span class="hljs-subst">\\</span>d&#123;2,5&#125;&quot;</span>, <span class="hljs-comment">// 表示数字连续出现 2 到 5 次</span><br>    inputString: <span class="hljs-string">&quot;123 1234 12345 123456&quot;</span><br>)<br><span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;123&quot;</span>, <span class="hljs-string">&quot;1234&quot;</span>, <span class="hljs-string">&quot;12345&quot;</span>, <span class="hljs-string">&quot;12345&quot;</span>]<br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, result)<br></code></pre></td></tr></table></figure>
-
-<h3 id="惰性匹配：-表示在量词后-添加-“-”"><a href="#惰性匹配：-表示在量词后-添加-“-”" class="headerlink" title="惰性匹配： 表示在量词后 添加 “?”"></a>惰性匹配： 表示在量词后 添加 “?”</h3><p>如下案例</p>
+<h2 id="惰性匹配：-表示在量词后-添加-“-”">惰性匹配： 表示在量词后 添加 “?”</h2>
+<p>如下案例</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs swift">config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>    pattern: <span class="hljs-string">&quot;<span class="hljs-subst">\\</span>d&#123;2,5&#125;?&quot;</span>,<br>    inputString: <span class="hljs-string">&quot;123 1234 12345 123456&quot;</span><br>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> &quot;\\d&#123;2,5&#125;?&quot;  后面 添加了 一个 ？ 表示，虽然 2 到 5 次都行，当 2 个就够的时候，就不再往下尝试了</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">let</span> result <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;12&quot;</span>, <span class="hljs-string">&quot;12&quot;</span>,<span class="hljs-string">&quot;34&quot;</span>,<span class="hljs-string">&quot;12&quot;</span>,<span class="hljs-string">&quot;34&quot;</span>, <span class="hljs-string">&quot;12&quot;</span>,<span class="hljs-string">&quot;34&quot;</span>,<span class="hljs-string">&quot;56&quot;</span>]<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> inputString: &quot;123 1234 12345 123456&quot;</span><br><span class="hljs-comment"> result[0] == &quot;12&quot; 表示 从 123 中匹配的    这里有一个连续的出现2次的数字</span><br><span class="hljs-comment"> result[1] == &quot;12&quot;，result[2] == &quot;34&quot;  表示 从 1234 中匹配的  这里面有两个 连续的出现2次的数字</span><br><span class="hljs-comment"> result[3] == &quot;12&quot;，result[4] == &quot;34&quot;  表示 从 12345 中匹配的   这里面有两个 连续的出现2次的数字</span><br><span class="hljs-comment"> result[5] == &quot;12&quot;，result[6] == &quot;34&quot; ，result[7] == &quot;56&quot;表示 从 12345 中匹配的   这里面有三个 连续的出现2次的数字</span><br><span class="hljs-comment"> */</span><br><span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, result)<br></code></pre></td></tr></table></figure>
-
-<h2 id="多选分支-逻辑或"><a href="#多选分支-逻辑或" class="headerlink" title="|多选分支 &#x3D;&#x3D; 逻辑或"></a><code>|</code>多选分支 &#x3D;&#x3D; 逻辑或</h2><blockquote>
-<p> 一个模式可以实现横向和纵向模糊匹配。而多选分支可以支持多个子模式任选其一。</p>
-<p> 具体形式如下：(p1|p2|p3)，其中 p1、p2 和 p3 是子模式，用 |（管道符）分隔，表示其中任何之一。</p>
+<h2 id="多选分支-逻辑或"><code>|</code>多选分支 == 逻辑或</h2>
+<blockquote>
+<p>一个模式可以实现横向和纵向模糊匹配。而多选分支可以支持多个子模式任选其一。</p>
+<p>具体形式如下：(p1|p2|p3)，其中 p1、p2 和 p3 是子模式，用 |（管道符）分隔，表示其中任何之一。</p>
 <p>**<code>|</code>**表示逻辑上的“或”关系。具体来说，| 用于在正则表达式中分隔两个模式，表示匹配其中任意一个模式即可</p>
 <p>分支结构也是惰性的，前面的选项匹配成功就不会匹配后面的</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">test_multiple_branch</span>() &#123;<br>    config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>        pattern: <span class="hljs-string">&quot;good|nice&quot;</span>,<span class="hljs-comment">// 相当于 逻辑或</span><br>        inputString: <span class="hljs-string">&quot;good idea, nice try.&quot;</span><br>    )<br>    <span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;good&quot;</span>,<span class="hljs-string">&quot;nice&quot;</span>]<br>    <span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, r)<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> <span class="hljs-doctag">NOTE:</span></span><br><span class="hljs-comment"> 应该注意，比如我用 /good|goodbye/，去匹配 &quot;goodbye&quot; 字符串时，结果是 &quot;good&quot;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">func</span> <span class="hljs-title function_">test_multiple_branch001</span>() &#123;<br>    config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>        pattern: <span class="hljs-string">&quot;good|goodbye&quot;</span>,<span class="hljs-comment">// 相当于 逻辑或</span><br>        inputString: <span class="hljs-string">&quot;goodbye&quot;</span><br>    )<br><br>    <span class="hljs-keyword">let</span> r0 <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;good&quot;</span>]<br><span class="hljs-comment">//        let r1 = [&quot;goodbye&quot;] // 这个测试不通过，其匹配的结果是 good</span><br><br>    <span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, r0)<br><span class="hljs-comment">//        XCTAssertEqual(config.match_result_detail, r1) // 这个测试项 不通过</span><br>&#125;<br><br><span class="hljs-keyword">func</span> <span class="hljs-title function_">test_multiple_branch002</span>() &#123;<br>    config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(<br>        pattern: <span class="hljs-string">&quot;goodbye|good&quot;</span>,<span class="hljs-comment">// 相当于 逻辑或</span><br>        inputString: <span class="hljs-string">&quot;goodbye&quot;</span><br>    )<br><br>    <span class="hljs-keyword">let</span> r1 <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;goodbye&quot;</span>]<br><br>    <span class="hljs-type">XCTAssertEqual</span>(config.match_result_detail, r1)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="位置匹配"><a href="#位置匹配" class="headerlink" title="位置匹配"></a>位置匹配</h2><blockquote>
+<h2 id="位置匹配">位置匹配</h2>
+<blockquote>
 <p>理解位置:</p>
-<p>​	对于位置的理解，我们可以理解成空字符 “”,每一个 空字符串”” 就表示位置</p>
-<p>​	hello &#x3D; <code>&quot;&quot;</code>+<code>&quot;h&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;e&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;l&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;l&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;o&quot;</code>+<code>&quot;&quot;</code></p>
+<p>​	对于位置的理解，我们可以理解成空字符 “”,每一个 空字符串&quot;&quot; 就表示位置</p>
+<p>​	hello = <code>&quot;&quot;</code>+<code>&quot;h&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;e&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;l&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;l&quot;</code>+<code>&quot;&quot;</code>+<code>&quot;o&quot;</code>+<code>&quot;&quot;</code></p>
 </blockquote>
-<h3 id=""><a href="#" class="headerlink" title="^, $"></a><code>^</code>, <code>$</code></h3><ul>
+<h3 id=""><code>^</code>, <code>$</code></h3>
+<ul>
 <li><code>^</code> 开始位置</li>
 <li><code>$ </code> 结束位置</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> inputString <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span><br><span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;(^|$)&quot;</span> <span class="hljs-comment">// 要么开头，要么结尾</span><br><span class="hljs-keyword">let</span> replaceStr <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#&quot;</span><br><br>config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(pattern: pattern, inputString: inputString, replaceStr: replaceStr)<br><span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#hello#&quot;</span><br><span class="hljs-type">XCTAssertEqual</span>(config.modify_result, r)<br></code></pre></td></tr></table></figure>
-
-<h3 id="b-B"><a href="#b-B" class="headerlink" title="\b,\B"></a><code>\b</code>,<code>\B</code></h3><blockquote>
+<h2 id="b-B"><code>\b</code>,<code>\B</code></h2>
+<blockquote>
 <p>在正则表达式中，\b 和 \B 是用于表示单词边界（Word Boundary）的元字符，</p>
 <p>它们有如下的含义：</p>
 <ul>
-<li><code>\b</code> 是单词边界，具体就是 <code>\w</code> 与<code> \W</code> 之间的位置，也包括 <code>\w</code> 与 <code>^</code> 之间的位置，和<code>\w</code>与 <code>$ </code>之间的位置 </li>
+<li><code>\b</code> 是单词边界，具体就是 <code>\w</code> 与<code> \W</code> 之间的位置，也包括 <code>\w</code> 与 <code>^</code> 之间的位置，和<code>\w</code>与 <code>$ </code>之间的位置</li>
 <li><code>\B</code>（非单词边界）： 与 <code>\b</code> 相反，<code>\B</code> 表示匹配不是单词边界的位置。它同样是一个零宽断言，不消耗匹配字符。</li>
 </ul>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> inputString <span class="hljs-operator">=</span> <span class="hljs-string">&quot;[Swift] Les@$son_01.txt&quot;</span><br><span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;<span class="hljs-subst">\\</span>b&quot;</span><br><span class="hljs-keyword">let</span> replaceStr <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#&quot;</span><br><br>config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(pattern: pattern, inputString: inputString, replaceStr: replaceStr)<br><span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> <span class="hljs-string">&quot;[#Swift#] #Les#@$#son_01#.#txt#&quot;</span><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> 去理解 单词边界的意思    Swift   Les    son_01   txt 都是单词</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-type">XCTAssertEqual</span>(config.modify_result, r)<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> inputString <span class="hljs-operator">=</span> <span class="hljs-string">&quot;[Swift] Lesson_01.txt&quot;</span><br><span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;<span class="hljs-subst">\\</span>B&quot;</span><br><span class="hljs-keyword">let</span> replaceStr <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#&quot;</span><br><br><br>config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(pattern: pattern, inputString: inputString, replaceStr: replaceStr)<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> 理解非单词边界，  跟 单词边界 正相反 ，参考上面的案例</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#[S#w#i#f#t]# L#e#s#s#o#n#_#0#1.t#x#t&quot;</span><br><br><span class="hljs-type">XCTAssertEqual</span>(config.modify_result, r)<br></code></pre></td></tr></table></figure>
-
-<h3 id="和"><a href="#和" class="headerlink" title="(?=...) 和 (?!=...)"></a><code>(?=...)</code> 和 <code>(?!=...)</code></h3><blockquote>
+<h2 id="和"><code>(?=...)</code> 和 <code>(?!=...)</code></h2>
+<blockquote>
 <ul>
-<li><p><code>(?=...)</code>： 正向先行断言，表示模式只有在某个位置之前的位置匹配时才匹配。例如，foo(?&#x3D;bar) 匹配 “foo”，但仅当其后面是 “bar” 时才匹配。</p>
+<li>
+<p><code>(?=...)</code>： 正向先行断言，表示模式只有在某个位置之前的位置匹配时才匹配。例如，foo(?=bar) 匹配 “foo”，但仅当其后面是 “bar” 时才匹配。</p>
 </li>
-<li><p><code>(?!...)</code>： 负向先行断言，表示模式只有在某个位置之前的位置不匹配时才匹配。例如，foo(?!bar) 匹配 “foo”，但仅当其后面不是 “bar” 时才匹配。</p>
+<li>
+<p><code>(?!...)</code>： 负向先行断言，表示模式只有在某个位置之前的位置不匹配时才匹配。例如，foo(?!bar) 匹配 “foo”，但仅当其后面不是 “bar” 时才匹配。</p>
 </li>
 </ul>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">test_postive_pattern</span>() &#123;<br>    <span class="hljs-keyword">let</span> inputString <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span><br>    <span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;(?=l)&quot;</span> <span class="hljs-comment">// 当前位置后 是 l 的 位置</span><br>    <span class="hljs-keyword">let</span> replaceStr <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#&quot;</span><br><br>    config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(pattern: pattern, inputString: inputString, replaceStr: replaceStr)<br><br>    <span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> <span class="hljs-string">&quot;he#l#lo&quot;</span><br><br>    <span class="hljs-type">XCTAssertEqual</span>(config.modify_result, r)<br>&#125;<br><br><span class="hljs-keyword">func</span> <span class="hljs-title function_">test_negative_pattern</span>() &#123;<br>    <span class="hljs-keyword">let</span> inputString <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span><br>    <span class="hljs-keyword">let</span> pattern <span class="hljs-operator">=</span> <span class="hljs-string">&quot;(?!l)&quot;</span><br>    <span class="hljs-keyword">let</span> replaceStr <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#&quot;</span><br><br>    config <span class="hljs-operator">=</span> .<span class="hljs-keyword">init</span>(pattern: pattern, inputString: inputString, replaceStr: replaceStr)<br><br>    <span class="hljs-keyword">let</span> r <span class="hljs-operator">=</span> <span class="hljs-string">&quot;#h#ell#o#&quot;</span> <span class="hljs-comment">//当前位置后 不是是 l 的 位置</span><br><br>    <span class="hljs-type">XCTAssertEqual</span>(config.modify_result, r)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="在正则表达式中的作用"><a href="#在正则表达式中的作用" class="headerlink" title="? 在正则表达式中的作用"></a>? 在正则表达式中的作用</h3><p>在正则表达式中，<code>?</code> 具有多种用法，取决于它出现的位置和上下文。以下是主要的用法：</p>
+<h2 id="拓展">拓展</h2>
+<h2 id="在正则表达式中的作用">? 在正则表达式中的作用</h2>
+<p>在正则表达式中，<code>?</code> 具有多种用法，取决于它出现的位置和上下文。以下是主要的用法：</p>
 <ol>
 <li><strong>零次或一次匹配：</strong> 在一个字符、字符集、子表达式或分组后面使用 <code>?</code>，表示该元素是可选的，即出现零次或一次。例如，正则表达式 <code>colou?r</code> 可以匹配 “color” 或 “colour”。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">colou?r<br></code></pre></td></tr></table></figure>
-
 <ul>
-<li>匹配：”color”, “colour”</li>
-<li>不匹配：”colouur”, “colr”</li>
+<li>匹配：“color”, “colour”</li>
+<li>不匹配：“colouur”, “colr”</li>
 </ul>
 <ol>
 <li><strong>非贪婪匹配：</strong> 在量词（如 <code>*</code> 或 <code>+</code>）后面使用 <code>?</code>，表示匹配尽量少的字符。默认情况下，量词是贪婪的，会尽量匹配更多的字符。通过在量词后面添加 <code>?</code>，可以实现非贪婪匹配。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">.*?  // 匹配任意字符，但尽量匹配最少字符<br></code></pre></td></tr></table></figure>
-
 <ol>
 <li><strong>正向先行断言：</strong> 在一个位置之前使用 <code>(?=...)</code>，表示模式只有在该位置之前的位置匹配时才匹配。例如，<code>foo(?=bar)</code> 匹配 “foo”，但仅当其后面是 “bar” 时才匹配。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">foo(?=bar)<br></code></pre></td></tr></table></figure>
-
 <ul>
-<li>匹配：”foobar”, “foo123bar”</li>
-<li>不匹配：”foo”, “bar”</li>
+<li>匹配：“foobar”, “foo123bar”</li>
+<li>不匹配：“foo”, “bar”</li>
 </ul>
 <ol>
 <li><strong>负向先行断言：</strong> 在一个位置之前使用 <code>(?!...)</code>，表示模式只有在该位置之前的位置不匹配时才匹配。例如，<code>foo(?!bar)</code> 匹配 “foo”，但仅当其后面不是 “bar” 时才匹配。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs regex">foo(?!bar)<br></code></pre></td></tr></table></figure>
-
 <ul>
-<li>匹配：”foo”, “foobaz”</li>
-<li>不匹配：”foobar”, “foo123bar”</li>
+<li>匹配：“foo”, “foobaz”</li>
+<li>不匹配：“foobar”, “foo123bar”</li>
 </ul>
 <hr>
-<h2 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h2><p>正则表达式中的量词用于指定一个字符或字符组可以匹配的次数。量词是正则表达式中非常强大和常用的部分，可以帮助描述匹配模式的重复性要求。以下是常见的量词及其作用：</p>
+<h2 id="量词">量词</h2>
+<p>正则表达式中的量词用于指定一个字符或字符组可以匹配的次数。量词是正则表达式中非常强大和常用的部分，可以帮助描述匹配模式的重复性要求。以下是常见的量词及其作用：</p>
 <ol>
-<li><p>**<code>*</code> (星号)**：</p>
+<li>
+<h2 id="星号-："><strong><code>*</code> (星号)</strong>：</h2>
 <ul>
 <li>匹配前面的元素零次或多次。</li>
 <li>例如，<code>a*</code> 匹配 “”, “a”, “aa”, “aaa” 等。</li>
 </ul>
 </li>
-<li><p>**<code>+</code> (加号)**：</p>
+<li>
+<h2 id="加号-："><strong><code>+</code> (加号)</strong>：</h2>
 <ul>
 <li>匹配前面的元素一次或多次。</li>
 <li>例如，<code>a+</code> 匹配 “a”, “aa”, “aaa” 等（不匹配空字符串）。</li>
 </ul>
 </li>
-<li><p>**<code>?</code> (问号)**：</p>
+<li>
+<h2 id="问号-："><strong><code>?</code> (问号)</strong>：</h2>
 <ul>
 <li>匹配前面的元素零次或一次。</li>
 <li>例如，<code>a?</code> 匹配 “” 或 “a”。</li>
 </ul>
 </li>
-<li><p>**<code>&#123;n&#125;</code>**：</p>
+<li>
+<h2 id="n-："><strong><code>&#123;n&#125;</code></strong>：</h2>
 <ul>
 <li>精确匹配前面的元素 <code>n</code> 次。</li>
 <li>例如，<code>a&#123;3&#125;</code> 匹配 “aaa”。</li>
 </ul>
 </li>
-<li><p>**<code>&#123;n,&#125;</code>**：</p>
+<li>
+<h2 id="n-：-2"><strong><code>&#123;n,&#125;</code></strong>：</h2>
 <ul>
 <li>匹配前面的元素至少 <code>n</code> 次。</li>
 <li>例如，<code>a&#123;2,&#125;</code> 匹配 “aa”, “aaa”, “aaaa” 等。</li>
 </ul>
 </li>
-<li><p>**<code>&#123;n,m&#125;</code>**：</p>
+<li>
+<h2 id="n-m-："><strong><code>&#123;n,m&#125;</code></strong>：</h2>
 <ul>
 <li>匹配前面的元素至少 <code>n</code> 次，但不超过 <code>m</code> 次。</li>
 <li>例如，<code>a&#123;2,4&#125;</code> 匹配 “aa”, “aaa”, “aaaa”。</li>
 </ul>
 </li>
 </ol>
-<h3 id="贪婪与非贪婪量词"><a href="#贪婪与非贪婪量词" class="headerlink" title="贪婪与非贪婪量词"></a>贪婪与非贪婪量词</h3><p>默认情况下，量词是贪婪的，这意味着它们会尽可能多地匹配字符。可以通过在量词后面加上 <code>?</code> 来使其变为非贪婪的（或懒惰的），即尽可能少地匹配字符。</p>
+<h2 id="贪婪与非贪婪量词">贪婪与非贪婪量词</h2>
+<p>默认情况下，量词是贪婪的，这意味着它们会尽可能多地匹配字符。可以通过在量词后面加上 <code>?</code> 来使其变为非贪婪的（或懒惰的），即尽可能少地匹配字符。</p>
 <ol>
-<li><p><strong>贪婪量词</strong>：</p>
+<li>
+<h2 id="贪婪量词："><strong>贪婪量词</strong>：</h2>
 <ul>
 <li><code>*</code>：零次或多次，尽可能多地匹配。</li>
 <li><code>+</code>：一次或多次，尽可能多地匹配。</li>
@@ -521,7 +566,8 @@
 <li><code>&#123;n,m&#125;</code>：至少 <code>n</code> 次但不超过 <code>m</code> 次，尽可能多地匹配。</li>
 </ul>
 </li>
-<li><p><strong>非贪婪量词</strong>（在贪婪量词后加 <code>?</code>）：</p>
+<li>
+<h2 id="非贪婪量词（在贪婪量词后加-）："><strong>非贪婪量词</strong>（在贪婪量词后加 <code>?</code>）：</h2>
 <ul>
 <li><code>*?</code>：零次或多次，尽可能少地匹配。</li>
 <li><code>+?</code>：一次或多次，尽可能少地匹配。</li>
@@ -531,18 +577,23 @@
 </ul>
 </li>
 </ol>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ol>
-<li><p><strong>贪婪匹配</strong>：</p>
+<h3 id="示例">示例</h3>
+<ol>
+<li>
+<p><strong>贪婪匹配</strong>：</p>
 <ul>
-<li>正则表达式 <code>a.*b</code>：<ul>
+<li>正则表达式 <code>a.*b</code>：
+<ul>
 <li>在字符串 “aababc” 中匹配 “aababc”。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><strong>非贪婪匹配</strong>：</p>
+<li>
+<p><strong>非贪婪匹配</strong>：</p>
 <ul>
-<li>正则表达式 <code>a.*?b</code>：<ul>
+<li>正则表达式 <code>a.*?b</code>：
+<ul>
 <li>在字符串 “aababc” 中匹配 “aab” 和 “ab”。</li>
 </ul>
 </li>
@@ -621,7 +672,7 @@
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
+                    <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
@@ -791,7 +842,6 @@
     <div class="footer-content">
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-  
   
   
   
