@@ -1,0 +1,1011 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="位与,位或,位异或,左移,右移,取反等操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="位运算">
+<meta property="og:url" content="https://jackiedai.github.io/2024/09/03/012%E8%BF%9B%E5%88%B6/003.%E4%BD%8D%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="位与,位或,位异或,左移,右移,取反等操作">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/tools.png">
+<meta property="article:published_time" content="2024-09-03T01:26:56.000Z">
+<meta property="article:modified_time" content="2024-09-03T05:47:59.099Z">
+<meta property="article:author" content="lingXiao">
+<meta property="article:tag" content="位运算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/tools.png">
+  
+  
+  
+  <title>位运算 - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">位运算</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-03 09:26" pubdate>
+          September 3, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">位运算</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>位运算</h1>
+<h2 id="左移和右移-乘除运算…">左移和右移: 乘除运算…</h2>
+<p>简单理解，左移和右移就是指二进制位向左和向右移动，左移<code>n</code>位即乘以$$2^n$$ ,同样右移<code>n</code>位即除以<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-number">2</span> &lt;&lt; <span class="hljs-number">1</span> = <span class="hljs-number">4</span>  <span class="hljs-comment">// 左移 1  0000 0010 --&gt; 0000 0100</span><br><span class="hljs-number">2</span> &lt;&lt; <span class="hljs-number">2</span> = <span class="hljs-number">8</span>  <span class="hljs-comment">// 左移 2	 0000 0010 --&gt; 0000 1000</span><br><span class="hljs-number">2</span> &lt;&lt; <span class="hljs-number">3</span> = <span class="hljs-number">16</span> <span class="hljs-comment">// 左移 3	 0000 0010 --&gt; 0001 0000</span><br></code></pre></td></tr></table></figure>
+<p>右移逻辑分析同样，但是有一点需要注意，当移位超出进制位数范围时，则为<code>0</code>.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-number">2</span> &gt;&gt; <span class="hljs-number">1</span> = <span class="hljs-number">1</span> <span class="hljs-comment">// 右移 1   0000 0010 --&gt; 0000 0001</span><br><span class="hljs-number">2</span> &gt;&gt; <span class="hljs-number">2</span> = <span class="hljs-number">0</span> <span class="hljs-comment">// 右移 2   0000 0010 --&gt; 0000 0000 //超出范围了</span><br><span class="hljs-number">2</span> &gt;&gt; <span class="hljs-number">3</span> = <span class="hljs-number">0</span> <span class="hljs-comment">// 右移 3   0000 0010 --&gt; 0000 0000 //超出范围了 ...</span><br></code></pre></td></tr></table></figure>
+<hr>
+<p>位运算中的左移（<code>&lt;&lt;</code>）和右移（<code>&gt;&gt;</code>）操作在编程中有多种应用场景，尤其是在处理底层数据、优化性能和特定算法时。以下是它们的常用应用场景：</p>
+<p>左移（<code>&lt;&lt;</code>）的应用场景</p>
+<ol>
+<li>
+<p><strong>快速乘法</strong>：<br>
+左移操作相当于将数字乘以2的n次方。例如，<code>a &lt;&lt; n</code> 相当于 <code>a * 2^n</code>。在某些场景下，使用位移操作可以比乘法运算更高效。</p>
+<ul>
+<li><strong>示例</strong>：<code>x &lt;&lt; 3</code> 相当于 <code>x * 8</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>数据打包</strong>：<br>
+在嵌入式系统或通信协议中，有时需要将多个小数据段打包到一个整型变量中。通过左移操作，可以将各个数据段放置在不同的位段上。</p>
+<ul>
+<li><strong>示例</strong>：将两个4位的数字打包成一个8位的字节。</li>
+</ul>
+</li>
+<li>
+<p><strong>位标志的设置</strong>：<br>
+左移可以用来设置特定位的标志。例如，<code>1 &lt;&lt; n</code> 可以生成一个在第n位上的掩码（mask），常用于控制位标志的设置。</p>
+<ul>
+<li><strong>示例</strong>：<code>flags |= (1 &lt;&lt; 5)</code> 设置第5位的标志。</li>
+</ul>
+</li>
+</ol>
+<p>右移（<code>&gt;&gt;</code>）的应用场景</p>
+<ol>
+<li>
+<p><strong>快速除法</strong>：<br>
+右移操作相当于将数字除以2的n次方（向下取整）。<code>a &gt;&gt; n</code> 相当于 <code>a // 2^n</code>。这在某些场景下比除法运算更高效。</p>
+<ul>
+<li><strong>示例</strong>：<code>x &gt;&gt; 2</code> 相当于 <code>x // 4</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>提取位段</strong>：<br>
+右移操作常用于从整数中提取特定的位段。通过先右移后取与操作（<code>&amp;</code>），可以得到某些位的值。</p>
+<ul>
+<li>
+<p><strong>示例</strong>：提取一个32位整数中的第4到第7位。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 假设有一个32位整数 num，我们想要提取第4到第7位的值：</span><br>num = <span class="hljs-number">0b10111011010100011110001001011100</span>  <span class="hljs-comment"># 示例整数</span><br><br><span class="hljs-comment"># 步骤1：右移4位，将第4到第7位移动到最低的4个位</span><br>shifted = num &gt;&gt; <span class="hljs-number">4</span><br><br><span class="hljs-comment"># 步骤2：使用掩码 0b1111（即十六进制的 0xF）来提取最低的4位</span><br>extracted_bits = shifted &amp; <span class="hljs-number">0b1111</span>  <span class="hljs-comment"># 或者 &amp; 0xF</span><br><br><span class="hljs-comment"># 以二进制格式打印结果</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;提取的第4到第7位：<span class="hljs-subst">&#123;<span class="hljs-built_in">bin</span>(extracted_bits)&#125;</span>&quot;</span>)  <span class="hljs-comment">##0b101</span><br><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>除法结果的快速判定</strong>：<br>
+对于某些特定的应用场景，通过右移操作可以快速判断一个数字是否可以被2的幂次整除，并获取其商的整数部分。</p>
+</li>
+<li>
+<p><strong>符号扩展</strong>：<br>
+在符号位的右移操作中，通常使用算术右移，以保留符号位。它在处理带符号整数时特别有用，比如对负数进行二进制操作时。</p>
+</li>
+</ol>
+<p>这些位运算操作在需要高效数据处理、控制硬件、图像处理、加密算法等场景中尤为常见。</p>
+<hr>
+<h2 id="位与-相同为1-否则为0">位与<code>&amp;</code> : 相同为1,否则为0</h2>
+<p><strong>规则:</strong> 相同位置上均为<code>1</code>,则返回<code>1</code>；否则为<code>0</code>;</p>
+<p>这个按位与的操作，非常频繁，务必掌握，下面我们来看看其应用场景</p>
+<p>按位与（<code>&amp;</code>）操作是一种非常常用的位运算操作，通常用于数据处理、算法优化以及系统编程中。以下是按位与操作的常用应用场景：</p>
+<h3 id="1-掩码操作">1. <strong>掩码操作</strong></h3>
+<p>按位与操作最常见的用途是掩码操作，即从一个数值中提取特定位的值或清除特定位。通过与特定的掩码（mask）进行按位与，可以保留所需的位，并将其他位清零。</p>
+<ul>
+<li><strong>提取特定位的值</strong>：假设你有一个8位的二进制数 <code>11010110</code>，你想要提取其中的中间4位（第2到第5位），可以用 <code>&amp; 0b00111100</code>。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">0b11010110</span><br>mask = <span class="hljs-number">0b00111100</span><br>result = num &amp; mask  <span class="hljs-comment"># 提取中间4位，结果为0b00010100</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-位标志（Flags）操作">2. <strong>位标志（Flags）操作</strong></h3>
+<p>在系统编程中，按位与常用于处理位标志。例如，一个字节的每一位可能代表一个不同的状态或标志，通过按位与可以检查某个标志是否被设置。</p>
+<ul>
+<li>
+<p><strong>检查特定位是否为1</strong>：如果你想检查第2位(bit = 2)是否为1，可以用 <code>num &amp; (1 &lt;&lt; 2)</code>。</p>
+</li>
+<li>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test2</span>():<br>    flags = <span class="hljs-number">0b10101010</span><br>    check = flags &amp; (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>)  <span class="hljs-comment"># 检查第2位是否为1</span><br>    <span class="hljs-keyword">if</span> check != <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;第2位为1&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;第2位为0&quot;</span>)<br><br>test2() <span class="hljs-comment">## 第2位为0</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-清除特定位">3. <strong>清除特定位</strong></h3>
+<p>按位与可以用于清除特定位置的值（将其置为0），而不影响其他位。</p>
+<ul>
+<li>
+<p><strong>清除特定位</strong>：如果你想将一个数的第3位清零，可以用 <code>num &amp; ~(1 &lt;&lt; 3)</code>。(<code>~</code>表示取反的操作符)</p>
+</li>
+<li>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">0b11111111</span>  <span class="hljs-comment"># 初始值为全1</span><br>num &amp;= ~(<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">3</span>)  <span class="hljs-comment"># 清除第3位</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(num))  <span class="hljs-comment"># 结果为 0b11110111</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-位字段（Bit-Fields）">4. <strong>位字段（Bit Fields）</strong></h3>
+<p>在某些情况下，按位与用于管理和操作位字段（bit fields），例如在嵌入式系统中，一个整数的不同位段可能代表不同的数据或配置选项。</p>
+<ul>
+<li><strong>示例</strong>：将多个配置项打包成一个整数，并通过按位与操作从中提取特定的配置项。</li>
+</ul>
+<h3 id="5-奇偶性检测">5. <strong>奇偶性检测</strong></h3>
+<p>按位与操作可以用于快速判断一个数的奇偶性。通过 <code>num &amp; 1</code>，可以检测一个数的最低位，从而判断其是奇数还是偶数。</p>
+<ul>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">10</span><br><span class="hljs-keyword">if</span> num &amp; <span class="hljs-number">1</span> == <span class="hljs-number">0</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;偶数&quot;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;奇数&quot;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="位或-：只要有一个为1-则返回1">位或<code>|</code>：只要有一个为1,则返回1</h2>
+<p><strong>规则</strong>：只要对应的两位其中一位是 <code>1</code> ,则返回1</p>
+<blockquote>
+<p>跟 <code>&amp;</code>的规则不同，我们可以将其理解为</p>
+<ul>
+<li><code>&amp;</code> == <code>and</code></li>
+<li><code>|</code> == <code>or</code></li>
+</ul>
+</blockquote>
+<p>按位或（<code>|</code>）操作在编程中也有许多重要的应用场景，尤其是在需要设置或合并特定位的场合。以下是按位或操作的一些常用应用场景：</p>
+<h3 id="1-位标志（Flags）的设置">1. <strong>位标志（Flags）的设置</strong></h3>
+<p>按位或操作常用于设置特定位的值（将其置为1）而不影响其他位。这在管理多个标志或选项时特别有用。</p>
+<ul>
+<li><strong>示例</strong>：假设你有一个表示不同配置选项的位标志，你可以通过按位或操作来设置某个特定的选项。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">flags = <span class="hljs-number">0b10101000</span>  <span class="hljs-comment"># 原始标志</span><br>flags |= <span class="hljs-number">0b00000010</span>  <span class="hljs-comment"># 设置bit1为1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(flags))  <span class="hljs-comment"># 结果为 0b10101010</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-合并位模式">2. <strong>合并位模式</strong></h3>
+<p>当你需要将多个位模式组合在一起时，按位或是非常有用的工具。例如，将两个或多个数字的位合并成一个新的数字。</p>
+<ul>
+<li><strong>示例</strong>：合并两个8位的二进制数。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">num1 = <span class="hljs-number">0b11000000</span><br>num2 = <span class="hljs-number">0b00110000</span><br>result = num1 | num2  <span class="hljs-comment"># 结果为 0b11110000</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(result))<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-默认值设置">3. <strong>默认值设置</strong></h3>
+<p>在某些情况下，如果你需要确保一个值至少有某些位是设置好的，可以使用按位或来强制设置这些位，而不改变其他已经设置好的位。</p>
+<ul>
+<li><strong>示例</strong>：确保某个数的第0位和第1位至少有一个是1。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">0b11001000</span><br>num |= <span class="hljs-number">0b00000011</span>  <span class="hljs-comment"># 确保第0位和第1位至少有一个为1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(num))  <span class="hljs-comment"># 结果为 0b11001011</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-启用特定功能">4. <strong>启用特定功能</strong></h3>
+<p>按位或操作可以用于启用某个功能或选项。在系统配置或硬件控制中，通常通过设置某个位来启用对应的功能。</p>
+<ul>
+<li><strong>示例</strong>：启用某个硬件功能，通过设置特定位来打开相应的开关。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">hardware_config = <span class="hljs-number">0b00000000</span>  <span class="hljs-comment"># 初始配置</span><br>hardware_config |= <span class="hljs-number">0b00000100</span>  <span class="hljs-comment"># 启用第3位功能</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(hardware_config))  <span class="hljs-comment"># 结果为 0b00000100</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-初始化多位变量">5. <strong>初始化多位变量</strong></h3>
+<p>在嵌入式系统或低级别编程中，按位或操作经常用于初始化多位变量，使其包含多个启用的标志位。</p>
+<ul>
+<li><strong>示例</strong>：初始化一个变量以启用多个特性。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">init_value = <span class="hljs-number">0b00000000</span><br>init_value |= <span class="hljs-number">0b01010101</span>  <span class="hljs-comment"># 启用奇数位</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(init_value))  <span class="hljs-comment"># 结果为 0b01010101</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-构建位图">6. <strong>构建位图</strong></h3>
+<p>在图形编程中，按位或操作可以用于构建位图或图像掩码，通过逐位或操作，将不同图像元素合并成一个完整的图像。</p>
+<ul>
+<li><strong>示例</strong>：将多个图像层合并成一个图像。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">layer1 = <span class="hljs-number">0b10101010</span><br>layer2 = <span class="hljs-number">0b11001100</span><br>combined_image = layer1 | layer2  <span class="hljs-comment"># 合并图像层</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(combined_image))  <span class="hljs-comment"># 结果为 0b11101110</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="7-权限控制">7. <strong>权限控制</strong></h3>
+<p>在权限管理系统中，按位或操作用于添加或启用特定的权限位。例如，在文件系统或用户权限设置中，可以通过按位或来授予用户新的权限。</p>
+<ul>
+<li><strong>示例</strong>：为用户添加写权限。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">permissions = <span class="hljs-number">0b0001</span>  <span class="hljs-comment"># 初始权限，只有读权限</span><br>write_permission = <span class="hljs-number">0b0010</span><br>permissions |= write_permission  <span class="hljs-comment"># 添加写权限</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(permissions))  <span class="hljs-comment"># 结果为 0b0011，表示读和写权限</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="8-设置字节的高位或低位">8. <strong>设置字节的高位或低位</strong></h3>
+<p>当你需要同时设置某个字节的高位或低位时，可以使用按位或来确保目标位的正确性。</p>
+<ul>
+<li><strong>示例</strong>：设置字节的高位为1，保持低位不变。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">byte = <span class="hljs-number">0b00001111</span><br>byte |= <span class="hljs-number">0b11110000</span>  <span class="hljs-comment"># 设置高4位为1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(byte))  <span class="hljs-comment"># 结果为 0b11111111</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这些场景展示了按位或操作在控制位状态、合并数据和初始化变量等方面的重要性。特别是在底层开发和系统编程中，按位或操作是一个不可或缺的工具。</p>
+<hr>
+<h2 id="位异或-相同为0，不同为1">位异或<code>^</code>:相同为0，不同为1</h2>
+<p><strong>规则</strong>:对应两位 <strong>不相同</strong> 返回<strong>1</strong>，<strong>相同</strong>返回<strong>0</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 假设 a = 5, b = 4 ；在不适用第三个变量的情况下,交换两个数值</span><br><span class="hljs-type">int</span> a = <span class="hljs-number">5</span>;<br><span class="hljs-type">int</span> b = <span class="hljs-number">4</span>;<br><span class="hljs-comment">// 5 : 0101</span><br><span class="hljs-comment">// 4 : 0100</span><br><span class="hljs-comment">// a = 5 ^ 4 = 0101 ^ 0100 = 0001 = 1</span><br><span class="hljs-comment">// b = 1 ^ 4 = 0001 ^ 0100 = 0101 = 5</span><br><span class="hljs-comment">// a = 1 ^ 5 = 0001 ^ 0101 = 0100 = 4</span><br>a = a ^ b; <span class="hljs-comment">// 这一步其实是相当于临时变量,临时变量缓存一个中间值，保持最原始的 a ^ b</span><br>b = a ^ b; <span class="hljs-comment">// 这一步相当于  (a ^ b) ^ b 结果是 a</span><br>a = a ^ b; <span class="hljs-comment">// 这一步相当于  (a ^ b) ^ [(a ^ b) ^ b] == b</span><br><br>a = <span class="hljs-number">4</span>;<br>b = <span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>一个数，位异或另一个数两次,结果还是这个数。</p>
+</blockquote>
+<p>位异或（<code>^</code>）操作是一种非常灵活且有趣的位运算操作，它在多种编程场景中有着广泛的应用。以下是一些常见的应用场景：</p>
+<h3 id="1-位翻转">1. <strong>位翻转</strong></h3>
+<p>位异或操作的一个显著特性是，当一个数与1进行异或时，对应位会翻转（0变1，1变0）。这使得异或操作非常适合用于位翻转。</p>
+<ul>
+<li><strong>示例</strong>：将一个字节的第3位翻转。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">0b10101100</span><br>num ^= <span class="hljs-number">0b00001000</span>  <span class="hljs-comment"># 翻转bit3</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(num))  <span class="hljs-comment"># 结果为 0b10100100</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-加密与解密">2. <strong>加密与解密</strong></h3>
+<p>异或操作在简单加密算法中非常常见。由于相同的数据多次异或会恢复原始数据，所以它常用于对称加密和解密。</p>
+<ul>
+<li><strong>示例</strong>：使用异或操作加密和解密数据。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">data = <span class="hljs-number">0b11001100</span><br>key = <span class="hljs-number">0b10101010</span><br><br><span class="hljs-comment"># 加密</span><br>encrypted = data ^ key<br><br><span class="hljs-comment"># 解密</span><br>decrypted = encrypted ^ key<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(encrypted))  <span class="hljs-comment"># 加密后的结果</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(decrypted))  <span class="hljs-comment"># 解密后的结果，应该与data相同</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-交换两个变量的值">3. <strong>交换两个变量的值</strong></h3>
+<p>异或操作可以用来在不使用额外临时变量的情况下交换两个变量的值。这种方法虽然不如直接交换常见，但在一些底层编程中具有一定的技巧性和趣味性。</p>
+<ul>
+<li><strong>示例</strong>：交换两个整数。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-number">5</span>  <span class="hljs-comment"># 0b0101</span><br>b = <span class="hljs-number">9</span>  <span class="hljs-comment"># 0b1001</span><br><br>a = a ^ b<br>b = a ^ b<br>a = a ^ b<br><br><span class="hljs-built_in">print</span>(a)  <span class="hljs-comment"># 输出9</span><br><span class="hljs-built_in">print</span>(b)  <span class="hljs-comment"># 输出5</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-查找数组中唯一的元素">4. <strong>查找数组中唯一的元素</strong></h3>
+<p>如果一个数组中只有一个元素是独一无二的，而其他元素都是成对出现的，可以利用异或的性质快速找到这个唯一的元素。成对出现的元素异或后结果为0，最终异或结果就是那个独一无二的元素。</p>
+<ul>
+<li><strong>示例</strong>：找到数组中唯一的非重复元素。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">arr = [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]<br>unique_element = <span class="hljs-number">0</span><br><br><span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> arr:<br>    unique_element ^= num<br><br><span class="hljs-built_in">print</span>(unique_element)  <span class="hljs-comment"># 结果为2，这是唯一的非重复元素</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-数据校验">5. <strong>数据校验</strong></h3>
+<p>异或操作常用于简单的数据校验，如奇偶校验。通过异或所有位，可以判断数据是否发生了错误（如传输错误或存储错误）。</p>
+<ul>
+<li><strong>示例</strong>：实现一个简单的奇偶校验。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">data = [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]  <span class="hljs-comment"># 假设这些是二进制位</span><br>parity = <span class="hljs-number">0</span><br><br><span class="hljs-keyword">for</span> bit <span class="hljs-keyword">in</span> data:<br>    parity ^= bit<br><br><span class="hljs-built_in">print</span>(parity)  <span class="hljs-comment"># 如果parity为1，则表明数据中的1个数为奇数，否则为偶数</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-图像处理">6. <strong>图像处理</strong></h3>
+<p>在图像处理领域，异或操作可以用于图像混合、掩码操作以及生成视觉效果，如图像对比、边缘检测等。</p>
+<ul>
+<li><strong>示例</strong>：图像对比，通过异或操作高亮显示两个图像的不同之处。</li>
+<li><strong>示例</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">pixel1 = <span class="hljs-number">0b11001100</span>  <span class="hljs-comment"># 假设这是一个图像像素</span><br>pixel2 = <span class="hljs-number">0b10101010</span>  <span class="hljs-comment"># 另一个图像像素</span><br><br>difference = pixel1 ^ pixel2  <span class="hljs-comment"># 结果显示两个像素的不同</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(difference))  <span class="hljs-comment"># 结果为 0b01100110</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="7-生成伪随机数">7. <strong>生成伪随机数</strong></h3>
+<p>虽然异或操作本身不是一个随机数生成器，但它可以用于伪随机数生成算法中，帮助混淆和打乱位模式，以增强随机性。</p>
+<ul>
+<li><strong>示例</strong>：使用异或操作混淆伪随机数生成。</li>
+<li><strong>示例</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">seed = <span class="hljs-number">0b11001010</span><br>random_value = seed ^ (seed &lt;&lt; <span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(random_value))<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="8-状态翻转">8. <strong>状态翻转</strong></h3>
+<p>在状态管理中，异或操作可以用于翻转某些位，适合用于控制系统中的开关状态变化。</p>
+<ul>
+<li><strong>示例</strong>：翻转开关状态。</li>
+<li><strong>示例</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">state = <span class="hljs-number">0b0001</span>  <span class="hljs-comment"># 当前状态，只有第0位为1</span><br>toggle = <span class="hljs-number">0b0001</span>  <span class="hljs-comment"># 我们要翻转第0位</span><br><br>new_state = state ^ toggle<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(new_state))  <span class="hljs-comment"># 结果为 0b0000，即第0位被翻转</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这些应用场景展示了位异或操作的灵活性和多功能性，尤其在数据处理、算法优化、加密以及低级别编程中，它是一个非常有用的工具。</p>
+<hr>
+<h2 id="取反">取反<code>~</code></h2>
+<p><strong>规则</strong>: 0变1 ；1变0</p>
+<blockquote>
+<p>一个二进制数据经过取反（按位非）操作后，生成的是其<strong>反码</strong>。</p>
+<h4 id="解释：">解释：</h4>
+<ul>
+<li>
+<p><strong>原码</strong>：这是一个数在计算机中的直接二进制表示方式。正数的原码与其二进制表示相同，负数的原码是将该数的绝对值用二进制表示，然后在最高位（符号位）上设为1。</p>
+</li>
+<li>
+<p><strong>反码</strong>：反码是通过对原码的每一位进行取反操作得到的，即将原码中的0变为1，1变为0。对于正数，反码与原码相同。对于负数，反码则是在原码的基础上除了符号位外，其余位进行取反。</p>
+</li>
+<li>
+<p><strong>补码</strong>：补码是在反码的基础上加1得到的。补码是计算机中处理负数的标准方式。正数的补码与其原码相同，负数的补码则是其反码加1。</p>
+</li>
+</ul>
+<h4 id="示例：">示例：</h4>
+<p>假设一个8位二进制数 <code>00000101</code>（即十进制数5）：</p>
+<ul>
+<li><strong>原码</strong>：<code>00000101</code></li>
+<li><strong>反码</strong>：<code>11111010</code>（对原码每一位取反）</li>
+</ul>
+<p>对于负数的例子，如 <code>-5</code>，其二进制原码为 <code>10000101</code>：</p>
+<ul>
+<li><strong>原码</strong>：<code>10000101</code></li>
+<li><strong>反码</strong>：<code>11111010</code>（符号位不变，其他位取反）</li>
+<li><strong>补码</strong>：<code>11111011</code>（符号位不变，其他位取反）</li>
+</ul>
+<p>所以，当一个二进制数经过取反操作后，得到的结果是它的反码。如果继续对反码加1，则得到的是补码，这在计算机中用于表示负数。</p>
+</blockquote>
+<p>取反（也称为按位取反或按位非，使用符号 <code>~</code>）操作将数字的每一位都反转，即将0变为1，将1变为0。以下是取反操作的常用应用场景：</p>
+<h3 id="1-快速求相反数">1. <strong>快速求相反数</strong></h3>
+<p>在二进制补码表示法中，取反操作可以用来快速计算一个数的相反数（即负数），结合加1操作即可得到一个数的负值。</p>
+<ul>
+<li><strong>示例</strong>：计算一个整数的相反数。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">5</span>  <span class="hljs-comment"># 0b00000101</span><br><span class="hljs-number">1111</span> <span class="hljs-number">1010</span><br>negative_num = ~num + <span class="hljs-number">1</span>  <span class="hljs-comment"># 结果为 -5</span><br><span class="hljs-built_in">print</span>(negative_num)<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-掩码生成">2. <strong>掩码生成</strong></h3>
+<p>在一些位操作中，取反常用于生成掩码（mask）。例如，当需要清除特定的位时，可以先对掩码取反，然后与原数据进行按位与操作。</p>
+<ul>
+<li><strong>示例</strong>：清除一个整数的高4位。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">0b11111111</span>  <span class="hljs-comment"># 原始数据</span><br>mask = <span class="hljs-number">0b00001111</span>  <span class="hljs-comment"># 需要保留低4位</span><br>result = num &amp; mask  <span class="hljs-comment"># 直接与掩码相与</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(result))  <span class="hljs-comment"># 结果为 0b00001111</span><br><br><span class="hljs-comment"># 如果要清除高4位，可以使用取反</span><br>mask = ~<span class="hljs-number">0b11110000</span>  <span class="hljs-comment"># 取反后为 0b00001111</span><br>result = num &amp; mask<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(result))  <span class="hljs-comment"># 结果为 0b00001111</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-快速生成全1的位模式">3. <strong>快速生成全1的位模式</strong></h3>
+<p>通过对0进行取反操作，可以快速生成一个全1的位模式。这在需要初始化掩码或进行其他位操作时非常有用。</p>
+<ul>
+<li><strong>示例</strong>：生成一个8位全1的二进制数。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">all_ones = ~<span class="hljs-number">0</span>  <span class="hljs-comment"># 结果是全1的二进制数</span><br><span class="hljs-comment"># 通常会按位数限制，如生成8位全1：</span><br>all_ones &amp;= <span class="hljs-number">0xFF</span>  <span class="hljs-comment"># 结果为 0b11111111</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(all_ones))<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-差值计算">4. <strong>差值计算</strong></h3>
+<p>在某些情况下，取反操作可用于计算两个位模式之间的差异。例如，判断两个数哪些位是不同的。</p>
+<ul>
+<li><strong>示例</strong>：找出两个数中不同的位。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">num1 = <span class="hljs-number">0b10101010</span><br>num2 = <span class="hljs-number">0b11001100</span><br><br>difference = num1 ^ num2  <span class="hljs-comment"># 结果表示不同位的位置</span><br>inverted_difference = ~difference  <span class="hljs-comment"># 取反表示相同位的位置</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(inverted_difference))<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-状态切换">5. <strong>状态切换</strong></h3>
+<p>在状态管理中，取反操作常用于切换某些状态。通过对某些位取反，可以在启用和禁用状态之间进行切换。</p>
+<ul>
+<li><strong>示例</strong>：切换设备的开关状态。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">state = <span class="hljs-number">0b10101010</span>  <span class="hljs-comment"># 当前状态</span><br>toggle_mask = <span class="hljs-number">0b00000001</span>  <span class="hljs-comment"># 要切换第0位状态</span><br><br>new_state = state ^ toggle_mask  <span class="hljs-comment"># 取反特定位</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(new_state))  <span class="hljs-comment"># 结果为 0b10101011</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-生成补码">6. <strong>生成补码</strong></h3>
+<p>在二进制系统中，生成一个数的补码时，通常需要先对数进行取反，再加1。补码表示法在计算机中用于表示负数。</p>
+<ul>
+<li><strong>示例</strong>：生成一个数的补码。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">5</span>  <span class="hljs-comment"># 0b00000101</span><br>complement = ~num + <span class="hljs-number">1</span>  <span class="hljs-comment"># 生成补码</span><br><span class="hljs-built_in">print</span>(complement)  <span class="hljs-comment"># 结果为 -5</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="7-屏蔽位">7. <strong>屏蔽位</strong></h3>
+<p>通过取反操作，可以屏蔽某些不需要的数据位，只保留需要的部分。例如，从一个二进制数中剔除高位。</p>
+<ul>
+<li><strong>示例</strong>：屏蔽高位，只保留低4位。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">num = <span class="hljs-number">0b11011011</span><br>mask = <span class="hljs-number">0b00001111</span>  <span class="hljs-comment"># 仅保留低4位</span><br>result = num &amp; mask<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(result))  <span class="hljs-comment"># 结果为 0b00001011</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="8-逻辑否定">8. <strong>逻辑否定</strong></h3>
+<p>在某些编程语言中，位取反操作可以用于模拟逻辑上的否定操作，特别是在处理位模式或位字段时。</p>
+<ul>
+<li><strong>示例</strong>：对布尔值取反。</li>
+<li><strong>示例代码</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">bool_val = <span class="hljs-number">0b00000001</span>  <span class="hljs-comment"># 逻辑上为True</span><br>inverted_bool = ~bool_val &amp; <span class="hljs-number">1</span>  <span class="hljs-comment"># 逻辑取反</span><br><span class="hljs-built_in">print</span>(inverted_bool)  <span class="hljs-comment"># 结果为0，表示False</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BF%9B%E5%88%B6/" class="category-chain-item">进制</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" class="print-no-link">#位运算</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>位运算</div>
+      <div>https://jackiedai.github.io/2024/09/03/012进制/003.位运算/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 3, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/04/007unix_shell/001-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" title="Shell 环境变量">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Shell 环境变量</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/02/010%E6%9D%82%E8%AE%B0/0002/" title="哈,2024年9月2号">
+                        <span class="hidden-mobile">哈,2024年9月2号</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
