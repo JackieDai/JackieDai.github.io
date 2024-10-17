@@ -1,0 +1,1111 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;01_Introduction&#x2F;03_Numbers.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 1.3 Numbers &amp; 1.4 Strings">
+<meta property="og:url" content="https://jackiedai.github.io/2024/09/20/002english/Python-1.3/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;01_Introduction&#x2F;03_Numbers.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/en_cover.png">
+<meta property="article:published_time" content="2024-09-20T05:48:25.000Z">
+<meta property="article:modified_time" content="2024-09-21T03:26:59.714Z">
+<meta property="article:author" content="lingXiao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/en_cover.png">
+  
+  
+  
+  <title>Python - 1.3 Numbers &amp; 1.4 Strings - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Python - 1.3 Numbers & 1.4 Strings</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-20 13:48" pubdate>
+          September 20, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python - 1.3 Numbers &amp; 1.4 Strings</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>来源：</p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/01_Introduction/03_Numbers.html">https://dabeaz-course.github.io/practical-python/Notes/01_Introduction/03_Numbers.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/01_Introduction/04_Strings.html">https://dabeaz-course.github.io/practical-python/Notes/01_Introduction/04_Strings.html</a></p>
+</blockquote>
+<h2 id="Odd">Odd</h2>
+<blockquote>
+<p><strong>/ɑːd/</strong></p>
+<p>“Odd” 是一个多义词，常用于描述某事物<strong>奇怪的、不寻常的</strong>情况，也可以表示<strong>奇数</strong>、<strong>零散的</strong>等含义。根据上下文，具体用法可以有所不同。</p>
+<h3 id="1-奇怪的，不寻常的（strange-unusual）">1. <strong>奇怪的，不寻常的</strong>（strange, unusual）</h3>
+<p>指某事物或某人表现得不正常，或者与常规不同。</p>
+<ul>
+<li>
+<p><strong>That’s odd!</strong><br>
+（真奇怪！）</p>
+</li>
+<li>
+<p><strong>He’s been acting odd lately.</strong><br>
+（他最近行为举止有些反常。）</p>
+</li>
+<li>
+<p><strong>There’s something odd about this situation.</strong><br>
+（这件事有些不对劲。）</p>
+</li>
+</ul>
+<h3 id="2-奇数的（related-to-numbers-that-cannot-be-divided-evenly-by-2）">2. <strong>奇数的</strong>（related to numbers that cannot be divided evenly by 2）</h3>
+<p>用于数学术语中，指“奇数”，与“even”（偶数）相对。</p>
+<ul>
+<li><strong>3, 5, and 7 are odd numbers.</strong><br>
+（3、5 和 7 是奇数。）</li>
+</ul>
+<h3 id="3-零星的，偶尔的（occasional-not-regular）">3. <strong>零星的，偶尔的</strong>（occasional, not regular）</h3>
+<p>指某事物不固定，或者是偶然发生的。</p>
+<ul>
+<li>
+<p><strong>He does the odd job on weekends.</strong><br>
+（他周末偶尔做些零工。）</p>
+</li>
+<li>
+<p><strong>I have the odd free afternoon, but I’m usually busy.</strong><br>
+（我偶尔有空闲的下午，但通常都很忙。）</p>
+</li>
+</ul>
+<h3 id="4-大约，……左右（roughly-approximately）">4. <strong>大约，……左右</strong>（roughly, approximately）</h3>
+<p>可以在数字后面加上“odd”来表示大概的数量。</p>
+<ul>
+<li>
+<p><strong>There were 20-odd people at the party.</strong><br>
+（聚会上有大约二十个人。）</p>
+</li>
+<li>
+<p><strong>He’s written a hundred-odd books over his career.</strong><br>
+（他职业生涯中写了大约一百本书。）</p>
+</li>
+</ul>
+<h3 id="相关表达：">相关表达：</h3>
+<ul>
+<li>
+<p><strong>Odd one out</strong>: 指在某一组事物中显得不相称或与众不同的那个。</p>
+<ul>
+<li><em>Can you find the odd one out in this list?</em><br>
+（你能找到这份清单中与众不同的那个吗？）</li>
+</ul>
+</li>
+<li>
+<p><strong>At odd times</strong>: 在不寻常的时间或间隔。</p>
+<ul>
+<li><em>He likes to read at odd times throughout the day.</em><br>
+（他喜欢在一天中的不固定时间读书。）</li>
+</ul>
+</li>
+</ul>
+<p>“Odd” 的用法非常广泛，从表示“奇怪”到“奇数”再到“零散”，灵活适用于不同的语境。</p>
+</blockquote>
+<h5 id="It-would-be-odd"><em>It would be odd.</em></h5>
+<p>这会很奇怪。</p>
+<hr>
+<h2 id="while-you-are-at-it">while you are at it</h2>
+<blockquote>
+<p><strong>“While you’re at it”</strong> 是一个常用的英语短语，用来表达<strong>在你做某件事情的同时</strong>或<strong>顺便做另一件事</strong>的意思。它通常用于请求某人，在他们已经在做某事的同时，额外完成另一项任务，或者建议顺便做点其他事情。</p>
+<h3 id="用法示例：">用法示例：</h3>
+<ol>
+<li>
+<p><strong>请求某人顺便做另一件事</strong></p>
+<ul>
+<li><em>Can you get me some coffee? And while you’re at it, grab a snack too.</em><br>
+（你能帮我拿杯咖啡吗？顺便拿点零食。）</li>
+</ul>
+</li>
+<li>
+<p><strong>建议顺便做某事</strong></p>
+<ul>
+<li><em>You’re going to the store? While you’re at it, you might want to pick up some milk.</em><br>
+（你要去商店吗？顺便可以买些牛奶。）</li>
+</ul>
+</li>
+<li>
+<p><strong>在同一个过程中完成多件事</strong></p>
+<ul>
+<li><em>I’m fixing the sink. While I’m at it, I might as well check the pipes too.</em><br>
+（我正在修水槽。既然这样，我顺便检查一下管道。）</li>
+</ul>
+</li>
+</ol>
+<h3 id="近义表达：">近义表达：</h3>
+<ul>
+<li>
+<p><strong>By the way</strong>: 类似于“顺便提一下”。</p>
+<ul>
+<li><em>By the way, could you also check the mail?</em><br>
+（顺便说一下，你能检查一下邮件吗？）</li>
+</ul>
+</li>
+<li>
+<p><strong>Since you’re already doing that</strong>: 表达类似的附带要求。</p>
+<ul>
+<li><em>Since you’re already doing laundry, could you wash my clothes too?</em><br>
+（既然你已经在洗衣服了，能顺便帮我洗一下衣服吗？）</li>
+</ul>
+</li>
+</ul>
+<p><strong>“While you’re at it”</strong> 通常带有一种轻松、顺便的语气，用于增加附带任务或建议，不显得强硬。</p>
+</blockquote>
+<h5 id="While-you’re-at-it-fix-the-program-to-correct-for-the-overpayment-that-occurs-in-the-last-month"><strong>While you’re at it,</strong> fix the program to correct for the overpayment that occurs in the last month.</h5>
+<p>当你这样做时，修复程序以纠正上个月发生的多付款项。</p>
+<h2 id="enclose">enclose</h2>
+<blockquote>
+<p>“<strong>Enclose</strong>” 是一个动词，表示<strong>围住、包围</strong>，或<strong>附上</strong>某物。它有多种常见用法，具体含义取决于上下文。通常，它指把某物放在一个封闭的空间内，或者附带文件或物品。</p>
+<h3 id="常见用法：">常见用法：</h3>
+<h3 id="1-围住、包围（to-surround-or-close-off-on-all-sides）">1. <strong>围住、包围</strong>（to surround or close off on all sides）</h3>
+<p>表示把某物围在某个区域里或把某个空间封闭起来。</p>
+<ul>
+<li>
+<p><strong>The garden is enclosed by a tall fence.</strong><br>
+（花园被高高的栅栏围起来。）</p>
+</li>
+<li>
+<p><strong>They enclosed the yard with a brick wall.</strong><br>
+（他们用砖墙把院子围了起来。）</p>
+</li>
+</ul>
+<h3 id="2-附上、随信附上（to-include-something-with-a-letter-or-package）">2. <strong>附上、随信附上</strong>（to include something with a letter or package）</h3>
+<p>常用在书信或邮件中，表示将某个文件或物品随信或包裹附带寄出。</p>
+<ul>
+<li>
+<p><strong>I have enclosed a copy of my resume for your review.</strong><br>
+（我随信附上了我的简历供您参考。）</p>
+</li>
+<li>
+<p><strong>Please enclose a check with your order.</strong><br>
+（请在订单中附上支票。）</p>
+</li>
+</ul>
+<h3 id="3-包住、封住（to-place-something-in-an-envelope-or-container）">3. <strong>包住、封住</strong>（to place something in an envelope or container）</h3>
+<p>表示将某物放入封闭的容器或信封中。</p>
+<ul>
+<li><strong>The letter was carefully enclosed in an envelope.</strong><br>
+（信被小心地装进信封中。）</li>
+</ul>
+<h3 id="相关短语：">相关短语：</h3>
+<ul>
+<li>
+<p><strong>Enclosed please find</strong>: 通常用于正式信件，表示附带文件或物品。</p>
+<ul>
+<li><em>Enclosed please find the signed contract.</em><br>
+（随信附上签好的合同。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Self-addressed stamped envelope (SASE)</strong>: 常见于商业或正式信函中，表示附上有自己地址和邮票的信封，以便对方回信。</p>
+</li>
+</ul>
+<h3 id="近义词：">近义词：</h3>
+<ul>
+<li><strong>Attach</strong>: 附上（多用于电子邮件中）。</li>
+<li><strong>Surround</strong>: 围绕，环绕。</li>
+</ul>
+<h3 id="总结：">总结：</h3>
+<p>“<strong>Enclose</strong>” 主要有两种常见用法：一是表示围住、包围某个区域，二是表示附上某物，特别是在书信或包裹中附带文件、物品等。</p>
+</blockquote>
+<h5 id="Triple-quotes-capture-all-text-enclosed-across-multiple-lines-including-all-formatting">Triple quotes capture all text <strong>enclosed</strong> across multiple lines including all formatting.</h5>
+<p>三引号捕获多行中包含的所有文本，包括所有格式</p>
+<h2 id="strip">strip</h2>
+<blockquote>
+<p>“<strong>Strip</strong>” 是一个多义词，根据上下文可以表示<strong>剥去、脱掉</strong>，也可以表示<strong>条状物</strong>或其他含义。它既可以作为动词，也可以作为名词使用，具体用法如下：</p>
+<h3 id="1-动词：剥去，脱掉（to-remove-or-take-away-something）">1. <strong>动词：剥去，脱掉</strong>（to remove or take away something）</h3>
+<p>这类用法表示移除某物，或使某人或某物失去某种东西。</p>
+<ul>
+<li>
+<p><strong>Strip something off</strong>: 剥掉某物的外层。</p>
+<ul>
+<li><em>She stripped the wallpaper off the walls.</em><br>
+（她把墙纸从墙上撕掉了。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Strip down</strong>: 脱掉衣物，通常是指脱光或脱去某些层次的衣物。</p>
+<ul>
+<li><em>He stripped down to his underwear before jumping into the pool.</em><br>
+（他脱到只剩内衣，然后跳进泳池。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Strip someone of something</strong>: 剥夺某人的权利、荣誉等。</p>
+<ul>
+<li><em>The scandal stripped him of his title and reputation.</em><br>
+（那场丑闻剥夺了他的头衔和名誉。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-名词：条状物，带状物（a-long-narrow-piece-of-something）">2. <strong>名词：条状物，带状物</strong>（a long, narrow piece of something）</h3>
+<p>指一块狭长的材料或物体。</p>
+<ul>
+<li>
+<p><strong>A strip of land</strong>: 一块狭长的土地。</p>
+<ul>
+<li><em>The farm is located on a narrow strip of land between two rivers.</em><br>
+（农场位于两条河之间的一块狭长土地上。）</li>
+</ul>
+</li>
+<li>
+<p><strong>A strip of cloth/paper</strong>: 一条布或纸。</p>
+<ul>
+<li><em>She tore a strip of cloth from her dress to bandage the wound.</em><br>
+（她从裙子上撕下了一条布来包扎伤口。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-动词：拆解，拆卸（to-dismantle-or-disassemble-something）">3. <strong>动词：拆解，拆卸</strong>（to dismantle or disassemble something）</h3>
+<p>表示把某物的零件或外壳拆开。</p>
+<ul>
+<li><strong>Strip the car engine</strong>: 拆解汽车发动机。
+<ul>
+<li><em>He stripped the engine to fix the problem.</em><br>
+（他拆解了发动机来修理问题。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-名词：商业街或地带（a-street-or-area-with-many-businesses-usually-in-a-line）">4. <strong>名词：商业街或地带</strong>（a street or area with many businesses, usually in a line）</h3>
+<p>可以用来形容有一系列商店或娱乐场所的街区或区域。</p>
+<ul>
+<li><strong>The Las Vegas Strip</strong>: 拉斯维加斯大道，以其赌场、酒店和娱乐设施闻名。
+<ul>
+<li><em>The Las Vegas Strip is famous for its nightlife.</em><br>
+（拉斯维加斯大道以其夜生活闻名。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="相关短语：-2">相关短语：</h3>
+<ul>
+<li>
+<p><strong>Strip down to the basics</strong>: 表示把某事物简化到最基本的要素。</p>
+<ul>
+<li><em>We need to strip the project down to the basics to see where we went wrong.</em><br>
+（我们需要简化项目，看看问题出在哪里。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Strip search</strong>: 脱衣搜身。</p>
+<ul>
+<li><em>The police conducted a strip search of the suspect.</em><br>
+（警方对嫌疑人进行了脱衣搜查。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="近义词：-2">近义词：</h3>
+<ul>
+<li><strong>Peel</strong>: 剥去外皮，通常用于水果等。</li>
+<li><strong>Remove</strong>: 去除，移除。</li>
+</ul>
+<h3 id="总结：-2">总结：</h3>
+<p>“<strong>Strip</strong>” 的动词用法主要包括剥去、脱掉、拆解等动作，名词用法则表示狭长的物体或区域。这个词的灵活性让它能在多种场合中使用，具体含义取决于上下文。</p>
+</blockquote>
+<h5 id="Example-stripping-any-leading-trailing-white-space">Example: stripping any leading / trailing white space.</h5>
+<p>示例：去除任何前导/尾随空白。</p>
+<h2 id="slice">slice</h2>
+<blockquote>
+<p><strong>/slaɪs/</strong></p>
+<p>“Slice” 是一个多义词，根据上下文的不同，可以有不同的含义。主要的几种用法包括：</p>
+<h3 id="1-名词用法（表示“切片”）">1. <strong>名词用法（表示“切片”）</strong></h3>
+<ul>
+<li>“slice” 可以作为名词，表示食物、物品的薄片。</li>
+<li>例子：
+<ul>
+<li>“I would like a <strong>slice</strong> of pizza.”<br>
+（我想要一片披萨。）</li>
+<li>“She cut the cake into thin <strong>slices</strong>.”<br>
+（她把蛋糕切成薄片。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-动词用法（表示“切开”、“切片”）">2. <strong>动词用法（表示“切开”、“切片”）</strong></h3>
+<ul>
+<li>“slice” 作为动词，表示切成片状或从某物中分割一部分。</li>
+<li>例子：
+<ul>
+<li>“Please <strong>slice</strong> the bread.”<br>
+（请把面包切片。）</li>
+<li>“He <strong>sliced</strong> the apple into small pieces.”<br>
+（他把苹果切成了小块。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-编程中的用法">3. <strong>编程中的用法</strong></h3>
+<p>在编程中，尤其是在数组或字符串处理方面，“slice” 是一个常用的术语，表示从数据结构中提取一部分（如切片）。</p>
+<ul>
+<li>
+<p><strong>Python 中的 <code>slice()</code></strong>：<code>slice()</code> 是用于从序列（如列表、元组或字符串）中提取某个部分的操作。</p>
+<ul>
+<li>例子：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">my_list = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>sliced_list = my_list[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>]  <span class="hljs-comment"># 提取第2到第4个元素，结果是 [2, 3, 4]</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>解释：<br>
+这里 <code>my_list[1:4]</code> 表示从索引1到索引4（不包括4）的元素，被提取出来成为一个新列表。</li>
+</ul>
+</li>
+<li>
+<p><strong>其他语言中的 <code>slice</code></strong>：<br>
+类似的概念存在于许多其他编程语言中，比如 JavaScript、Ruby 等，它们都可以通过 “slice” 方法来操作数组或字符串。</p>
+<ul>
+<li>例子（JavaScript）：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;Hello World&quot;</span>;<br><span class="hljs-keyword">let</span> slicedStr = str.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>);  <span class="hljs-comment">// 提取 &quot;Hello&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-比喻用法">4. <strong>比喻用法</strong></h3>
+<ul>
+<li>“slice” 有时也会用来形容某事物的一部分或片段。</li>
+<li>例子：
+<ul>
+<li>“He took a <strong>slice</strong> of the market.”<br>
+（他获得了市场的一部分。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结：-3">总结：</h3>
+<ul>
+<li><strong>作为名词</strong>：表示物理上切出来的薄片或部分。</li>
+<li><strong>作为动词</strong>：表示动作“切片”或“分割”。</li>
+<li><strong>在编程中</strong>：常用于从数据结构（如数组、字符串）中提取部分内容的操作。</li>
+</ul>
+</blockquote>
+<h5 id="You-can-also-slice-or-select-substrings-specifying-a-range-of-indices-with">You can also <strong>slice</strong> or select substrings specifying a range of indices with <code>:</code>.</h5>
+<p>您还可以使用 <code>:</code> 来切片或选择指定索引范围的子字符串。</p>
+<hr>
+<h2 id="as-opposed-to">as opposed to</h2>
+<blockquote>
+<p>“As opposed to” 是一个短语，用来表达“与……相对”或“而不是……”，用于对比或指出两者之间的差异。它常常用来强调某一事物与另一事物的不同之处。以下是它的常见用法和例句：</p>
+<h3 id="1-表示对比">1. <strong>表示对比</strong></h3>
+<ul>
+<li><strong>用法</strong>：用于比较两种情况、观点或事物，表示两者的不同或相对性。</li>
+<li><strong>例子</strong>：
+<ul>
+<li>“I prefer tea, <strong>as opposed to</strong> coffee.”<br>
+（我更喜欢茶，而不是咖啡。）</li>
+<li>“The company chose a traditional approach, <strong>as opposed to</strong> a more modern one.”<br>
+（公司选择了传统的方法，而不是更现代的方式。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-表示相反的观点">2. <strong>表示相反的观点</strong></h3>
+<ul>
+<li><strong>用法</strong>：用于表达相反的意见或立场，说明两者截然不同。</li>
+<li><strong>例子</strong>：
+<ul>
+<li>“We support renewable energy, <strong>as opposed to</strong> fossil fuels.”<br>
+（我们支持可再生能源，而不是化石燃料。）</li>
+<li>“She enjoys working outdoors, <strong>as opposed to</strong> sitting in an office all day.”<br>
+（她喜欢在户外工作，而不是整天坐在办公室里。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-用于正式写作或演讲">3. <strong>用于正式写作或演讲</strong></h3>
+<ul>
+<li><strong>用法</strong>：在更正式的场合，“as opposed to” 常用于书面写作或演讲中，用来引出对立观点或强调选择的差异。</li>
+<li><strong>例子</strong>：
+<ul>
+<li>“This policy focuses on long-term benefits, <strong>as opposed to</strong> short-term gains.”<br>
+（该政策注重长期利益，而不是短期收益。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结：-4">总结：</h3>
+<ul>
+<li><strong>“As opposed to”</strong> 用于表达对比或相反的事物，强调两者之间的差异。它可以在正式或非正式场合中使用，帮助清晰地表达对立的选择或观点。</li>
+</ul>
+</blockquote>
+<h5 id="By-putting-a-little-b-before-the-first-quotation-you-specify-that-it-is-a-byte-string-as-opposed-to-a-text-string">By putting a little b before the first quotation, you specify that it is a byte string <strong>as opposed to</strong> a text string.</h5>
+<p>通过在第一个引号前添加一点 b，可以指定它是字节字符串而不是文本字符串。</p>
+<h2 id="apparent">apparent</h2>
+<blockquote>
+<p><strong>/əˈpærənt/</strong></p>
+<p>“Apparent” 是一个形容词，表示某事物显而易见、明显或表面上可见的状态。以下是它的常见用法和例子：</p>
+<h3 id="1-表示明显的、显而易见的">1. <strong>表示明显的、显而易见的</strong></h3>
+<ul>
+<li><strong>用法</strong>：用于描述某事物在外表或表面上看起来很明显，通常无需进一步的解释或证明。</li>
+<li><strong>例子</strong>：
+<ul>
+<li>“It was <strong>apparent</strong> that she was upset.”<br>
+（显然她很难过。）</li>
+<li>“His talent for music was <strong>apparent</strong> from a young age.”<br>
+（他从小就显露出音乐才能。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-表示表面上的、外在的">2. <strong>表示表面上的、外在的</strong></h3>
+<ul>
+<li><strong>用法</strong>：有时用于区分实际情况与表面现象，暗示可能存在其他隐藏的因素。</li>
+<li><strong>例子</strong>：
+<ul>
+<li>“The problem seemed <strong>apparent</strong>, but the underlying issues were more complex.”<br>
+（问题似乎很明显，但潜在的问题更复杂。）</li>
+<li>“Her confidence was <strong>apparent</strong>, but she struggled with self-doubt.”<br>
+（她的自信显而易见，但她内心却在挣扎于自我怀疑。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-用于正式或书面语">3. <strong>用于正式或书面语</strong></h3>
+<ul>
+<li><strong>用法</strong>：常见于正式或书面表达中，描述某种状态或现象。</li>
+<li><strong>例子</strong>：
+<ul>
+<li>“The results of the study showed an <strong>apparent</strong> correlation between the two variables.”<br>
+（研究结果显示这两个变量之间有明显的相关性。）</li>
+<li>“It is <strong>apparent</strong> that more research is needed in this field.”<br>
+（显然，在这个领域还需要更多的研究。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-与其他词结合">4. <strong>与其他词结合</strong></h3>
+<ul>
+<li><strong>常见搭配</strong>：
+<ul>
+<li>“apparent contradiction”（明显的矛盾）</li>
+<li>“apparent advantage”（明显的优势）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>“Apparent” 主要用来描述显而易见或表面上的状态，适用于日常交流和正式场合。它可以暗示一种表面现象可能与实际情况不同。</p>
+</blockquote>
+<h5 id="In-these-examples-it-might-look-like-the-original-string-is-being-modified-in-an-apparent-violation-of-strings-being-read-only">In these examples, it might look like the original string is being modified, in an <strong>apparent</strong> violation of strings being read only.</h5>
+<p>在这些示例中，原始字符串可能看起来正在被修改，这明显违反了只读字符串。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/English/" class="category-chain-item">English</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python - 1.3 Numbers &amp; 1.4 Strings</div>
+      <div>https://jackiedai.github.io/2024/09/20/002english/Python-1.3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 20, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/23/002english/Python-1.5/" title="Python - 1.5 Lists &amp; 1.6 File">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python - 1.5 Lists &amp; 1.6 File</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/14/002english/Python-1.2/" title="Python - A First Program">
+                        <span class="hidden-mobile">Python - A First Program</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

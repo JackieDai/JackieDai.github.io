@@ -1,0 +1,979 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;03_Program_organization&#x2F;01_Script.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 3.1 Scripting">
+<meta property="og:url" content="https://jackiedai.github.io/2024/09/29/002english/Python-3.1/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;03_Program_organization&#x2F;01_Script.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/en_cover.png">
+<meta property="article:published_time" content="2024-09-29T00:32:25.000Z">
+<meta property="article:modified_time" content="2024-09-29T02:48:00.426Z">
+<meta property="article:author" content="lingXiao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/en_cover.png">
+  
+  
+  
+  <title>Python - 3.1 Scripting - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Python - 3.1 Scripting</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-29 08:32" pubdate>
+          September 29, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python - 3.1 Scripting</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="tangle">tangle</h2>
+<blockquote>
+<p><strong>/ˈtæŋɡ(ə)l/</strong></p>
+<p>“<strong>Tangle</strong>” 是一个英语动词和名词，通常与复杂、混乱的情境有关。以下是其主要用法：</p>
+<h3 id="1-作为动词（to-tangle）">1. <strong>作为动词（to tangle）</strong></h3>
+<p>表示将某物弄成一团或卷成复杂的状态，或者与某人或某事物纠缠在一起。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Her hair got tangled in the wind. （她的头发在风中打结了。）</li>
+<li>The wires are tangled behind the TV. （电视机后面的电线缠在一起了。）</li>
+<li>They tangled in an argument. （他们陷入了争论中。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-作为名词（a-tangle）">2. <strong>作为名词（a tangle）</strong></h3>
+<p>表示混乱、纠结或复杂的状态，通常指某物缠绕在一起的样子，或者复杂难解的局面。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>There’s a tangle of ropes on the floor. （地板上有一团缠绕的绳子。）</li>
+<li>His financial situation is a tangle of debts. （他的财务状况一团乱麻，充满债务。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-惯用表达">3. <strong>惯用表达</strong></h3>
+<ul>
+<li>
+<p><strong>Get tangled up in something</strong>: 表示被卷入某个复杂或棘手的情况中。</p>
+<ul>
+<li><strong>例句</strong>: He got tangled up in legal issues. （他卷入了法律纠纷。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Tangle with someone</strong>: 表示与某人发生冲突或争论。</p>
+<ul>
+<li><strong>例句</strong>: You don’t want to tangle with him; he’s a tough negotiator. （你不想和他争论，他是个强硬的谈判者。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-情感或关系上的使用">4. <strong>情感或关系上的使用</strong></h3>
+<p>在比喻意义上，“tangle”可以用来形容复杂的人际关系或情感状况。</p>
+<ul>
+<li><strong>例句</strong>: Their relationship became a tangled mess. （他们的关系变得复杂混乱。）</li>
+</ul>
+<p>总体来说，“tangle” 通常用于描述混乱、纠缠或复杂难解的状态。</p>
+</blockquote>
+<h5 id="And-if-you-don’t-take-care-it-might-turn-into-a-huge-tangled-mess">And if you don’t take care, it might turn into a huge <strong>tangled</strong> mess.</h5>
+<p>如果你不小心，它可能会变成一团乱麻。</p>
+<h2 id="in-a-bottom-up-fashion">in a <em>bottom-up</em> fashion.</h2>
+<blockquote>
+<p><strong>In a … fashion</strong>: 以某种方式或风格进行。</p>
+<ul>
+<li><strong>例句</strong>: He completed the task in a timely fashion. （他按时完成了任务。）</li>
+</ul>
+<p><strong>Out of fashion</strong>: 过时，不再流行。</p>
+<ul>
+<li><strong>例句</strong>: Those shoes are out of fashion now. （那些鞋子现在已经过时了。）</li>
+</ul>
+<p><strong>Come into fashion</strong>: 开始流行。</p>
+<ul>
+<li><strong>例句</strong>: Bell-bottom jeans have come into fashion again. （喇叭裤又重新流行起来了。）</li>
+</ul>
+</blockquote>
+<p>以自下而上的方式。</p>
+<h2 id="feed">feed</h2>
+<blockquote>
+<h3 id="1-作为动词（to-feed）">1. <strong>作为动词（to feed）</strong></h3>
+<h4 id="1-1-喂养">1.1 <strong>喂养</strong></h4>
+<p>表示给人、动物或植物提供食物。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She feeds her dog twice a day. （她每天喂她的狗两次。）</li>
+<li>Farmers feed the cows with fresh hay. （农民用新鲜的干草喂养牛。）</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-u-供给、提供-u">1.2 <u><strong>供给、提供</strong></u></h4>
+<p>可以用来指提供某种资源或信息。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The river feeds water to the nearby lake. （这条河向附近的湖提供水源。）</li>
+<li>The data is fed into the system automatically. （数据被自动输入到系统中。）</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-增强某种情感或状况">1.3 <strong>增强某种情感或状况</strong></h4>
+<p>用来描述某人或某物如何促进或增加某种情感、想法或状况。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>His comments only feed her insecurity. （他的评论只会加深她的不安全感。）</li>
+<li>The rumors fed the public’s curiosity. （这些谣言激起了公众的好奇心。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-作为名词（a-feed）">2. <strong>作为名词（a feed）</strong></h3>
+<h4 id="2-1-食物、饲料">2.1 <strong>食物、饲料</strong></h4>
+<p>指给动物吃的食物或植物的营养品。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The farmer bought chicken feed. （农民买了鸡饲料。）</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-信息流、数据流">2.2 <strong>信息流、数据流</strong></h4>
+<p>通常用于描述社交媒体或网站上的实时更新信息流。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>I checked my Instagram feed this morning. （我今天早上查看了我的 Instagram 信息流。）</li>
+<li>The news feed provides constant updates. （新闻信息流不断提供更新。）</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-3-喂食的动作或时间">2.3 <strong>喂食的动作或时间</strong></h4>
+<p>表示喂养的过程或喂食的时间。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The baby’s feed is at 6 PM every evening. （宝宝的喂奶时间是每天晚上 6 点。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-与技术相关的使用">3. <strong>与技术相关的使用</strong></h3>
+<p>在技术和编程领域，“feed” 可以表示将数据或内容从一个系统传递到另一个系统，或者指特定格式的信息流。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The website has an RSS feed. （这个网站有一个 RSS 信息流。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-常见短语">4. <strong>常见短语</strong></h3>
+<ul>
+<li>
+<p><strong>Feed on</strong>: 以某种食物为食。</p>
+<ul>
+<li><strong>例句</strong>: Cows feed on grass. （牛以草为食。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Feed into</strong>: 输入或导入。</p>
+<ul>
+<li><strong>例句</strong>: The information will feed into the report. （这些信息将纳入报告中。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>“feed” 作为动词时，主要表示喂养或提供某种资源。作为名词时，通常指饲料、信息流或喂食的动作。它在不同领域中（例如日常生活、技术和情感表达）有广泛的应用。</p>
+</blockquote>
+<h5 id="They-feed-help-IDEs-and-other-tools">They <strong>feed</strong> <code>help()</code>, IDEs and other tools.</h5>
+<p>它们为 help()、IDE 和其他工具提供支持</p>
+<h2 id="carry-out">carry out</h2>
+<blockquote>
+<p>“<strong>Carry out</strong>” 是一个常用的短语动词，意思是执行、实施或完成某项任务、计划或指令。以下是其主要用法和例句：</p>
+<h3 id="1-执行任务或计划">1. <strong>执行任务或计划</strong></h3>
+<p>指按照某项指令或计划去做某事，通常带有某种目的或意图。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The team will carry out the project as planned. （团队将按照计划执行该项目。）</li>
+<li>We need to carry out the instructions given by the manager. （我们需要执行经理给出的指示。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-实施政策或程序">2. <strong>实施政策或程序</strong></h3>
+<p>在政策、法规或程序的背景下使用时，表示将理论或规定付诸实践。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The government has decided to carry out new health regulations. （政府决定实施新的健康法规。）</li>
+<li>The company will carry out a survey to gather feedback from customers. （公司将进行调查以收集客户的反馈。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-完成某项工作">3. <strong>完成某项工作</strong></h3>
+<p>在工作或任务的背景下，表示成功完成某件事情。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She was able to carry out her duties effectively. （她能够有效地履行她的职责。）</li>
+<li>They carried out the repairs quickly and efficiently. （他们快速而高效地完成了维修。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-进行实验或研究">4. <strong>进行实验或研究</strong></h3>
+<p>在科学、学术或技术的背景下，表示执行实验、研究或测试。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The researchers carried out experiments to test their hypothesis. （研究人员进行了实验以验证他们的假设。）</li>
+<li>The study will carry out extensive data analysis. （该研究将进行广泛的数据分析。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-与习惯、原则或目标相关">5. <strong>与习惯、原则或目标相关</strong></h3>
+<p>在某些情况下，表示坚持某种原则、习惯或目标。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>They carried out their promise to help the community. （他们履行了帮助社区的承诺。）</li>
+<li>The organization carries out its mission to protect wildlife. （该组织执行其保护野生动物的使命。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-2">总结</h3>
+<p>“<strong>Carry out</strong>” 主要用于表示执行、实施或完成某个任务、计划或指令，涵盖范围广泛，包括工作、政策、实验和个人承诺等场景。这个短语强调的是将想法、计划或指令付诸实践的过程。</p>
+</blockquote>
+<h5 id="Modify-your-report-py-program-so-that-all-major-operations-including-calculations-and-output-are-carried-out-by-a-collection-of-functions">Modify your <code>report.py</code> program so that all major operations, including calculations and output, are <strong>carried out</strong> by a collection of functions.</h5>
+<p>修改你的 <a target="_blank" rel="noopener" href="http://report.py">report.py</a> 程序，以便所有主要操作（包括计算和输出）都由一组函数执行。</p>
+<h2 id="in-the-big-picture">in the big picture</h2>
+<blockquote>
+<p>“In the big picture” 是一个常用的短语，意思是从整体或广泛的视角来看某个问题或情况，而不是关注细节或局部。这个短语通常用于强调长远的考虑或全局观念。</p>
+<h3 id="用法和例句">用法和例句</h3>
+<ol>
+<li>
+<p><strong>强调整体观念</strong></p>
+<ul>
+<li><strong>例句</strong>: We need to think about our project in the big picture, not just focus on immediate tasks.<br>
+（我们需要从整体上考虑我们的项目，而不仅仅关注眼前的任务。）</li>
+</ul>
+</li>
+<li>
+<p><strong>分析情况</strong></p>
+<ul>
+<li><strong>例句</strong>: In the big picture, the benefits of this policy outweigh the drawbacks.<br>
+（从整体来看，这项政策的好处大于缺点。）</li>
+</ul>
+</li>
+<li>
+<p><strong>决策和战略规划</strong></p>
+<ul>
+<li><strong>例句</strong>: When making decisions, it’s important to consider the big picture to ensure long-term success.<br>
+（在做决策时，考虑整体情况以确保长期成功是很重要的。）</li>
+</ul>
+</li>
+<li>
+<p><strong>教育和学习</strong></p>
+<ul>
+<li><strong>例句</strong>: Understanding the big picture helps students grasp complex concepts more easily.<br>
+（理解整体情况有助于学生更容易掌握复杂概念。）</li>
+</ul>
+</li>
+<li>
+<p><strong>日常交流</strong></p>
+<ul>
+<li><strong>例句</strong>: Don’t get caught up in the details; remember to look at the big picture.<br>
+（不要过于纠结于细节，记得从整体上看问题。）</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结-3">总结</h3>
+<p>“<strong>In the big picture</strong>” 用于提醒人们关注整体和长远的视角，而不是被细节所干扰。它强调全局观念，适用于各种场合，包括商业、教育和日常交流。</p>
+</blockquote>
+<h2 id="utilize">utilize</h2>
+<blockquote>
+<p><strong>/ˈjuːtəlaɪz/</strong></p>
+<p>词根词缀： -util-用 + -ize动词词尾</p>
+<p>“<strong>Utilize</strong>” 是一个动词，意思是有效地使用、利用或应用某物。这个词常常用于更正式或专业的语境中，强调充分利用资源、工具或信息。以下是其主要用法和例句：</p>
+<h3 id="1-使用资源或工具">1. <strong>使用资源或工具</strong></h3>
+<p>表示以有效或有利的方式使用某种资源、材料或工具。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The company utilizes advanced technology to improve efficiency. （公司利用先进的技术来提高效率。）</li>
+<li>We need to utilize all available resources for this project. （我们需要利用所有可用的资源来进行这个项目。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-应用知识或技能">2. <strong>应用知识或技能</strong></h3>
+<p>表示将某种知识、技能或理论应用于实际情况中。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She utilized her expertise in marketing to develop a new campaign. （她利用她在市场营销方面的专业知识来制定一个新活动。）</li>
+<li>The scientist utilized the latest research findings in her work. （这位科学家在她的工作中应用了最新的研究结果。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-充分利用机会">3. <strong>充分利用机会</strong></h3>
+<p>表示抓住机会，以实现最大效益。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>He utilized every opportunity to advance his career. （他充分利用每一个机会来推动他的职业发展。）</li>
+<li>The workshop aimed to help participants utilize their skills in real-world situations. （研讨会旨在帮助参与者在现实情况下充分利用他们的技能。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-与其他形式的使用相关">4. <strong>与其他形式的使用相关</strong></h3>
+<p>“Utilize” 通常带有更专业或正式的语气，常用于商业、科技、学术和技术等领域。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The organization aims to utilize sustainable practices in its operations. （该组织旨在其运营中应用可持续的做法。）</li>
+<li>We should find ways to utilize data analytics for better decision-making. （我们应寻找利用数据分析来做出更好决策的方法。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-同义词">5. <strong>同义词</strong></h3>
+<p>“Utilize”的同义词包括 “use”、“employ” 和 “apply”，但通常“utilize”用于更正式的场合。</p>
+<h3 id="总结-4">总结</h3>
+<p>“<strong>Utilize</strong>” 主要用于强调有效地使用某物、应用某种知识或技能，以实现最佳效果。它在商业、科技、学术等领域中应用广泛，通常传达出一种更为正式和专业的语气。</p>
+</blockquote>
+<h5 id="In-the-big-picture-it’s-almost-always-better-to-utilize-functions-whenever-you-can"><strong>In the big picture</strong>, it’s almost always better to <strong>utilize</strong> functions whenever you can.</h5>
+<p>从总体上看，只要能够利用功能几乎总是更好的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/English/" class="category-chain-item">English</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python - 3.1 Scripting</div>
+      <div>https://jackiedai.github.io/2024/09/29/002english/Python-3.1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/29/002english/Python-3.2/" title="Python - 3.2 More on Functions">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python - 3.2 More on Functions</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/24/002english/Python-2.2-2.3-2.4/" title="Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences">
+                        <span class="hidden-mobile">Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

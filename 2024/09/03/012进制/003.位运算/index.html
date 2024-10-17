@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/tools.png">
 <meta property="article:published_time" content="2024-09-03T01:26:56.000Z">
-<meta property="article:modified_time" content="2024-09-03T05:47:59.099Z">
+<meta property="article:modified_time" content="2024-09-20T06:20:19.727Z">
 <meta property="article:author" content="lingXiao">
 <meta property="article:tag" content="位运算">
 <meta name="twitter:card" content="summary_large_image">
@@ -350,7 +350,7 @@
 </ol>
 <p>这些位运算操作在需要高效数据处理、控制硬件、图像处理、加密算法等场景中尤为常见。</p>
 <hr>
-<h2 id="位与-相同为1-否则为0">位与<code>&amp;</code> : 相同为1,否则为0</h2>
+<h2 id="按位与-相同为1-否则为0">按位与<code>&amp;</code> : 相同为1,否则为0</h2>
 <p><strong>规则:</strong> 相同位置上均为<code>1</code>,则返回<code>1</code>；否则为<code>0</code>;</p>
 <p>这个按位与的操作，非常频繁，务必掌握，下面我们来看看其应用场景</p>
 <p>按位与（<code>&amp;</code>）操作是一种非常常用的位运算操作，通常用于数据处理、算法优化以及系统编程中。以下是按位与操作的常用应用场景：</p>
@@ -395,7 +395,7 @@
 </li>
 </ul>
 <hr>
-<h2 id="位或-：只要有一个为1-则返回1">位或<code>|</code>：只要有一个为1,则返回1</h2>
+<h2 id="按位或-：只要有一个为1-则返回1">按位或<code>|</code>：只要有一个为1,则返回1</h2>
 <p><strong>规则</strong>：只要对应的两位其中一位是 <code>1</code> ,则返回1</p>
 <blockquote>
 <p>跟 <code>&amp;</code>的规则不同，我们可以将其理解为</p>
@@ -463,7 +463,7 @@
 </ul>
 <p>这些场景展示了按位或操作在控制位状态、合并数据和初始化变量等方面的重要性。特别是在底层开发和系统编程中，按位或操作是一个不可或缺的工具。</p>
 <hr>
-<h2 id="位异或-相同为0，不同为1">位异或<code>^</code>:相同为0，不同为1</h2>
+<h2 id="按位异或-相同为0，不同为1">按位异或<code>^</code>:相同为0，不同为1</h2>
 <p><strong>规则</strong>:对应两位 <strong>不相同</strong> 返回<strong>1</strong>，<strong>相同</strong>返回<strong>0</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 假设 a = 5, b = 4 ；在不适用第三个变量的情况下,交换两个数值</span><br><span class="hljs-type">int</span> a = <span class="hljs-number">5</span>;<br><span class="hljs-type">int</span> b = <span class="hljs-number">4</span>;<br><span class="hljs-comment">// 5 : 0101</span><br><span class="hljs-comment">// 4 : 0100</span><br><span class="hljs-comment">// a = 5 ^ 4 = 0101 ^ 0100 = 0001 = 1</span><br><span class="hljs-comment">// b = 1 ^ 4 = 0001 ^ 0100 = 0101 = 5</span><br><span class="hljs-comment">// a = 1 ^ 5 = 0001 ^ 0101 = 0100 = 4</span><br>a = a ^ b; <span class="hljs-comment">// 这一步其实是相当于临时变量,临时变量缓存一个中间值，保持最原始的 a ^ b</span><br>b = a ^ b; <span class="hljs-comment">// 这一步相当于  (a ^ b) ^ b 结果是 a</span><br>a = a ^ b; <span class="hljs-comment">// 这一步相当于  (a ^ b) ^ [(a ^ b) ^ b] == b</span><br><br>a = <span class="hljs-number">4</span>;<br>b = <span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
 <blockquote>
@@ -528,7 +528,7 @@
 </ul>
 <p>这些应用场景展示了位异或操作的灵活性和多功能性，尤其在数据处理、算法优化、加密以及低级别编程中，它是一个非常有用的工具。</p>
 <hr>
-<h2 id="取反">取反<code>~</code></h2>
+<h2 id="按取取反">按取取反<code>~</code></h2>
 <p><strong>规则</strong>: 0变1 ；1变0</p>
 <blockquote>
 <p>一个二进制数据经过取反（按位非）操作后，生成的是其<strong>反码</strong>。</p>

@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;02_Working_with_data&#x2F;01_Datatypes.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 2.1 Datatypes and Data structures">
+<meta property="og:url" content="https://jackiedai.github.io/2024/09/23/002english/Python-2.1/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;02_Working_with_data&#x2F;01_Datatypes.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/en_cover.png">
+<meta property="article:published_time" content="2024-09-23T02:48:25.000Z">
+<meta property="article:modified_time" content="2024-09-25T02:35:49.230Z">
+<meta property="article:author" content="lingXiao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/en_cover.png">
+  
+  
+  
+  <title>Python - 2.1 Datatypes and Data structures - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Python - 2.1 Datatypes and Data structures</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-23 10:48" pubdate>
+          September 23, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python - 2.1 Datatypes and Data structures</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>来源：</p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/01_Datatypes.html">https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/01_Datatypes.html</a></p>
+</blockquote>
+<h2 id="analogy">analogy</h2>
+<blockquote>
+<p><strong>/əˈnælədʒi/</strong></p>
+<p>“Analogy” 是一个名词，表示通过比较两个不同事物的相似之处来解释或说明某个概念。在表达和推理中，类比能够帮助人们理解复杂或抽象的事物。以下是一些常见的用法和例子：</p>
+<h3 id="1-类比：用相似性解释">1. 类比：用相似性解释</h3>
+<p>表示通过比较不同事物之间的相似点来帮助解释或理解某事。</p>
+<ul>
+<li><strong>例句</strong>: She used an <strong>analogy</strong> between the human brain and a computer to explain how memory works.<br>
+（她用大脑和计算机的类比来解释记忆是如何工作的。）</li>
+</ul>
+<h3 id="2-类比推理：通过类比进行推理">2. 类比推理：通过类比进行推理</h3>
+<p>用来指根据已知事物的相似点，推测或推理出另一事物的性质或行为。</p>
+<ul>
+<li><strong>例句</strong>: By <strong>analogy</strong>, if a car needs fuel to run, then the human body needs food for energy.<br>
+（通过类比，如果汽车需要燃料才能运行，那么人体也需要食物来获取能量。）</li>
+</ul>
+<h3 id="3-教学工具">3. 教学工具</h3>
+<p>在教育和教学中，类比被用作解释复杂概念的一种工具，将新信息与人们熟悉的事物联系起来。</p>
+<ul>
+<li><strong>例句</strong>: Teachers often use <strong>analogies</strong> to make difficult concepts easier to understand.<br>
+（教师经常使用类比来使难懂的概念变得容易理解。）</li>
+</ul>
+<h3 id="4-科学与哲学中的类比">4. 科学与哲学中的类比</h3>
+<p>在科学或哲学中，类比可以用来提出假设或解释现象，尽管类比推理的准确性有时是有限的。</p>
+<ul>
+<li><strong>例句</strong>: The scientist drew an <strong>analogy</strong> between natural selection and economic competition.<br>
+（这位科学家将自然选择与经济竞争进行了类比。）</li>
+</ul>
+<h3 id="常见表达：">常见表达：</h3>
+<ul>
+<li>
+<p><strong>Draw an analogy</strong>: 进行类比</p>
+<ul>
+<li><strong>例句</strong>: It’s easy to <strong>draw an analogy</strong> between learning to drive and learning to play a musical instrument.<br>
+（很容易将学开车和学弹乐器进行类比。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Analogy with</strong>: 与…的类比</p>
+<ul>
+<li><strong>例句</strong>: There’s a clear <strong>analogy with</strong> how the immune system fights viruses.<br>
+（这与免疫系统如何对抗病毒有着明显的类比。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>“Analogy” 是一种通过比较相似性来阐明概念或事物的手法，能够帮助我们更好地理解新知识或复杂的想法。</p>
+</blockquote>
+<h5 id="A-good-analogy-A-tuple-is-like-a-single-row-in-a-database-table">A good <strong>analogy</strong>: <em>A tuple is like a single row in a database table.</em></h5>
+<p>一个很好的类比：元组就像数据库表中的一行。</p>
+<h2 id="pass-around">pass around</h2>
+<blockquote>
+<p>“Pass around” 是一个短语动词，通常表示将某物从一个人传递给另一个人，尤其是在群体或集体中传递某物。以下是它的几种常见用法和例子：</p>
+<h3 id="1-在人群中传递">1. 在人群中传递</h3>
+<p>表示将某物在一群人中轮流传递，让每个人都能拿到或使用它。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: The teacher <strong>passed around</strong> the handouts to all the students.<br>
+（老师把讲义传给了所有学生。）</p>
+</li>
+<li>
+<p><strong>例句</strong>: Could you <strong>pass around</strong> the snacks at the party?<br>
+（你能在聚会上把零食传一下吗？）</p>
+</li>
+</ul>
+<h3 id="2-传播消息或信息">2. 传播消息或信息</h3>
+<p>可以用来表示传播消息、信息或谣言，让它从一个人传到另一个人。</p>
+<ul>
+<li><strong>例句</strong>: They’ve been <strong>passing around</strong> rumors about the new project.<br>
+（他们一直在传关于这个新项目的谣言。）</li>
+</ul>
+<h3 id="3-共用某物">3. 共用某物</h3>
+<p>表示一件物品被多个人依次使用或分享。</p>
+<ul>
+<li><strong>例句</strong>: The book was <strong>passed around</strong> the group so everyone could read it.<br>
+（这本书在小组中传阅，所有人都可以读到。）</li>
+</ul>
+<h3 id="常见搭配：">常见搭配：</h3>
+<ul>
+<li><strong>Pass around a paper</strong>: 传递一张纸</li>
+<li><strong>Pass around the news</strong>: 传递消息</li>
+<li><strong>Pass around drinks</strong>: 传递饮料</li>
+</ul>
+<h3 id="总结-2">总结</h3>
+<p>“Pass around” 主要用于表示在一群人中传递某物或消息，使每个人都能接触到。</p>
+</blockquote>
+<h5 id="The-tuple-is-then-easy-to-pass-around-to-other-parts-of-a-program-as-a-single-object">The tuple is then easy to <strong>pass around</strong> to other parts of a program as a single object.</h5>
+<p>然后，元组可以很容易地作为单个对象传递到程序的其他部分。</p>
+<h2 id="distinct">distinct</h2>
+<blockquote>
+<p>“Distinct” 和 “Different” 都表示差异，但在使用上有细微的区别。</p>
+<h3 id="1-Different">1. <strong>Different</strong></h3>
+<ul>
+<li><strong>意思</strong>: 表示两个或多个事物不相同，有差异。</li>
+<li><strong>用法</strong>: 强调事物之间的差别或不一致。</li>
+<li><strong>例句</strong>:
+<ul>
+<li>These two phones are <strong>different</strong> in design.<br>
+（这两部手机的设计不同。）</li>
+<li>His opinion is <strong>different</strong> from mine.<br>
+（他的观点与我的不同。）</li>
+</ul>
+</li>
+</ul>
+<p><strong>特点</strong>:</p>
+<ul>
+<li>“Different” 用来表示“不是同样的”或“有差异的”，可以是细小或显著的差异。</li>
+</ul>
+<h3 id="2-Distinct">2. <strong>Distinct</strong></h3>
+<ul>
+<li><strong>意思</strong>: 表示事物之间有明确的区分，通常是显著或独特的不同。</li>
+<li><strong>用法</strong>: 强调事物的独特性、明确的界限或某个特征的明显性。</li>
+<li><strong>例句</strong>:
+<ul>
+<li>There is a <strong>distinct</strong> difference between the two styles of art.<br>
+（这两种艺术风格之间有显著的区别。）</li>
+<li>His voice is very <strong>distinct</strong>, you can recognize it immediately.<br>
+（他的声音很独特，你可以马上认出来。）</li>
+</ul>
+</li>
+</ul>
+<p><strong>特点</strong>:</p>
+<ul>
+<li>“Distinct” 通常指某事物与其他事物有明确的、显著的差异，或者具有某种特征使其易于区分。</li>
+</ul>
+<h3 id="总结：">总结：</h3>
+<ul>
+<li><strong>Different</strong> 强调不相同，通常用于一般性描述差异。</li>
+<li><strong>Distinct</strong> 强调显著的、不容混淆的差异，通常用于更具体或更强烈的对比。</li>
+</ul>
+</blockquote>
+<h5 id="Lists-are-usually-a-collection-of-distinct-items-usually-all-of-the-same-type">Lists are usually a collection of distinct items, usually all of the same type.</h5>
+<p>列表通常是不同项目的集合，通常都是同一类型。</p>
+<h2 id="artifact">artifact</h2>
+<blockquote>
+<ul>
+<li>
+<p><strong>Artifact</strong> 最常见的含义是指具有历史、文化或考古价值的人工制品。</p>
+</li>
+<li>
+<p>在科学、医学和技术领域，指人为或设备错误导致的伪影或误差。</p>
+</li>
+<li>
+<p>在软件开发中，指开发过程中产生的文件或产物。(也是该单词在本文中的意思)</p>
+</li>
+</ul>
+</blockquote>
+<h5 id="This-is-an-artifact-of-the-floating-point-hardware-on-your-computer-only-being-able-to-accurately-represent-decimals-in-Base-2-not-Base-10">This is an <strong>artifact</strong> of the floating point hardware on your computer only being able to accurately represent decimals in Base-2, not Base-10.</h5>
+<p>这是计算机上的浮点硬件只能准确表示 二进制:Base-2（而不是 十进制:Base-10）小数的产物</p>
+<h2 id="serve-as">serve as</h2>
+<blockquote>
+<p>“Serve as” 是一个短语动词，表示某人或某物在特定场合或情况下“担任”某个角色或“起到”某种作用。它可以用在人、物、职位或功能等多个上下文中。以下是常见的用法和例子：</p>
+<h3 id="1-担任某个职位或角色">1. 担任某个职位或角色</h3>
+<p>指某个人在某个时间段内担任某个正式职位或角色。</p>
+<ul>
+<li><strong>例句</strong>: He will <strong>serve as</strong> the new CEO of the company.<br>
+（他将担任公司新的首席执行官。）</li>
+</ul>
+<h3 id="2-起到某种作用">2. 起到某种作用</h3>
+<p>表示某物或某人起到了特定的功能或作用，可能并不是其主要用途。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: The old barn now <strong>serves as</strong> a storage facility.<br>
+（这座旧谷仓现在用作储存设施。）</p>
+</li>
+<li>
+<p><strong>例句</strong>: This meeting can <strong>serve as</strong> a platform for discussion.<br>
+（这次会议可以作为讨论的平台。）</p>
+</li>
+</ul>
+<h3 id="3-作为某事物的替代或临时用途">3. 作为某事物的替代或临时用途</h3>
+<p>表示某物暂时用作某事物，即使它的主要用途并非如此。</p>
+<ul>
+<li><strong>例句</strong>: The box can <strong>serve as</strong> a table if you need one.<br>
+（如果你需要，箱子可以暂时用作桌子。）</li>
+</ul>
+<h3 id="4-充当某种象征">4. 充当某种象征</h3>
+<p>可以用来表示某物在象征意义上代表或象征某种事物。</p>
+<ul>
+<li><strong>例句</strong>: This flag <strong>serves as</strong> a symbol of freedom.<br>
+（这面旗帜象征着自由。）</li>
+</ul>
+<h3 id="常见搭配：-2">常见搭配：</h3>
+<ul>
+<li><strong>Serve as a leader</strong>: 担任领导</li>
+<li><strong>Serve as a reminder</strong>: 起到提醒作用</li>
+<li><strong>Serve as evidence</strong>: 作为证据</li>
+</ul>
+<h3 id="总结：-2">总结：</h3>
+<p>“Serve as” 强调某人或某物在特定情况下扮演的角色、承担的职能，或临时充当的替代品。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/English/" class="category-chain-item">English</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python - 2.1 Datatypes and Data structures</div>
+      <div>https://jackiedai.github.io/2024/09/23/002english/Python-2.1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 23, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/24/002english/Python-2.2-2.3-2.4/" title="Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/23/002english/Python-1.5/" title="Python - 1.5 Lists &amp; 1.6 File">
+                        <span class="hidden-mobile">Python - 1.5 Lists &amp; 1.6 File</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

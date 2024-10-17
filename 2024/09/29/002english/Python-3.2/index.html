@@ -1,0 +1,966 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;03_Program_organization&#x2F;02_More_functions.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 3.2 More on Functions">
+<meta property="og:url" content="https://jackiedai.github.io/2024/09/29/002english/Python-3.2/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;03_Program_organization&#x2F;02_More_functions.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/en_cover.png">
+<meta property="article:published_time" content="2024-09-29T02:23:25.000Z">
+<meta property="article:modified_time" content="2024-09-29T05:24:48.049Z">
+<meta property="article:author" content="lingXiao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/en_cover.png">
+  
+  
+  
+  <title>Python - 3.2 More on Functions - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Python - 3.2 More on Functions</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-29 10:23" pubdate>
+          September 29, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python - 3.2 More on Functions</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/02_More_functions.html">https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/02_More_functions.html</a></p>
+</blockquote>
+<h2 id="fill-in">fill in</h2>
+<blockquote>
+<p>“<strong>Fill in</strong>” 是一个多义的短语动词，通常表示填充、补充或填写某些内容。以下是其主要用法和例句：</p>
+<h3 id="1-填写表格或文件">1. <strong>填写表格或文件</strong></h3>
+<p>表示在表格、文档或任何空白处填入信息。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Please fill in your name and address on the application form.<br>
+（请在申请表上填写您的姓名和地址。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-补充或补全信息">2. <strong>补充或补全信息</strong></h3>
+<p>指提供缺失的信息或详细说明某件事情。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Can you fill me in on what happened at the meeting?<br>
+（你能告诉我会议上发生了什么吗？）</li>
+<li>I’ll fill in the details later.<br>
+（我稍后会补充细节。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-代替某人">3. <strong>代替某人</strong></h3>
+<p>在某个角色、职位或工作中临时代替某人。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She will fill in for me while I’m on vacation.<br>
+（我度假期间她将代替我。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-填补空白或缺口">4. <strong>填补空白或缺口</strong></h3>
+<p>指用某物填补某个空隙、空白或缺口。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The artist filled in the gaps in the painting with bright colors.<br>
+（艺术家用明亮的颜色填补了画作中的空白。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-补充说明或阐述">5. <strong>补充说明或阐述</strong></h3>
+<p>用于描述进一步解释或扩展某个观点或概念。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>I’ll fill in the background information for the presentation.<br>
+（我会为演示补充背景信息。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>“<strong>Fill in</strong>” 主要用于表示填写、补充信息、代替角色或填补空白等含义。这个短语在日常交流、工作和学习中都非常常见，适用范围广泛。</p>
+</blockquote>
+<h5 id="This-section-aims-to-u-fill-in-u-some-gaps-and-discuss-matters-such-as-calling-conventions-scoping-rules-and-more">This section aims to <u>fill in</u> some gaps and discuss matters such as calling conventions, scoping rules, and more.</h5>
+<p>本节旨在填补一些空白并讨论诸如调用约定、范围规则等问题。</p>
+<h2 id="subtle">subtle</h2>
+<blockquote>
+<p><strong>/ˈsʌt(ə)l/</strong></p>
+<p>“<strong>Subtle</strong>” 是一个形容词，用来描述某事物的细微、微妙或不明显的特征。这个词通常指那些不易察觉但具有重要意义的事物或特征。以下是其主要用法和例句：</p>
+<h3 id="1-细微的差别或变化">1. <strong>细微的差别或变化</strong></h3>
+<p>表示某种差异或变化非常细微，可能需要仔细观察才能发现。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>There was a subtle difference in taste between the two dishes.<br>
+（这两道菜的味道之间有细微的差别。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-微妙的情感或表达">2. <strong>微妙的情感或表达</strong></h3>
+<p>用来形容复杂的情感、表达或暗示，通常没有直接表露出来。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Her smile had a subtle hint of sadness.<br>
+（她的微笑中隐含着一丝悲伤。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-巧妙的或含蓄的方式">3. <strong>巧妙的或含蓄的方式</strong></h3>
+<p>表示某种技巧或方式非常巧妙、含蓄而不张扬。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The author used subtle humor to convey serious themes.<br>
+（作者运用了微妙的幽默来传达严肃的主题。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-不显眼的或难以察觉的">4. <strong>不显眼的或难以察觉的</strong></h3>
+<p>形容某事物不容易引起注意或察觉。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The painting had subtle colors that blended well together.<br>
+（这幅画的颜色微妙，融合得很好。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-与“subtlety”相关">5. <strong>与“subtlety”相关</strong></h3>
+<p>“Subtle” 的名词形式是 “subtlety”，指细微之处或微妙之处。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The subtlety of her argument made it more convincing.<br>
+（她论点的微妙性使其更具说服力。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-2">总结</h3>
+<p>“<strong>Subtle</strong>” 通常用于描述那些不易察觉但却重要的细节、情感或表达。它强调的是细微和微妙的特征，常在艺术、文学、情感和感知等场合中使用。</p>
+</blockquote>
+<h5 id="Make-sure-you-understand-the-subtle-difference-between-modifying-a-value-and-reassigning-a-variable-name">Make sure you understand the <strong>subtle</strong> difference between modifying a value and reassigning a variable name.</h5>
+<p>确保您理解修改值和重新分配变量名称之间的细微差别。</p>
+<h2 id="fiddly">fiddly</h2>
+<blockquote>
+<p><strong>/ˈfɪdli/</strong></p>
+<p>“<strong>Fiddly</strong>” 是一个形容词，用于描述某事物复杂、麻烦，或难以处理、操作，通常需要细致的注意力或精确的操作。这个词常常带有些许负面情绪，暗示某项任务过于繁琐或繁杂。以下是其主要用法和例句：</p>
+<h3 id="1-操作复杂或麻烦">1. <strong>操作复杂或麻烦</strong></h3>
+<p>表示某项任务需要细致入微的操作，可能让人感到厌烦或困扰。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The instructions for assembling the furniture were fiddly and hard to follow.<br>
+（组装家具的说明非常复杂，难以遵循。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-需要小心处理">2. <strong>需要小心处理</strong></h3>
+<p>用于描述某些细小的物品或部分，操作时需要小心，以免损坏。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Be careful with that fiddly piece; it’s easy to lose.<br>
+（小心那个小零件；它很容易丢失。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-含有不必要的复杂性">3. <strong>含有不必要的复杂性</strong></h3>
+<p>指某事物的设计或安排过于复杂，不够简洁明了。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The software has a fiddly user interface that confuses new users.<br>
+（这个软件有一个复杂的用户界面，让新用户感到困惑。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-常用于手工或技术工作">4. <strong>常用于手工或技术工作</strong></h3>
+<p>在手工艺、技术或其他需要精细操作的场合，常用来形容那些需要仔细处理的任务。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Knitting can be fiddly at times, especially with intricate patterns.<br>
+（编织有时可能会很麻烦，尤其是复杂的图案。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-3">总结</h3>
+<p>“<strong>Fiddly</strong>” 用于形容那些复杂、麻烦且需要细致处理的任务或物品。这个词通常传达了一种对复杂性的不满或困扰，适用于各种需要精细操作的场合。</p>
+</blockquote>
+<h5 id="There-are-a-lot-of-low-level-“fiddly”-bits-and-similar-features">There are a lot of low-level “<strong>fiddly</strong>” bits and similar features.</h5>
+<p>有很多低级的“繁琐”位和类似的功能。</p>
+<h2 id="pick-out">pick out</h2>
+<blockquote>
+<p>“<strong>Pick out</strong>” 是一个短语动词，意思是从一组物品中选择、挑选或辨别某个特定的物品或信息。以下是其主要用法和例句：</p>
+<h3 id="1-挑选或选择某个物品">1. <strong>挑选或选择某个物品</strong></h3>
+<p>表示从多个选项中选择或挑选出一个或多个物品。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She went to the store to pick out a dress for the party.<br>
+（她去商店挑选一件参加聚会的裙子。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-辨认或识别">2. <strong>辨认或识别</strong></h3>
+<p>指从众多物品或信息中识别或找出特定的内容。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Can you pick out the mistakes in this report?<br>
+（你能找出这份报告中的错误吗？）</li>
+<li>I could easily pick out my friend’s voice in the crowd.<br>
+（我很容易在人群中辨认出我朋友的声音。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-分离或挑剔">3. <strong>分离或挑剔</strong></h3>
+<p>在某些情况下，表示将特定的物品分开或挑拣出来。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The teacher asked the students to pick out the important points from the lesson.<br>
+（老师要求学生从课中挑选出重要的要点。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-用于特定上下文">4. <strong>用于特定上下文</strong></h3>
+<p>“Pick out” 也可以用于更具体的上下文，如音乐、食物、颜色等。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>He can easily pick out a tune on the piano by ear.<br>
+（他能轻松地凭耳朵识别出钢琴上的曲调。）</li>
+<li>We need to pick out some colors for the new paint job.<br>
+（我们需要挑选一些颜色用于新的油漆。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-4">总结</h3>
+<p>“<strong>Pick out</strong>” 主要用于表示从一组物品或信息中选择、挑选或识别特定的内容。这个短语适用于各种场合，包括购物、学习、辨别声音等，强调了选择和识别的过程。</p>
+</blockquote>
+<h5 id="Modify-the-parse-csv-function-so-that-it-optionally-allows-user-specified-columns-to-be-picked-out">Modify the <code>parse_csv()</code> function so that it optionally allows user-specified columns to be <strong>picked out</strong></h5>
+<p>修改 parse_csv() 函数，以便它可以选择性地允许用户指定列</p>
+<h2 id="genuine">genuine</h2>
+<blockquote>
+<p><strong>/ˈdʒenjuɪn/</strong></p>
+<p>“<strong>Genuine</strong>” 是一个形容词，用于描述某事物真实的、真诚的或未被伪造的状态。这个词通常用于强调真实性、真诚性或诚实性。以下是其主要用法和例句：</p>
+<h3 id="1-真实的或非伪造的">1. <strong>真实的或非伪造的</strong></h3>
+<p>表示某物是正品、真实的，而不是假冒或伪造的。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The antique dealer assured me that the vase was a genuine artifact.<br>
+（古董商向我保证，这个花瓶是真品。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-真诚的或诚恳的">2. <strong>真诚的或诚恳的</strong></h3>
+<p>用来形容一个人的态度或情感是真实的，没有任何虚伪或做作。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She gave a genuine apology for her mistake.<br>
+（她对自己的错误真诚地道歉。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-表示真实情感或态度">3. <strong>表示真实情感或态度</strong></h3>
+<p>指一种真实、自然的情感或态度，通常与表面的表现相对立。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>His excitement was genuine when he received the award.<br>
+（他获得奖项时的兴奋是真诚的。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-用于描述品质或特征">4. <strong>用于描述品质或特征</strong></h3>
+<p>描述某物的特征或品质是自然的、未被修改的。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The restaurant is known for its genuine Italian cuisine.<br>
+（这家餐厅以其正宗的意大利菜闻名。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-与其他词的搭配">5. <strong>与其他词的搭配</strong></h3>
+<p>“Genuine” 常与其他名词搭配，形成固定表达。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She has a genuine interest in helping others.<br>
+（她对帮助他人有真正的兴趣。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-5">总结</h3>
+<p>“<strong>Genuine</strong>” 主要用于描述事物的真实性、真诚性或自然状态，适用于各种场合，包括物品、情感和品质等。这个词强调的是没有伪装、欺骗或虚伪的真实特征。</p>
+<hr>
+<ul>
+<li>
+<p>“Genuinely” 更强调情感的真诚和真实性，通常与人际关系、情感有关。</p>
+</li>
+<li>
+<p>“Really” 用法更广泛，可以强调任何事物的真实性或程度。</p>
+</li>
+<li>
+<p>“Genuinely” 带有更深层次的情感，强调心意的真挚。</p>
+</li>
+<li>
+<p>“Really” 更加直接，可能在某些情况下显得轻松或随意。</p>
+</li>
+</ul>
+</blockquote>
+<h5 id="If-you’ve-made-it-this-far-you’ve-created-a-nice-library-function-that’s-genuinely-useful">If you’ve made it this far, you’ve created a nice library function that’s <strong>genuinely</strong> useful.</h5>
+<p>如果您已经做到了这一步，那么您已经创建了一个真正有用的库函数。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/English/" class="category-chain-item">English</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python - 3.2 More on Functions</div>
+      <div>https://jackiedai.github.io/2024/09/29/002english/Python-3.2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/29/002english/Python-3.3-3.4-3.5-3.6/" title="Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/29/002english/Python-3.1/" title="Python - 3.1 Scripting">
+                        <span class="hidden-mobile">Python - 3.1 Scripting</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

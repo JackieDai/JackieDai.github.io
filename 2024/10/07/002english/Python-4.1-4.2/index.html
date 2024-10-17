@@ -19,23 +19,23 @@
   <meta name="author" content="lingXiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;01_Introduction&#x2F;00_Overview.html">
+    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;04_Classes_objects&#x2F;01_Class.html &amp; https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;04_Classes_objects&#x2F;02_Inheritance.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Practical Python Programming">
-<meta property="og:url" content="https://jackiedai.github.io/2024/09/13/002english/Python-002/index.html">
+<meta property="og:title" content="Python - 4.1 Classes &amp; 4.2 Inheritance">
+<meta property="og:url" content="https://jackiedai.github.io/2024/10/07/002english/Python-4.1-4.2/index.html">
 <meta property="og:site_name" content="lingXiao">
-<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;01_Introduction&#x2F;00_Overview.html">
+<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;04_Classes_objects&#x2F;01_Class.html &amp; https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;04_Classes_objects&#x2F;02_Inheritance.html">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/en_cover.png">
-<meta property="article:published_time" content="2024-09-13T02:02:25.000Z">
-<meta property="article:modified_time" content="2024-09-13T07:56:32.830Z">
+<meta property="article:published_time" content="2024-10-07T05:23:25.000Z">
+<meta property="article:modified_time" content="2024-10-08T05:30:30.440Z">
 <meta property="article:author" content="lingXiao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jackiedai.github.io/img/en_cover.png">
   
   
   
-  <title>Practical Python Programming - lingXiao</title>
+  <title>Python - 4.1 Classes &amp; 4.2 Inheritance - lingXiao</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Practical Python Programming</span>
+            <span id="subtitle">Python - 4.1 Classes & 4.2 Inheritance</span>
           
         </div>
 
@@ -220,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-13 10:02" pubdate>
-          September 13, 2024 am
+        <time datetime="2024-10-07 13:23" pubdate>
+          October 7, 2024 pm
         </time>
       </span>
     
@@ -232,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13 words
+          1.9k words
         
       </span>
     
@@ -243,7 +243,7 @@
         
         
         
-          1 mins
+          16 mins
         
       </span>
     
@@ -280,14 +280,325 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Practical Python Programming</h1>
+            <h1 id="seo-header">Python - 4.1 Classes &amp; 4.2 Inheritance</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>来源：<a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/01_Introduction/00_Overview.html">https://dabeaz-course.github.io/practical-python/Notes/01_Introduction/00_Overview.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/04_Classes_objects/01_Class.html">https://dabeaz-course.github.io/practical-python/Notes/04_Classes_objects/01_Class.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/04_Classes_objects/02_Inheritance.html">https://dabeaz-course.github.io/practical-python/Notes/04_Classes_objects/02_Inheritance.html</a></p>
 </blockquote>
+<h2 id="in-a-nutshell">in a nutshell</h2>
+<blockquote>
+<p>nutshell	<strong>/ˈnʌtʃel/</strong></p>
+<p>n.坚果外壳；简要地说，概括地说（in a nutshell）；（生存于冷海水中的）双壳类软体动物（nut shell）；小的东西</p>
+<hr>
+<p>“In a nutshell” 是一个常用的英语短语，意思是<strong>简而言之</strong>或<strong>概括地说</strong>，用来引出简短总结或概述。这个表达强调在尽可能少的字句中传达出核心内容或要点。</p>
+<h3 id="用法：">用法：</h3>
+<ul>
+<li>通常用于在详细说明之后或之前，对一段话进行简短的总结。</li>
+<li>表达出尽量用最简单、最直接的方式概括复杂的想法或信息。</li>
+</ul>
+<h3 id="例句：">例句：</h3>
+<ul>
+<li>
+<p>“In a nutshell, the project was a success despite some minor setbacks.”<br>
+（简而言之，尽管有一些小的挫折，这个项目还是成功了。）</p>
+</li>
+<li>
+<p>“The movie, in a nutshell, is about a young girl’s journey to find her family.”<br>
+（简而言之，这部电影讲述的是一个年轻女孩寻找家人的故事。）</p>
+</li>
+</ul>
+<h3 id="词源：">词源：</h3>
+<p>“In a nutshell” 这个短语源自古代，意指把内容浓缩到可以装入坚果壳里的程度。它比喻把复杂或大量的信息精简为一个简短的总结。</p>
+</blockquote>
+<h2 id="it-does-nothing-by-itself">it does nothing by itself</h2>
+<blockquote>
+<p>“It does nothing by itself” 这句话的意思是 <strong>某物 或 某事物 本身 不会自动起作用或完成任务</strong>，需要其他条件、因素或操作才能发挥作用。这种说法通常用于描述某个工具、功能、设备或方法，表明它<strong>单独存在时无效</strong>，而是需要与其他事物配合才能产生效果。</p>
+<h3 id="用法：-2">用法：</h3>
+<ul>
+<li>可以用于讨论工具、功能或方法，强调它们需要人为操作或特定条件才能发挥作用。</li>
+</ul>
+<h3 id="例句：-2">例句：</h3>
+<ul>
+<li>
+<p>“The software looks impressive, but it does nothing by itself without the right configuration.”<br>
+（这个软件看起来很棒，但如果没有正确的配置，它本身不起作用。）</p>
+</li>
+<li>
+<p>“This feature seems useful, but it does nothing by itself unless you activate it.”<br>
+（这个功能看起来有用，但如果你不启用它，它本身没有作用。）</p>
+</li>
+</ul>
+<h3 id="含义：">含义：</h3>
+<p>这句话通常提醒人们某个事物<strong>需要额外的步骤或因素</strong>才能发挥作用，不能单独运行或完成任务。</p>
+</blockquote>
+<hr>
+<h2 id="verbose">verbose</h2>
+<blockquote>
+<p><strong>/vɜːrˈboʊs/</strong></p>
+<p>adj.冗长的；啰嗦的</p>
+<hr>
+<p>“Verbose” 是一个形容词，通常用于形容一个人或一段文字过于冗长、啰嗦，使用了太多不必要的词汇。在计算机科学领域，“verbose” 也常用于描述软件或程序输出的详细信息。</p>
+<ol>
+<li>
+<p><strong>一般用法</strong>：</p>
+<ul>
+<li><strong>形容说话或写作</strong>：
+<ul>
+<li>“The speaker was too verbose, and the audience quickly lost interest.”<br>
+（演讲者说得太啰嗦了，观众很快就失去了兴趣。）</li>
+<li>“Her essay is verbose; it could be more concise.”<br>
+（她的文章太冗长了，可以更简洁一些。）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>计算机领域</strong>：</p>
+<ul>
+<li><strong>描述程序的详细输出</strong>：
+<ul>
+<li>“Enable verbose mode to see more detailed logs of the process.”<br>
+（启用详细模式以查看进程的详细日志。）</li>
+</ul>
+</li>
+<li>通常命令行工具中会有一个 <code>--verbose</code> 或 <code>-v</code> 选项，用于输出更多调试或信息内容。</li>
+</ul>
+</li>
+</ol>
+<p>总结来说，“verbose” 在一般用法中通常带有负面意义，指的是话语或文字过于冗长；在技术领域则指详细输出，往往是有帮助的。</p>
+</blockquote>
+<h5 id="Caution-In-Python-2-the-syntax-was-more-verbose"><em>Caution: In Python 2, the syntax was more <strong>verbose</strong>.</em></h5>
+<p>注意：在 Python 2 中，语法更加冗长。</p>
+<h2 id="taxonomy">taxonomy</h2>
+<blockquote>
+<p><strong>/tækˈsɑːnəmi/</strong></p>
+<p>n.分类学；分类法</p>
+<hr>
+<p>taxis,安排，排列，分类，-nomy,学说。</p>
+<hr>
+<p><strong>taxis	/ˈtæksɪs; ˈtæksiz/</strong></p>
+<p>n.整腹法；反射运动；分类法；（古希腊军队的）分队；排列；出租车（taxi 的复数）；（Taxis）（英、芬）塔克西斯（人名）</p>
+</blockquote>
+<h5 id="Think-of-a-logical-hierarchy-or-taxonomy">Think of a logical hierarchy or <strong>taxonomy</strong>.</h5>
+<p>思考一个逻辑层次或分类法。</p>
+<h2 id="to-illustrate">to illustrate</h2>
+<blockquote>
+<p>“To illustrate” 是一个常用的短语，通常用于引导示例或进一步解释一个观点。其中文意思可以理解为 “为了说明” 或 “举例来说”。</p>
+<h3 id="用法及例句">用法及例句</h3>
+<ol>
+<li>
+<p><strong>引导解释性例子</strong><br>
+“To illustrate” 用来引入一个具体的例子，帮助解释之前所说的内容。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li><strong>To illustrate</strong>, let’s consider the following scenario.
+<ul>
+<li>为了说明这一点，让我们看看以下场景。</li>
+</ul>
+</li>
+<li><strong>To illustrate</strong> the concept, think about how a car engine works.
+<ul>
+<li>为了说明这个概念，想想汽车发动机是如何工作的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>帮助清晰表达</strong><br>
+在复杂的讨论中，“to illustrate” 可以用来阐明观点，确保听众理解。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The results were not as expected. <strong>To illustrate</strong>, in one test the system completely failed.
+<ul>
+<li>结果并不像预期的那样。为了说明这一点，在一次测试中系统完全失败了。</li>
+</ul>
+</li>
+<li>She gave several examples <strong>to illustrate</strong> her argument.
+<ul>
+<li>她给出了几个例子来说明她的论点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h2 id="tricky">tricky</h2>
+<blockquote>
+<p>adj. 诡计多端  ，棘手， 狡猾</p>
+<hr>
+<p>trick诡计,诀窍 + -y形容词词尾</p>
+</blockquote>
+<h5 id="There-are-some-rather-tricky-details">There are some rather tricky details.</h5>
+<p>有一些相当棘手的细节。</p>
+<blockquote>
+<p><strong>There are</strong>: 这是一个常见的句型，用于指出某物的存在。</p>
+<p><strong>some</strong>: 表示数量，意为“一些”。</p>
+<p><strong>rather</strong>: 这是一个副词，用于加强语气，意为“相当”或“相当于”。</p>
+<p><strong>tricky</strong>: 形容词，意为“棘手的”或“复杂的”，通常指某事难以处理或需要小心谨慎。</p>
+<p><strong>details</strong>: 名词，表示“细节”或“具体情况”。</p>
+</blockquote>
+<h2 id="gigantic">gigantic</h2>
+<blockquote>
+<p><strong>/dʒaɪˈɡæntɪk/</strong></p>
+<p>“Gigantic” 是一个形容词，意思是“巨大的”或“庞大的”，通常用来形容尺寸、体积或规模极大的事物。</p>
+</blockquote>
+<h5 id="To-do-this-you-could-try-to-write-one-gigantic-function-that-did-everything">To do this, you could try to write one <strong>gigantic</strong> function that did everything.</h5>
+<p>为此，您可以尝试编写一个可以完成所有操作的巨型函数。</p>
+<h3 id="Polymorphism">Polymorphism</h3>
+<blockquote>
+<p><strong>/ˌpɑːlɪˈmɔːrˌfɪzəm/</strong></p>
+<p><u>poly</u>  <u>mor</u> <u>phism</u></p>
+<p>n.多态性；多形性；同质多晶</p>
+</blockquote>
+<h5 id="Polymorphism-in-Action">Polymorphism in Action</h5>
+<p>多态性的实际应用</p>
+<h2 id="swap">swap</h2>
+<blockquote>
+<p><strong>/swɑːp/</strong><br>
+“Swap” 是一个动词和名词，意思是“交换”或“互换”。以下是它的不同用法和例句：</p>
+<hr>
+<p>“Swap out” 是一个短语动词，意思是“替换”或“更换”某物，通常是在特定的上下文中用来表示将一个物品或组件移除，并用另一个物品或组件替代。</p>
+<hr>
+<h3 id="作为动词：">作为动词：</h3>
+<ol>
+<li>
+<p><strong>交换物品或位置</strong>：</p>
+<ul>
+<li>“They decided to swap books for a week.”<br>
+（他们决定交换书籍一周。）</li>
+<li>“Can we swap seats? I want to sit next to my friend.”<br>
+（我们可以换座位吗？我想和我的朋友坐在一起。）</li>
+</ul>
+</li>
+<li>
+<p><strong>在计算机术语中</strong>：</p>
+<ul>
+<li>“Swap” 也可以指在计算机内存中交换数据或进程。</li>
+<li>例如：
+<ul>
+<li>“The operating system will swap out inactive processes to free up memory.”<br>
+（操作系统会将不活动的进程交换出去以释放内存。）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="作为名词：">作为名词：</h3>
+<ol>
+<li>
+<p><strong>交换的行为或交易</strong>：</p>
+<ul>
+<li>“The swap of ideas led to a productive discussion.”<br>
+（思想的交换引发了富有成效的讨论。）</li>
+</ul>
+</li>
+<li>
+<p><strong>在金融领域</strong>：</p>
+<ul>
+<li>指两方交换现金流或金融资产的合约。</li>
+<li>例如：
+<ul>
+<li>“They entered into a swap agreement to hedge against interest rate fluctuations.”<br>
+（他们签订了一个交换协议，以对冲利率波动的风险。）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="同义词：">同义词：</h3>
+<ul>
+<li>Exchange</li>
+<li>Trade</li>
+<li>Switch</li>
+</ul>
+<h3 id="反义词：">反义词：</h3>
+<ul>
+<li>Keep</li>
+<li>Retain</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>“Swap” 是一个灵活的词，可以用于描述物理物品的交换、思想的交流或金融合约的互换。使用时可以根据上下文选择合适的含义。</p>
+</blockquote>
+<h5 id="You-swap-out-one-third-party-package-for-a-different-package-when-you-find-a-better-one">You <strong>swap out</strong> one third-party package for a different package when you find a better one.</h5>
+<p>当您找到更好的软件包时，您可以将一个第三方软件包换成另一个软件包。</p>
+<h2 id="preserve">preserve</h2>
+<blockquote>
+<p><strong>/prɪˈzɜːrv/</strong></p>
+<hr>
+<p>pre-,在前，早于，预先，-serv,保护，看护，</p>
+<hr>
+<p>“Preserve” 是一个动词，意思是“保护”、“保持”或“保存”，通常用来指维护某物的原状或完整性，防止其受到损坏、腐烂或消失。以下是它的用法和例句：</p>
+<h3 id="用法">用法</h3>
+<ol>
+<li>
+<p><strong>保护或维持某物的状态</strong>：</p>
+<ul>
+<li>“Efforts to preserve the environment are crucial for future generations.”<br>
+（保护环境的努力对未来几代人至关重要。）</li>
+<li>“We should preserve our cultural heritage for the next generation.”<br>
+（我们应该为下一代保护我们的文化遗产。）</li>
+</ul>
+</li>
+<li>
+<p><strong>保存食品</strong>：</p>
+<ul>
+<li>在食品领域，指用特定的方法（如罐装、腌制等）来延长食品的保质期。</li>
+<li>例如：
+<ul>
+<li>“She likes to preserve fruits by making jams and jellies.”<br>
+（她喜欢通过制作果酱和果冻来保存水果。）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>保持某种状态或性质</strong>：</p>
+<ul>
+<li>“The museum works hard to preserve the integrity of the artifacts.”<br>
+（博物馆努力保持文物的完整性。）</li>
+</ul>
+</li>
+</ol>
+<h3 id="名词形式">名词形式</h3>
+<ul>
+<li><strong>Preservation</strong>：指保护、保持或保存的过程。
+<ul>
+<li>例如：
+<ul>
+<li>“The preservation of wildlife is essential for biodiversity.”<br>
+（保护野生动物对生物多样性至关重要。）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="同义词">同义词</h3>
+<ul>
+<li>Protect</li>
+<li>Maintain</li>
+<li>Safeguard</li>
+</ul>
+<h3 id="反义词">反义词</h3>
+<ul>
+<li>Destroy</li>
+<li>Damage</li>
+<li>Neglect</li>
+</ul>
+<h3 id="总结-2">总结</h3>
+<p>“Preserve” 用于强调保护和维持某物的状态，尤其是在环境、文化、食品和历史文物等方面。</p>
+</blockquote>
+<h5 id="It-doesn’t-matter–none-of-your-application-code-will-break-as-long-as-you-preserve-the-interface">It doesn’t matter–none of your application code will break as long as you preserve the interface.</h5>
+<p>没关系——只要您保留界面，您的应用程序代码就不会中断。</p>
 
                 
               </div>
@@ -326,8 +637,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Practical Python Programming</div>
-      <div>https://jackiedai.github.io/2024/09/13/002english/Python-002/</div>
+      <div>Python - 4.1 Classes &amp; 4.2 Inheritance</div>
+      <div>https://jackiedai.github.io/2024/10/07/002english/Python-4.1-4.2/</div>
     </div>
     <div class="license-meta">
       
@@ -339,7 +650,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>September 13, 2024</div>
+          <div>October 7, 2024</div>
         </div>
       
       
@@ -371,9 +682,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/13/002english/Python-001/" title="Practical Python Programming">
+                      <a href="/2024/10/07/002english/Python-4.3/" title="Python - 4.3 Special Methods">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Practical Python Programming</span>
+                        <span class="hidden-mobile">Python - 4.3 Special Methods</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -381,8 +692,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/10/002english/Python-009-classes/" title="Python-009-Classes">
-                        <span class="hidden-mobile">Python-009-Classes</span>
+                      <a href="/2024/09/29/002english/Python-3.3-3.4-3.5-3.6/" title="Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion">
+                        <span class="hidden-mobile">Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

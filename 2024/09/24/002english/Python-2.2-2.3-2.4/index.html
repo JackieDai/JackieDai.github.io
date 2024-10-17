@@ -1,0 +1,1101 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;02_Working_with_data&#x2F;02_Containers.html https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;02_Working_with_data&#x2F;03_Formatting.html https:&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences">
+<meta property="og:url" content="https://jackiedai.github.io/2024/09/24/002english/Python-2.2-2.3-2.4/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;02_Working_with_data&#x2F;02_Containers.html https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;02_Working_with_data&#x2F;03_Formatting.html https:&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/en_cover.png">
+<meta property="article:published_time" content="2024-09-24T00:48:25.000Z">
+<meta property="article:modified_time" content="2024-09-25T05:32:46.814Z">
+<meta property="article:author" content="lingXiao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/en_cover.png">
+  
+  
+  
+  <title>Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Python - 2.2 Containers & 2.3 Formatting & 2.4 Sequences</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-24 08:48" pubdate>
+          September 24, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>来源：</p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/02_Containers.html">https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/02_Containers.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/03_Formatting.html">https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/03_Formatting.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/04_Sequences.html">https://dabeaz-course.github.io/practical-python/Notes/02_Working_with_data/04_Sequences.html</a></p>
+</blockquote>
+<h2 id="scratch">scratch</h2>
+<blockquote>
+<p><strong>/skrætʃ/</strong></p>
+<p>“Scratch” 是一个多义词，可以作为名词和动词使用，涵盖多种含义，包括物理上的划伤、启动某个动作的概念等。以下是“scratch”的主要用法和例句：</p>
+<h3 id="1-动词用法-Scratch-作为动词，主要表示刮、抓或划的动作。">1. <strong>动词用法</strong>: <strong>Scratch</strong> 作为动词，主要表示刮、抓或划的动作。</h3>
+<h4 id="a-刮、抓">a) <strong>刮、抓</strong></h4>
+<p>表示用指甲、工具等轻轻地刮擦某物，通常用于身体表面或物体表面。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: He <strong>scratched</strong> his arm on the sharp edge of the table.<br>
+（他在桌子的锋利边缘划伤了手臂。）</p>
+</li>
+<li>
+<p><strong>例句</strong>: The cat <strong>scratched</strong> the furniture.<br>
+（猫抓了家具。）</p>
+</li>
+</ul>
+<h4 id="b-擦掉、涂去">b) <strong>擦掉、涂去</strong></h4>
+<p>表示用力擦拭以去除某种东西，例如文字或图案。</p>
+<ul>
+<li><strong>例句</strong>: She <strong>scratched</strong> her name off the list.<br>
+（她把自己的名字从名单上划掉了。）</li>
+</ul>
+<h4 id="c-开始或停止">c) <strong>开始或停止</strong></h4>
+<p>在某些上下文中，表示从零开始或放弃某个计划。</p>
+<ul>
+<li><strong>例句</strong>: They had to <strong>scratch</strong> the project due to budget cuts.<br>
+（他们由于预算削减不得不放弃这个项目。）</li>
+</ul>
+<h3 id="2-名词用法-Scratch-作为名词，通常表示刮痕或抓伤。">2. <strong>名词用法</strong>: <strong>Scratch</strong> 作为名词，通常表示刮痕或抓伤。</h3>
+<h4 id="a-划痕、抓伤">a) <strong>划痕、抓伤</strong></h4>
+<p>表示由刮擦、抓取等动作造成的皮肤或物体表面的伤痕。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: There was a deep <strong>scratch</strong> on the car door.<br>
+（车门上有一道深划痕。）</p>
+</li>
+<li>
+<p><strong>例句</strong>: He had a <strong>scratch</strong> on his cheek from the branches.<br>
+（他的脸颊上被树枝划伤了。）</p>
+</li>
+</ul>
+<h4 id="b-起点">b) <strong>起点</strong></h4>
+<p>有时用于表示某个开始或起点的概念，尤其是在体育或游戏中。</p>
+<ul>
+<li><strong>例句</strong>: The runners started from <strong>scratch</strong>.<br>
+（跑步者从起点开始。）</li>
+</ul>
+<h3 id="3-其他用法">3. <strong>其他用法</strong>:</h3>
+<ul>
+<li>
+<p><strong>Scratch card</strong>: 刮刮卡，一种游戏或彩票。</p>
+<ul>
+<li><strong>例句</strong>: I bought a <strong>scratch card</strong> hoping to win some money.<br>
+（我买了一张刮刮卡，希望能赢点钱。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Scratch that</strong>: 一种口语表达，意思是“算了”或“忘掉它”。</p>
+<ul>
+<li><strong>例句</strong>: Scratch that idea; we need a better plan.<br>
+（算了这个主意，我们需要一个更好的计划。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见搭配：">常见搭配：</h3>
+<ul>
+<li><strong>Scratch the surface</strong>: 表示只是触及某事的表面，未深入。</li>
+<li><strong>Scratch one’s head</strong>: 表示思考或困惑。</li>
+<li><strong>Scratch paper</strong>: 便条纸，用于草稿或随手记下东西的纸张。</li>
+</ul>
+<h3 id="总结：">总结：</h3>
+<ul>
+<li><strong>Scratch</strong> 作为动词表示刮、抓、涂去等动作，作为名词表示划痕、抓伤或起点。</li>
+<li>该词的用法广泛，涵盖物理动作、计划放弃、起始点等多种情境。</li>
+</ul>
+<p><strong>Scratch</strong> 作为动词表示刮、抓、涂去等动作，作为名词表示划痕、抓伤或起点。</p>
+<p>该词的用法广泛，涵盖物理动作、计划放弃、<strong>起始点</strong>等多种情境。</p>
+</blockquote>
+<h5 id="Building-a-list-from-scratch">Building a list from <strong>scratch</strong>.</h5>
+<p>从头开始建立一个列表。</p>
+<h2 id="Neither-…-nor-…">Neither … nor …</h2>
+<blockquote>
+<p>“Neither … nor …” 是一个常用的连接结构，用于表示两个否定的选项或事物。这种结构通常在句中用来强调两个事物都不成立或不具备某种特征。以下是它的用法和例句：</p>
+<h3 id="1-基本用法">1. <strong>基本用法</strong></h3>
+<p>“Neither … nor …” 连接两个否定的词、短语或从句，表示两个选项都不成立。</p>
+<h4 id="结构：">结构：</h4>
+<ul>
+<li><strong>Neither + 名词/动词 + nor + 名词/动词</strong></li>
+</ul>
+<h4 id="例句：">例句：</h4>
+<ul>
+<li>
+<p><strong>Neither</strong> the manager <strong>nor</strong> the employees were satisfied with the decision.<br>
+（经理和员工都对这个决定不满意。）</p>
+</li>
+<li>
+<p><strong>Neither</strong> cats <strong>nor</strong> dogs are allowed in the restaurant.<br>
+（餐厅内不允许带猫和狗。）</p>
+</li>
+</ul>
+<h3 id="2-与动词的一致性">2. <strong>与动词的一致性</strong></h3>
+<p>在使用“neither … nor …”时，动词的形式通常与离它最近的主语一致。</p>
+<h4 id="例句：-2">例句：</h4>
+<ul>
+<li>
+<p><strong>Neither</strong> the teacher <strong>nor</strong> the students <strong>were</strong> prepared for the exam.<br>
+（老师和学生都没有为考试做好准备。）</p>
+</li>
+<li>
+<p><strong>Neither</strong> the books <strong>nor</strong> the notebook <strong>is</strong> on the table.<br>
+（书和笔记本都不在桌子上。）</p>
+</li>
+</ul>
+<h3 id="3-与副词的一致性">3. <strong>与副词的一致性</strong></h3>
+<p>当“neither … nor …”结构中有副词时，副词通常放在两个部分之间。</p>
+<h4 id="例句：-3">例句：</h4>
+<ul>
+<li><strong>Neither</strong> the movie <strong>nor</strong> the book was <strong>even</strong> interesting.<br>
+（电影和书都没有一点意思。）</li>
+</ul>
+<h3 id="4-用于加强否定">4. <strong>用于加强否定</strong></h3>
+<p>“Neither … nor …” 可以用来强调对两个事物的否定。</p>
+<h4 id="例句：-4">例句：</h4>
+<ul>
+<li>
+<p><strong>Neither</strong> option seems appealing to me.<br>
+（这两个选择对我来说都没有吸引力。）</p>
+</li>
+<li>
+<p>I can <strong>neither</strong> confirm <strong>nor</strong> deny the rumors.<br>
+（我既无法确认也无法否认这些谣言。）</p>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>“Neither … nor …” 是一个表达否定的连接结构，用于表示两个选项或事物都不成立或不具备某种特征。在使用时，注意动词和主语的一致性。</p>
+</blockquote>
+<h5 id="Neither-a-list-a-set-nor-another-dictionary-can-serve-as-a-dictionary-key-because-lists-and-dictionaries-are-mutable"><em><strong>Neither</strong> a list, a set, <strong>nor</strong> another dictionary can serve as a dictionary key, because lists and dictionaries are mutable.</em></h5>
+<p>列表、集合或其他字典都不能充当字典键，因为列表和字典是可变的。</p>
+<hr>
+<h2 id="reinvent">reinvent</h2>
+<blockquote>
+<p>reinvent == re + invent</p>
+<p>invent = 发明，创造</p>
+<p>re  + invent = 在一次发明，再一次创造 == 彻底改造，重新创造。</p>
+</blockquote>
+<h5 id="there’s-no-need-to-reinvent-the-wheel-here">there’s no need to reinvent the wheel here.</h5>
+<p>这里没有必要重新发明轮子。</p>
+<h2 id="yield">yield</h2>
+<blockquote>
+<p>“yield” 是一个多义词，在不同的上下文中有不同的含义和用法。它可以作为动词或名词使用。以下是常见的用法：</p>
+<h3 id="1-动词：生产、产生（产出某物）">1. <strong>动词：生产、产生（产出某物）</strong></h3>
+<p>这是 “yield” 最常见的用法之一，表示产生、生产或提供某种结果，通常是指农业、经济或科学实验中的产出。</p>
+<p><strong>例句</strong>：</p>
+<ul>
+<li>The farm yields hundreds of tons of wheat each year.<br>
+（这座农场每年生产数百吨小麦。）</li>
+<li>The experiment yielded promising results.<br>
+（实验产生了有希望的结果。）</li>
+</ul>
+<h3 id="2-动词：让步、屈服">2. <strong>动词：让步、屈服</strong></h3>
+<p>“yield” 也可以表示屈服或让步，通常是由于压力、劝说或更强的力量。</p>
+<p><strong>例句</strong>：</p>
+<ul>
+<li>After a long debate, he finally yielded to their demands.<br>
+（经过长时间的争论后，他最终屈服于他们的要求。）</li>
+<li>The government refused to yield to pressure from protesters.<br>
+（政府拒绝屈服于抗议者的压力。）</li>
+</ul>
+<h3 id="3-动词：让路（交通中）">3. <strong>动词：让路（交通中）</strong></h3>
+<p>在交通规则中，“yield” 表示给其他车辆或行人让路。</p>
+<p><strong>例句</strong>：</p>
+<ul>
+<li>You must yield to pedestrians at the crosswalk.<br>
+（你必须在人行横道上让行给行人。）</li>
+<li>Cars should yield to oncoming traffic at the intersection.<br>
+（汽车在十字路口应让行给对面来车。）</li>
+</ul>
+<h3 id="4-名词：产量、收益">4. <strong>名词：产量、收益</strong></h3>
+<p>作为名词，“yield” 通常表示某物的产量或投资的收益。</p>
+<p><strong>例句</strong>：</p>
+<ul>
+<li>The crop yield this year was higher than expected.<br>
+（今年的农作物产量高于预期。）</li>
+<li>The bond has a yield of 5% per year.<br>
+（这支债券的年收益率是5%。）</li>
+</ul>
+<h3 id="5-动词：产生收益">5. <strong>动词：产生收益</strong></h3>
+<p>在金融或经济领域，“yield” 还可以表示投资或资产产生收益的能力。</p>
+<p><strong>例句</strong>：</p>
+<ul>
+<li>The investment yields a good return every year.<br>
+（这项投资每年都带来不错的回报。）</li>
+</ul>
+<h3 id="6-短语动词：常见用法">6. <strong>短语动词：常见用法</strong></h3>
+<ul>
+<li>
+<p><strong>yield to</strong>：屈服于，服从</p>
+<ul>
+<li>He finally yielded to the temptation.<br>
+（他最终屈服于诱惑。）</li>
+</ul>
+</li>
+<li>
+<p><strong>yield up</strong>：交出，放弃</p>
+<ul>
+<li>The suspect yielded up the stolen goods.<br>
+（嫌疑人交出了赃物。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结：-2">总结：</h3>
+<p>“yield” 可以用作动词或名词，意思涵盖生产产出、让步屈服、让路、以及产量或收益。它的具体含义取决于语境，常见于农业、经济、金融和交通领域的表达。</p>
+</blockquote>
+<h5 id="The-enumerate-object-yields-pairs-containing-a-count-from-start-which-defaults-to-zero-and-a-value-yielded-by-the-iterable-argument">The enumerate object <strong>yields</strong> pairs containing a count (from start, which defaults to zero) and a value yielded by the iterable argument.</h5>
+<p>enumerate对象产生一对，其中包含一个计数(从start开始，默认为零)和一个由iterable参数产生的值。</p>
+<h2 id="digression">digression</h2>
+<blockquote>
+<blockquote>
+<p>di + gression</p>
+<p><strong>/daɪˈɡreʃn/</strong></p>
+<p>n.离题；脱轨</p>
+<blockquote>
+<p>gression 移位</p>
+<p><strong>/'greʃən/</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h5 id="This-section-is-a-slight-digression">This section is a slight <strong>digression</strong></h5>
+<p>这一段有点题外话</p>
+<h2 id="interval">interval</h2>
+<blockquote>
+<p><strong>/ˈɪntərv(ə)l/</strong></p>
+<p>“Interval” 是一个名词，通常表示<strong>间隔</strong>、<strong>时间段</strong>或<strong>距离</strong>。它用于描述两个事件、时间点、空间点或对象之间的差距或间隔。根据具体的语境，它可以用于不同领域，如音乐、数学、时间等。以下是“interval”的主要用法和例子：</p>
+<h3 id="1-时间间隔">1. <strong>时间间隔</strong></h3>
+<p>指的是两个时间点之间的时间长度，常用于描述两个事件发生之间的时间段。</p>
+<h4 id="例句：-5">例句：</h4>
+<ul>
+<li>
+<p>The buses run at 15-minute <strong>intervals</strong>.<br>
+（公交车每隔15分钟运行一次。）</p>
+</li>
+<li>
+<p>There was a short <strong>interval</strong> between the two meetings.<br>
+（两次会议之间有一个短暂的间隔。）</p>
+</li>
+<li>
+<p>You should take a break at regular <strong>intervals</strong> during long study sessions.<br>
+（在长时间学习期间，你应该定期休息。）</p>
+</li>
+</ul>
+<h3 id="2-空间或距离的间隔">2. <strong>空间或距离的间隔</strong></h3>
+<p>表示两个物体或地点之间的物理距离或空间间隔。</p>
+<h4 id="例句：-6">例句：</h4>
+<ul>
+<li>
+<p>The trees were planted at equal <strong>intervals</strong> along the road.<br>
+（沿着道路等距离种植了树木。）</p>
+</li>
+<li>
+<p>The seats in the theater are spaced at comfortable <strong>intervals</strong>.<br>
+（剧院的座位之间有舒适的间隔。）</p>
+</li>
+</ul>
+<h3 id="3-数学中的间隔">3. <strong>数学中的间隔</strong></h3>
+<p>在数学中，<strong>interval</strong> 通常表示两个数值之间的范围，尤其是在数轴上。例如，闭区间 [a, b] 表示 a 和 b 之间的所有数，包括 a 和 b。</p>
+<h4 id="例句：-7">例句：</h4>
+<ul>
+<li>The solution lies within the <strong>interval</strong> [2, 5].<br>
+（解在区间 [2, 5] 内。）</li>
+</ul>
+<h3 id="4-音乐中的音程">4. <strong>音乐中的音程</strong></h3>
+<p>在音乐中，<strong>interval</strong> 指的是两个音符之间的音高差异，称为音程。</p>
+<h4 id="例句：-8">例句：</h4>
+<ul>
+<li>The song begins with an ascending major third <strong>interval</strong>.<br>
+（这首歌以上行大三度音程开始。）</li>
+</ul>
+<h3 id="5-休息间隔（特别用于表演或比赛）">5. <strong>休息间隔（特别用于表演或比赛）</strong></h3>
+<p>在演出、比赛等场合，<strong>interval</strong> 指的是中场休息或演出、比赛中的暂停。</p>
+<h4 id="例句：-9">例句：</h4>
+<ul>
+<li>
+<p>There will be a 10-minute <strong>interval</strong> during the concert.<br>
+（音乐会期间将有10分钟的中场休息。）</p>
+</li>
+<li>
+<p>The game resumed after a brief <strong>interval</strong>.<br>
+（比赛在短暂的中场休息后恢复。）</p>
+</li>
+</ul>
+<h3 id="6-其他常见搭配">6. <strong>其他常见搭配</strong></h3>
+<ul>
+<li>
+<p><strong>At regular intervals</strong>: 定期；每隔固定时间或距离。</p>
+<ul>
+<li><strong>例句</strong>: We stopped at regular <strong>intervals</strong> to rest during the hike.<br>
+（在徒步过程中，我们每隔一段时间就停下来休息。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Time interval</strong>: 时间间隔。</p>
+<ul>
+<li><strong>例句</strong>: The time <strong>interval</strong> between the two events was only a few seconds.<br>
+（两个事件之间的时间间隔只有几秒钟。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结：-3">总结：</h3>
+<ul>
+<li><strong>Interval</strong> 可以表示时间、空间、数学范围、音高差异或表演中的休息，强调两个点、事件或对象之间的间隔。</li>
+</ul>
+</blockquote>
+<h5 id="Slices-do-not-include-the-end-value-It-is-like-a-half-open-interval-from-math">Slices do <em>not</em> include the end value. It is like a half-open <strong>interval</strong> from math.</h5>
+<p>切片不包括最终值。它就像数学中的半开区间。</p>
+<h2 id="reduce">reduce</h2>
+<blockquote>
+<p>“Reduce” 是一个动词，常用来表示减少、缩减、降低等意思。它的用法比较广泛，以下是几种常见的用法：</p>
+<h3 id="1-Reduce-名词">1. <strong>Reduce + 名词</strong></h3>
+<p>表示减少某物或某事物的数量、规模、程度等。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: The company aims to <strong>reduce costs</strong> by 20%.<br>
+(公司旨在将成本减少 20%。)</p>
+</li>
+<li>
+<p><strong>例句</strong>: We need to <strong>reduce pollution</strong> to protect the environment.<br>
+(我们需要减少污染来保护环境。)</p>
+</li>
+</ul>
+<h3 id="2-Reduce-something-to-something">2. <strong>Reduce (something) to (something)</strong></h3>
+<p>表示把某物减少到某个程度、状态或条件。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: The building was <strong>reduced to rubble</strong> after the earthquake.<br>
+(地震后，建筑物变成了废墟。)</p>
+</li>
+<li>
+<p><strong>例句</strong>: She was <strong>reduced to tears</strong> after hearing the sad news.<br>
+(听到坏消息后，她忍不住流泪了。)</p>
+</li>
+</ul>
+<h3 id="3-Reduce-by-数字-百分比">3. <strong>Reduce by + 数字/百分比</strong></h3>
+<p>表示减少的具体数量或比例。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: The speed limit has been <strong>reduced by</strong> 10 miles per hour.<br>
+(限速已减少了每小时 10 英里。)</p>
+</li>
+<li>
+<p><strong>例句</strong>: The price was <strong>reduced by</strong> 50%.<br>
+(价格降低了 50%。)</p>
+</li>
+</ul>
+<h3 id="4-Reduce-to-doing-something">4. <strong>Reduce to doing something</strong></h3>
+<p>表示某事导致某人或某物进入一种不好的状态，常带有被迫的意味。</p>
+<ul>
+<li><strong>例句</strong>: The failure <strong>reduced him to begging</strong> for help.<br>
+(失败迫使他不得不乞求帮助。)</li>
+</ul>
+<h3 id="5-Reduce-food-or-liquid">5. <strong>Reduce (food or liquid)</strong></h3>
+<p>在烹饪中，<strong>reduce</strong> 还可以表示通过加热减少液体的量，从而使其更加浓缩。</p>
+<ul>
+<li><strong>例句</strong>: You should <strong>reduce the sauce</strong> over medium heat until it thickens.<br>
+(你应该用中火把酱汁熬至变浓。)</li>
+</ul>
+<p>总之，“reduce” 的用法通常与减少某物的数量、程度、规模等相关，可以用于物质、数字、程度或者状态的改变。</p>
+</blockquote>
+<h5 id="There-are-some-common-functions-to-reduce-a-sequence-to-a-single-value">There are some common functions to <strong>reduce</strong> a sequence to a single value.</h5>
+<p>有一些常用函数可以将序列简化为单个值</p>
+<h2 id="reduction">reduction</h2>
+<blockquote>
+<p>“Reduction” 是名词，表示“减少、缩小、降低”等意思。它通常与“reduce”这个动词对应，用来描述减少的行为或结果。以下是几种常见的用法：</p>
+<h3 id="1-Reduction-in-名词">1. <strong>Reduction in + 名词</strong></h3>
+<p>表示某物或某事物的减少，通常指数量、程度、规模等的减少。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: There has been a significant <strong>reduction in</strong> crime rates this year.<br>
+(今年犯罪率显著下降。)</p>
+</li>
+<li>
+<p><strong>例句</strong>: The company reported a 10% <strong>reduction in</strong> costs.<br>
+(公司报告了成本减少了 10%。)</p>
+</li>
+</ul>
+<h3 id="2-Reduction-of-名词">2. <strong>Reduction of + 名词</strong></h3>
+<p>也可以表示某物的减少，但强调减少的量或具体事物。</p>
+<ul>
+<li>
+<p><strong>例句</strong>: We aim for a <strong>reduction of</strong> greenhouse gas emissions.<br>
+(我们的目标是减少温室气体排放。)</p>
+</li>
+<li>
+<p><strong>例句</strong>: The doctor recommended a <strong>reduction of</strong> salt in my diet.<br>
+(医生建议我减少饮食中的盐分。)</p>
+</li>
+</ul>
+<h3 id="3-Price-reduction">3. <strong>Price reduction</strong></h3>
+<p>用来表示价格的降低。</p>
+<ul>
+<li><strong>例句</strong>: Many stores offer big <strong>price reductions</strong> during the holiday season.<br>
+(许多商店在假日期间提供大幅度的价格折扣。)</li>
+</ul>
+<h3 id="4-Reduction-to-名词">4. <strong>Reduction to + 名词</strong></h3>
+<p>表示减少到某种状态，通常用来描述缩减或简化的结果。</p>
+<ul>
+<li><strong>例句</strong>: The reduction of the workforce <strong>to</strong> half its original size was necessary due to budget cuts.<br>
+(由于预算削减，员工人数减少到原来的一半是必要的。)</li>
+</ul>
+<h3 id="5-Reduction-in-force-RIF">5. <strong>Reduction in force (RIF)</strong></h3>
+<p>这是一个专门术语，指由于经济困难或其他原因，公司进行的裁员行动。</p>
+<ul>
+<li><strong>例句</strong>: The company is planning a <strong>reduction in force</strong> to manage its costs.<br>
+(公司计划通过裁员来控制成本。)</li>
+</ul>
+<p>总结来说，“reduction” 主要表示减少的行为、过程或结果。它可以用于描述数量、规模、程度或价格等的减少。</p>
+</blockquote>
+<h5 id="Sequence-Reductions">Sequence Reductions</h5>
+<p>序列约简</p>
+<h2 id="novice">novice</h2>
+<blockquote>
+<p><strong>/ˈnɑːvɪs/</strong></p>
+<p>n.初学者，新手；</p>
+</blockquote>
+<h5 id="Sometimes-the-for-statement-len-and-range-get-used-by-novices-in-some-kind-of-horrible-code-fragment-that-looks-like-it-emerged-from-the-depths-of-a-rusty-C-program">Sometimes the <code>for</code> statement, <code>len()</code>, and <code>range()</code> get used by <strong>novices</strong> in some kind of horrible code fragment that looks like it emerged from the depths of a rusty C program.</h5>
+<p>Don’t do that! Don’t do that! Don’t do that!</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/English/" class="category-chain-item">English</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python - 2.2 Containers &amp; 2.3 Formatting &amp; 2.4 Sequences</div>
+      <div>https://jackiedai.github.io/2024/09/24/002english/Python-2.2-2.3-2.4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 24, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/29/002english/Python-3.1/" title="Python - 3.1 Scripting">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python - 3.1 Scripting</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/23/002english/Python-2.1/" title="Python - 2.1 Datatypes and Data structures">
+                        <span class="hidden-mobile">Python - 2.1 Datatypes and Data structures</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

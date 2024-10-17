@@ -1,0 +1,977 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lingXiao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;03_Program_organization&#x2F;04_Modules.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion">
+<meta property="og:url" content="https://jackiedai.github.io/2024/09/29/002english/Python-3.3-3.4-3.5-3.6/index.html">
+<meta property="og:site_name" content="lingXiao">
+<meta property="og:description" content="来源：https:&#x2F;&#x2F;dabeaz-course.github.io&#x2F;practical-python&#x2F;Notes&#x2F;03_Program_organization&#x2F;04_Modules.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jackiedai.github.io/img/en_cover.png">
+<meta property="article:published_time" content="2024-09-29T05:23:25.000Z">
+<meta property="article:modified_time" content="2024-09-29T07:28:21.782Z">
+<meta property="article:author" content="lingXiao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/en_cover.png">
+  
+  
+  
+  <title>Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion - lingXiao</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/lxbook.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jackiedai.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lingXiao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Python - 3.3 Error Checking & 3.4 Modules & 3.5 Main Module & 3.6 Design Discussion</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-29 13:23" pubdate>
+          September 29, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/03_Error_checking.html">https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/03_Error_checking.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/04_Modules.html">https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/04_Modules.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/05_Main_module.html">https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/05_Main_module.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/06_Design_discussion.html">https://dabeaz-course.github.io/practical-python/Notes/03_Program_organization/06_Design_discussion.html</a></p>
+</blockquote>
+<h2 id="sane">sane</h2>
+<blockquote>
+<p>“<strong>Sane</strong>” 是一个形容词，用来描述一个人或行为的理智、清醒、或具有常识，表示头脑清楚、精神正常。它通常用于与“疯狂”（insane）相对的语境中，但也可以广泛地指合理的、明智的行为或想法。</p>
+<h3 id="1-精神健康的">1. <strong>精神健康的</strong></h3>
+<p>表示某人的心理或精神状态是正常的、健康的，没有精神错乱或疾病。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>After months of therapy, she was finally declared sane by her doctors.<br>
+（经过几个月的治疗，医生终于宣布她精神正常。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-理智的、合理的">2. <strong>理智的、合理的</strong></h3>
+<p>可以形容一个人的决定、行动或观点是明智的、理性的。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>It’s important to stay sane when dealing with stressful situations.<br>
+（在处理压力大的情况下，保持理智是很重要的。）</li>
+<li>That’s the only sane solution to the problem.<br>
+（这是解决问题的唯一明智方法。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-与疯狂相对">3. <strong>与疯狂相对</strong></h3>
+<p>通常用来与“insane”相对，表示某人没有失去理智或陷入疯狂。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>I sometimes wonder how people stay sane in such chaotic environments.<br>
+（我有时想知道人们在如此混乱的环境中是如何保持清醒的。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-表达常识">4. <strong>表达常识</strong></h3>
+<p>可以用于表示一种常识性或合理的态度，强调常规思维。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Any sane person would agree that safety comes first.<br>
+（任何有常识的人都会同意安全第一。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>“<strong>Sane</strong>” 强调理智、精神健康或合理的思考。它不仅用于描述人的精神状态，也常用于形容某些行为或决定的理性和明智。</p>
+</blockquote>
+<h5 id="If-you’re-going-to-catch-all-errors-this-is-a-more-sane-approach">If you’re going to catch all errors, this is a more <strong>sane</strong> approach.</h5>
+<p>如果您要捕获所有错误，这是一种更为明智的方法。</p>
+<h2 id="isolate">isolate</h2>
+<blockquote>
+<p><strong>/ˈaɪsəleɪt/</strong></p>
+<p>“<strong>Isolate</strong>” 是一个动词，表示将某物或某人单独分开、隔离或孤立开来。它可以用于不同的情境，包括物理上的分离、情感上的孤立、或者在科学和技术领域中的分离操作。以下是其主要用法和例句：</p>
+<h3 id="1-隔离、孤立（物理上的分离）">1. <strong>隔离、孤立（物理上的分离）</strong></h3>
+<p>指将某人或某物从其周围环境中分离出来，以避免接触或干扰。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The patient was isolated to prevent the spread of the disease.<br>
+（为了防止疾病传播，病人被隔离了。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-使孤立、孤单（情感或社会上的分离）">2. <strong>使孤立、孤单（情感或社会上的分离）</strong></h3>
+<p>指使某人感到孤立、孤单，或从群体中被排斥。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>After the argument, she felt isolated from her friends.<br>
+（争吵过后，她感到自己被朋友孤立了。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-科学或技术中的分离">3. <strong>科学或技术中的分离</strong></h3>
+<p>在科学、技术或医学领域中，常指将某个特定的元素、化学物质、细菌等从混合物或群体中分离出来。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>Scientists were able to isolate the gene responsible for the disease.<br>
+（科学家成功地分离出了导致该疾病的基因。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-用于描述地区、国家等的隔离状态">4. <strong>用于描述地区、国家等的隔离状态</strong></h3>
+<p>可以用于地理、政治或文化背景，指将一个国家或地区与外界隔绝。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The country was isolated from the international community due to its policies.<br>
+（由于政策原因，该国被国际社会孤立。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-在编程或系统中的隔离">5. <strong>在编程或系统中的隔离</strong></h3>
+<p>在编程、计算机科学或网络安全中，常用来描述将某个进程、错误、或威胁与其他部分分离，以避免其扩散或影响。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The system automatically isolated the virus to prevent further damage.<br>
+（系统自动隔离了病毒以防止进一步的损害。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-在心理或情感领域的隔离">6. <strong>在心理或情感领域的隔离</strong></h3>
+<p>可以形容一个人将自己的情感与现实或他人隔离，避免情感上的伤害或干扰。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>He isolated himself emotionally after the breakup.<br>
+（分手后，他在情感上将自己孤立了起来。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-2">总结</h3>
+<p>“<strong>Isolate</strong>” 可以用于不同情境中，表达将某人或某物从整体中分开或隔离出来的含义。它适用于物理隔离、情感孤立、科学研究、技术操作等多个领域，核心意思都是“分离”或“隔绝”。</p>
+</blockquote>
+<h5 id="Modules-are-isolated">Modules are isolated.</h5>
+<p>模块是隔离的</p>
+<h2 id="consult">consult</h2>
+<blockquote>
+<p>“<strong>Consult</strong>” 是一个动词，表示向某人或某些来源寻求建议、意见或信息，通常是为了做出决策或获取专业意见。它可以用于正式和非正式场合，涵盖向专家、书籍或参考资料寻求帮助的过程。以下是它的主要用法和例句：</p>
+<h3 id="1-向某人寻求建议或意见">1. <strong>向某人寻求建议或意见</strong></h3>
+<p>表示向某个专家或有经验的人咨询意见，通常涉及专业领域，如医生、律师、顾问等。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>You should consult a doctor if the symptoms persist.<br>
+（如果症状持续，你应该咨询医生。）</li>
+<li>We consulted a lawyer before signing the contract.<br>
+（在签合同之前，我们咨询了律师。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-参考书籍或资料">2. <strong>参考书籍或资料</strong></h3>
+<p>指查阅书籍、参考文献、手册等以获取信息或答案。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>I need to consult the manual to fix this problem.<br>
+（我需要查阅手册来解决这个问题。）</li>
+<li>You can consult the dictionary for the correct spelling of the word.<br>
+（你可以查字典来核对这个单词的拼写。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-商量、讨论">3. <strong>商量、讨论</strong></h3>
+<p>可以指与某人进行讨论，以获得一致的意见或做出决定。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>We need to consult with the team before making a final decision.<br>
+（在做出最终决定之前，我们需要与团队商量。）</li>
+<li>He consulted his business partners about the new strategy.<br>
+（他与他的商业伙伴讨论了新的战略。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-正式或专业的咨询服务">4. <strong>正式或专业的咨询服务</strong></h3>
+<p>在商业或专业环境中，表示提供正式的咨询服务，通常涉及顾问或咨询公司。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The company hired a firm to consult on the new marketing plan.<br>
+（公司聘请了一家咨询公司来为新的营销计划提供建议。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-3"><strong>总结</strong></h3>
+<ul>
+<li><strong>Consult</strong> 主要用于表示寻求建议、意见或信息，可以是从人、书籍、文件中获取，也可以指商量或讨论问题。</li>
+<li>它通常与专业领域或重要的决策相关，强调通过他人或参考资料获得有帮助的答案或建议。</li>
+</ul>
+</blockquote>
+<h5 id="Python-consults-a-path-list-sys-path-when-looking-for-modules">Python <strong>consults</strong> a path list (sys.path) when looking for modules.</h5>
+<p>Python 在寻找模块时会查阅路径列表（sys.path）</p>
+<hr>
+<h2 id="duck">duck</h2>
+<blockquote>
+<p>“<strong>Duck</strong>” 是一个多义词，既可以用作名词，也可以用作动词。其具体含义取决于上下文，以下是它的主要用法和例句：</p>
+<h3 id="1-作为名词">1. <strong>作为名词</strong></h3>
+<p>“<strong>Duck</strong>” 通常指<strong>鸭子</strong>，一种常见的水鸟。这是它最直接的含义。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The duck swam gracefully across the pond.<br>
+（鸭子优雅地游过池塘。）</li>
+<li>We fed the ducks at the park.<br>
+（我们在公园里喂了鸭子。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-作为动词">2. <strong>作为动词</strong></h3>
+<p>作为动词时，“<strong>duck</strong>” 意思是<strong>迅速低头或躲避</strong>，通常是为了避免某物撞击或攻击。也可以表示躲避某个责任或情况。</p>
+<h4 id="躲避、低头"><strong>躲避、低头</strong></h4>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>He had to duck to avoid being hit by the ball.<br>
+（他不得不低头躲避那个球。）</li>
+<li>She quickly ducked behind the wall when she saw the car coming.<br>
+（看到车开过来时，她迅速躲到了墙后。）</li>
+</ul>
+</li>
+</ul>
+<h4 id="逃避责任或情况"><strong>逃避责任或情况</strong></h4>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>He always ducks out of difficult conversations.<br>
+（他总是逃避艰难的对话。）</li>
+<li>They tried to duck their responsibilities by passing the blame onto others.<br>
+（他们试图通过将责任推到别人身上来逃避自己的责任。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-短语搭配">3. <strong>短语搭配</strong></h3>
+<ul>
+<li>
+<p><strong>Duck down</strong>: 快速蹲下或躲避。</p>
+<ul>
+<li><strong>例句</strong>: We had to duck down to avoid being seen.<br>
+（我们不得不蹲下以避免被发现。）</li>
+</ul>
+</li>
+<li>
+<p><strong>Duck out</strong>: 逃避某事或悄悄离开。</p>
+<ul>
+<li><strong>例句</strong>: He ducked out of the meeting early.<br>
+（他提前悄悄离开了会议。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-4"><strong>总结</strong></h3>
+<ul>
+<li>作为名词，<strong>duck</strong> 是指鸭子。</li>
+<li>作为动词，<strong>duck</strong> 则表示躲避、迅速低头或逃避责任。它强调动作的迅速和机敏，常用于描述紧急情况下的反应或对某种情况的回避。</li>
+</ul>
+</blockquote>
+<h2 id="embrace">embrace</h2>
+<blockquote>
+<p><strong>/ɪmˈbreɪs/</strong></p>
+<p>词根词缀： em-向内 + brace手臂</p>
+<hr>
+<p>“<strong>Embrace</strong>” 是一个动词，也可以用作名词，表示接受、拥抱或包含。它可以用在实际的物理动作（拥抱）以及抽象的概念（接受某种想法或变化）中。以下是其主要用法和例句：</p>
+<h3 id="1-作为动词">1. <strong>作为动词</strong></h3>
+<h4 id="1-1-拥抱"><strong>1.1. 拥抱</strong></h4>
+<p>最直接的意思是用手臂环绕某人，表达亲近或安慰。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>She embraced her friend tightly after the long trip.<br>
+（她在长途旅行后紧紧拥抱了她的朋友。）</li>
+<li>They embraced each other before saying goodbye.<br>
+（他们在道别前彼此拥抱。）</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-接受（想法、改变等）"><strong>1.2. 接受（想法、改变等）</strong></h4>
+<p>可以表示<strong>接受某种观念、变化、机会</strong>等，通常是积极、开放的态度。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>He fully embraced the challenge and worked hard to achieve his goals.<br>
+（他完全接受了这个挑战，并努力实现他的目标。）</li>
+<li>More companies are embracing remote work as a new normal.<br>
+（越来越多的公司将远程办公视为新的常态并接受了这一模式。）</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-包含"><strong>1.3. 包含</strong></h4>
+<p>可以表示某种事物<strong>包含</strong>或涉及某个范围或方面。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>His philosophy embraces the idea of living in harmony with nature.<br>
+（他的哲学包含与自然和谐相处的思想。）</li>
+<li>The course embraces both theoretical and practical aspects of the subject.<br>
+（这门课程涵盖了该学科的理论和实践两个方面。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-作为名词">2. <strong>作为名词</strong></h3>
+<p><strong>Embrace</strong> 作为名词时，通常表示拥抱或接受的行为。</p>
+<ul>
+<li><strong>例句</strong>:
+<ul>
+<li>The warm embrace from her mother made her feel safe.<br>
+（母亲温暖的拥抱让她感到安心。）</li>
+<li>Their embrace of technology has allowed the company to grow rapidly.<br>
+（他们对技术的接受使公司得以快速发展。）</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结-5"><strong>总结</strong></h3>
+<ul>
+<li><strong>物理层面</strong>: <strong>Embrace</strong> 意为“拥抱”，表示身体上的接触以表达亲近。</li>
+<li><strong>抽象层面</strong>: 它也可以表示接受某种观念、变化、机会等，带有积极的、开放的态度，或表示包含某种范围。</li>
+</ul>
+</blockquote>
+<h5 id="Should-we-embrace-or-fight-this-flexibility">Should we <strong>embrace</strong> or fight this flexibility?</h5>
+<p>我们是否应该接受还是反对这种灵活性？</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/English/" class="category-chain-item">English</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python - 3.3 Error Checking &amp; 3.4 Modules &amp; 3.5 Main Module &amp; 3.6 Design Discussion</div>
+      <div>https://jackiedai.github.io/2024/09/29/002english/Python-3.3-3.4-3.5-3.6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>lingXiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 29, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/07/002english/Python-4.1-4.2/" title="Python - 4.1 Classes &amp; 4.2 Inheritance">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python - 4.1 Classes &amp; 4.2 Inheritance</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/29/002english/Python-3.2/" title="Python - 3.2 More on Functions">
+                        <span class="hidden-mobile">Python - 3.2 More on Functions</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JackieDai/JackieDai.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
