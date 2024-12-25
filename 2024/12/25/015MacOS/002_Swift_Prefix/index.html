@@ -19,23 +19,23 @@
   <meta name="author" content="lingXiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过Storyboard创建的工程，更改其默认窗口的位置和尺寸">
+    <meta name="description" content="通过协议实现类似&#96;RxSwift&#96;中&#96;rx&#96;前缀属性的功能">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MacOS-改变默认Window的尺寸">
-<meta property="og:url" content="https://jackiedai.github.io/2024/12/24/015MacOS/001_MacModifyWindowSize/index.html">
+<meta property="og:title" content="Swift实现前缀功能">
+<meta property="og:url" content="https://jackiedai.github.io/2024/12/25/015MacOS/002_Swift_Prefix/index.html">
 <meta property="og:site_name" content="lingXiao">
-<meta property="og:description" content="通过Storyboard创建的工程，更改其默认窗口的位置和尺寸">
+<meta property="og:description" content="通过协议实现类似&#96;RxSwift&#96;中&#96;rx&#96;前缀属性的功能">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/tools.png">
-<meta property="article:published_time" content="2024-12-24T00:15:56.000Z">
-<meta property="article:modified_time" content="2024-12-24T01:09:31.834Z">
+<meta property="article:published_time" content="2024-12-25T00:15:56.000Z">
+<meta property="article:modified_time" content="2024-12-25T01:27:37.958Z">
 <meta property="article:author" content="lingXiao">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jackiedai.github.io/img/tools.png">
   
   
   
-  <title>MacOS-改变默认Window的尺寸 - lingXiao</title>
+  <title>Swift实现前缀功能 - lingXiao</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">MacOS-改变默认Window的尺寸</span>
+            <span id="subtitle">Swift实现前缀功能</span>
           
         </div>
 
@@ -220,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-24 08:15" pubdate>
-          December 24, 2024 am
+        <time datetime="2024-12-25 08:15" pubdate>
+          December 25, 2024 am
         </time>
       </span>
     
@@ -232,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          149 words
+          357 words
         
       </span>
     
@@ -243,7 +243,7 @@
         
         
         
-          2 mins
+          3 mins
         
       </span>
     
@@ -280,16 +280,21 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MacOS-改变默认Window的尺寸</h1>
+            <h1 id="seo-header">Swift实现前缀功能</h1>
             
             
               <div class="markdown-body">
                 
-                <p>更改MacOS工程的窗口尺寸和位置.</p>
-<blockquote>
-<p>在<code>applicationDidFinishLaunching</code> 方法中，窗口还未激活，<code>mainWindow</code> 并没有值</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">func</span> <span class="hljs-title function_">applicationDidFinishLaunching</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">aNotification</span>: <span class="hljs-type">Notification</span>) &#123;<br>    <span class="hljs-comment">// Insert code here to initialize your application</span><br>    modifyWindowSize()<br>&#125;<br><br><span class="hljs-comment">// modify the window default size</span><br><span class="hljs-keyword">func</span> <span class="hljs-title function_">modifyWindowSize</span>() &#123;<br>    <br>    <span class="hljs-keyword">guard</span> <span class="hljs-keyword">let</span> screen <span class="hljs-operator">=</span> <span class="hljs-type">NSScreen</span>.main <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;screen is unavailable&quot;</span>)<br>        <span class="hljs-keyword">return</span><br>    &#125;<br>    <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">        NSApplication.shared.mainWindow 只有在窗口被激活时才会返回正确的值。如果窗口还没有成为主窗口，mainWindow 的值将为 nil。</span><br><span class="hljs-comment">        */</span><br><span class="hljs-comment">//        guard let mainWindow = NSApplication.shared.mainWindow else &#123;</span><br><span class="hljs-comment">//            print(&quot;mainWindow is unavailable&quot;)</span><br><span class="hljs-comment">//            return</span><br><span class="hljs-comment">//        &#125;</span><br>    <br>    <span class="hljs-keyword">guard</span> <span class="hljs-keyword">let</span> mainWindow <span class="hljs-operator">=</span> <span class="hljs-type">NSApp</span>.windows.first <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;mainWindow is unavailable&quot;</span>)<br>        <span class="hljs-keyword">return</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">let</span> screenFrame <span class="hljs-operator">=</span> screen.visibleFrame<br>    <br>    <span class="hljs-keyword">let</span> width <span class="hljs-operator">=</span> <span class="hljs-number">800.0</span><br>    <span class="hljs-keyword">let</span> height <span class="hljs-operator">=</span> <span class="hljs-number">600.0</span><br>    <br>    <span class="hljs-keyword">let</span> x <span class="hljs-operator">=</span> <span class="hljs-type">NSMidX</span>(screenFrame) <span class="hljs-operator">-</span> width <span class="hljs-operator">*</span> <span class="hljs-number">0.5</span><br>    <span class="hljs-keyword">let</span> y <span class="hljs-operator">=</span> <span class="hljs-type">NSMidY</span>(screenFrame) <span class="hljs-operator">-</span> height <span class="hljs-operator">*</span> <span class="hljs-number">0.5</span><br><br>    <span class="hljs-comment">// 创建窗口尺寸相对屏幕中心的位置</span><br>    <br>    <span class="hljs-keyword">let</span> frame <span class="hljs-operator">=</span> <span class="hljs-type">NSMakeRect</span>(x, y, width, height)<br><br>    mainWindow.setFrame(frame, display: <span class="hljs-literal">true</span>)<br><br>&#125;<br></code></pre></td></tr></table></figure>
+                <ol>
+<li>需要先定义一个 泛型结构体;用来存储传入的值</li>
+<li>定义<code>RouterCompatible</code>接口，并给这个接口扩展默认实现,使不论是类还是对象,只要遵守了这个接口，那么都能够获取到<code>Router</code>示例</li>
+<li>在给任何类添加前缀的时候，只需要遵守这个接口，拓展自己想要实现的逻辑即可。</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs swift"><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Router</span>&lt;<span class="hljs-type">T</span>&gt; &#123;<br>    <span class="hljs-keyword">var</span> base: <span class="hljs-type">T</span><br>    <span class="hljs-keyword">init</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">base</span>:<span class="hljs-type">T</span>) &#123;<br>        <span class="hljs-keyword">self</span>.base <span class="hljs-operator">=</span> base<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">protocol</span> <span class="hljs-title class_">RouterCompatible</span> &#123;&#125;<br><br><span class="hljs-keyword">extension</span> <span class="hljs-title class_">RouterCompatible</span> &#123;<br>    <span class="hljs-keyword">var</span> router: <span class="hljs-type">Router</span>&lt;<span class="hljs-keyword">Self</span>&gt; &#123;<br>        <span class="hljs-keyword">get</span> &#123; <span class="hljs-type">Router</span>(<span class="hljs-keyword">self</span>) &#125;<br>        <span class="hljs-keyword">set</span> &#123;&#125; <span class="hljs-comment">/* 规定: 必须写*/</span><br>    &#125;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">var</span> router:<span class="hljs-type">Router</span>&lt;<span class="hljs-keyword">Self</span>&gt;.<span class="hljs-keyword">Type</span> &#123;<br>        <span class="hljs-keyword">get</span> &#123;<span class="hljs-type">Router</span>&lt;<span class="hljs-keyword">Self</span>&gt;.<span class="hljs-keyword">self</span>&#125;<br>        <span class="hljs-keyword">set</span> &#123;&#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>假设给NSViewController 添加Route 功能：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">RouterType</span> &#123;<br>    <span class="hljs-keyword">case</span> normal <span class="hljs-comment">// via windowCtl</span><br>    <span class="hljs-keyword">case</span> modalWindow<br>    <span class="hljs-keyword">case</span> sheet<br>&#125;<br><span class="hljs-keyword">extension</span> <span class="hljs-title class_">NSViewController</span>: <span class="hljs-title class_ inherited__">RouterCompatible</span> &#123;&#125;<br><br><span class="hljs-comment">//extension Router where T == NSViewController &#123; //不要约定死,否则其子类不能调用</span><br><span class="hljs-keyword">extension</span> <span class="hljs-title class_">Router</span> <span class="hljs-keyword">where</span> <span class="hljs-type">T</span>: <span class="hljs-type">NSViewController</span> &#123;<br>    <span class="hljs-keyword">func</span> <span class="hljs-title function_">show</span>(<span class="hljs-params">ctrl</span>: <span class="hljs-type">NSViewController</span>, <span class="hljs-params">type</span> <span class="hljs-params">routerType</span>: <span class="hljs-type">RouterType</span> <span class="hljs-operator">=</span> .normal)&#123;<br>        <span class="hljs-keyword">switch</span> routerType &#123;<br>        <span class="hljs-keyword">case</span> .normal:<br>            <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> ctrl<br>            <span class="hljs-keyword">let</span> window <span class="hljs-operator">=</span> <span class="hljs-type">NSWindow</span>(contentViewController: vc)<br>            window.styleMask <span class="hljs-operator">=</span> [.titled, .closable, .resizable]<br>            window.setContentSize(.<span class="hljs-keyword">init</span>(width: <span class="hljs-type">Helper</span>.ui.app_width, height: <span class="hljs-type">Helper</span>.ui.app_height))<br>    <span class="hljs-comment">//        window.setFrame(.init(x: 0, y: 0, width: Helper.ui.app_width, height: Helper.ui.app_height), display: true)</span><br><span class="hljs-comment">//            window.title = title</span><br>            <span class="hljs-keyword">let</span> windowCtl <span class="hljs-operator">=</span> <span class="hljs-type">NSWindowController</span>(window: window)<br>            windowCtl.showWindow(<span class="hljs-keyword">self</span>.base)<br>        <span class="hljs-keyword">case</span> .modalWindow:<br><span class="hljs-comment">//            ctrl.title = &quot;DDDD&quot;</span><br>            <span class="hljs-keyword">self</span>.base.presentAsModalWindow(ctrl)<br>        <span class="hljs-keyword">case</span> .sheet:<br>            <span class="hljs-keyword">self</span>.base.presentAsSheet(ctrl)<br>        &#125; <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用流程如下: 在ViewController 中调用</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">@IBAction</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">ctl_transfrom</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">sender</span>: <span class="hljs-keyword">Any</span>) &#123;<br>    <span class="hljs-keyword">let</span> btn <span class="hljs-operator">=</span> sender <span class="hljs-keyword">as!</span> <span class="hljs-type">NSButton</span><br>    <br>    <span class="hljs-keyword">let</span> tag <span class="hljs-operator">=</span> btn.tag<br>    <br>    <span class="hljs-keyword">switch</span> tag &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">NormalCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Normal Ctl&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc)<br>        <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br><br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">ModalCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Modal Ctl 1&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc, type: .modalWindow)<br>        <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">ModalCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Modal Ctl 2&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc, type: .sheet)<br>        <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>        <br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">TableViewCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;TableViewCtl&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc)<br>    <span class="hljs-keyword">default</span>:<br>        <span class="hljs-keyword">break</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -327,8 +332,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MacOS-改变默认Window的尺寸</div>
-      <div>https://jackiedai.github.io/2024/12/24/015MacOS/001_MacModifyWindowSize/</div>
+      <div>Swift实现前缀功能</div>
+      <div>https://jackiedai.github.io/2024/12/25/015MacOS/002_Swift_Prefix/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +345,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>December 24, 2024</div>
+          <div>December 25, 2024</div>
         </div>
       
       
@@ -372,18 +377,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/25/015MacOS/002_Swift_Prefix/" title="Swift实现前缀功能">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Swift实现前缀功能</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/18/007unix_shell/004-Shell%E4%B9%8B%E7%89%B9%E6%AE%8A%E5%8F%82%E6%95%B0/" title="Shell中的特殊参数">
-                        <span class="hidden-mobile">Shell中的特殊参数</span>
+                      <a href="/2024/12/24/015MacOS/001_MacModifyWindowSize/" title="MacOS-改变默认Window的尺寸">
+                        <span class="hidden-mobile">MacOS-改变默认Window的尺寸</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
