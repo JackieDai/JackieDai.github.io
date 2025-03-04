@@ -19,23 +19,24 @@
   <meta name="author" content="lingXiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过协议实现类似&#96;RxSwift&#96;中&#96;rx&#96;前缀属性的功能">
+    <meta name="description" content="Python变量,数据类型[不可变数据类型:Number,str,tuple][可变数据类型:list,dict,set]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift实现前缀功能">
-<meta property="og:url" content="https://jackiedai.github.io/2024/12/25/015MacOS/002_Swift_Prefix/index.html">
+<meta property="og:title" content="1. Python 变量和数据类型">
+<meta property="og:url" content="https://jackiedai.github.io/2025/03/04/011Python/002Python%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="lingXiao">
-<meta property="og:description" content="通过协议实现类似&#96;RxSwift&#96;中&#96;rx&#96;前缀属性的功能">
+<meta property="og:description" content="Python变量,数据类型[不可变数据类型:Number,str,tuple][可变数据类型:list,dict,set]">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://jackiedai.github.io/img/tools.png">
-<meta property="article:published_time" content="2024-12-25T00:15:56.000Z">
-<meta property="article:modified_time" content="2024-12-25T01:27:37.958Z">
+<meta property="og:image" content="https://jackiedai.github.io/img/python-logo.png">
+<meta property="article:published_time" content="2025-03-04T03:15:56.000Z">
+<meta property="article:modified_time" content="2025-03-04T05:09:46.612Z">
 <meta property="article:author" content="lingXiao">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jackiedai.github.io/img/tools.png">
+<meta name="twitter:image" content="https://jackiedai.github.io/img/python-logo.png">
   
   
   
-  <title>Swift实现前缀功能 - lingXiao</title>
+  <title>1. Python 变量和数据类型 - lingXiao</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Swift实现前缀功能</span>
+            <span id="subtitle">1. Python 变量和数据类型</span>
           
         </div>
 
@@ -220,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-25 08:15" pubdate>
-          December 25, 2024 am
+        <time datetime="2025-03-04 11:15" pubdate>
+          March 4, 2025 am
         </time>
       </span>
     
@@ -232,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          357 words
+          697 words
         
       </span>
     
@@ -243,7 +244,7 @@
         
         
         
-          3 mins
+          6 mins
         
       </span>
     
@@ -280,21 +281,98 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Swift实现前缀功能</h1>
+            <h1 id="seo-header">1. Python 变量和数据类型</h1>
             
             
               <div class="markdown-body">
                 
-                <ol>
-<li>需要先定义一个 泛型结构体;用来存储传入的值</li>
-<li>定义<code>RouterCompatible</code>接口，并给这个接口扩展默认实现,使不论是类还是对象,只要遵守了这个接口，那么都能够获取到<code>Router</code>示例</li>
-<li>在给任何类添加前缀的时候，只需要遵守这个接口，拓展自己想要实现的逻辑即可。</li>
+                <h2 id="Python-变量">Python-变量</h2>
+<ul>
+<li>
+<p>变量不需要声明。变量也没有类型。使用前必须初始化(赋值操作)</p>
+</li>
+<li>
+<p>变量在第一次赋值的时候被创建，创建之后的变量包含以下信息:</p>
+<ol>
+<li>变量的标识(内存地址): The identifier used to reference the variable</li>
+<li>变量的类型:这里所说的变量的类型,其实是指Value 的类型。The data type of the value.</li>
+<li>变量的值: The data assigned to the variable.</li>
 </ol>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs swift"><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Router</span>&lt;<span class="hljs-type">T</span>&gt; &#123;<br>    <span class="hljs-keyword">var</span> base: <span class="hljs-type">T</span><br>    <span class="hljs-keyword">init</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">base</span>:<span class="hljs-type">T</span>) &#123;<br>        <span class="hljs-keyword">self</span>.base <span class="hljs-operator">=</span> base<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">protocol</span> <span class="hljs-title class_">RouterCompatible</span> &#123;&#125;<br><br><span class="hljs-keyword">extension</span> <span class="hljs-title class_">RouterCompatible</span> &#123;<br>    <span class="hljs-keyword">var</span> router: <span class="hljs-type">Router</span>&lt;<span class="hljs-keyword">Self</span>&gt; &#123;<br>        <span class="hljs-keyword">get</span> &#123; <span class="hljs-type">Router</span>(<span class="hljs-keyword">self</span>) &#125;<br>        <span class="hljs-keyword">set</span> &#123;&#125; <span class="hljs-comment">/* 规定: 必须写*/</span><br>    &#125;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">var</span> router:<span class="hljs-type">Router</span>&lt;<span class="hljs-keyword">Self</span>&gt;.<span class="hljs-keyword">Type</span> &#123;<br>        <span class="hljs-keyword">get</span> &#123;<span class="hljs-type">Router</span>&lt;<span class="hljs-keyword">Self</span>&gt;.<span class="hljs-keyword">self</span>&#125;<br>        <span class="hljs-keyword">set</span> &#123;&#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>假设给NSViewController 添加Route 功能：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">RouterType</span> &#123;<br>    <span class="hljs-keyword">case</span> normal <span class="hljs-comment">// via windowCtl</span><br>    <span class="hljs-keyword">case</span> modalWindow<br>    <span class="hljs-keyword">case</span> sheet<br>&#125;<br><span class="hljs-keyword">extension</span> <span class="hljs-title class_">NSViewController</span>: <span class="hljs-title class_ inherited__">RouterCompatible</span> &#123;&#125;<br><br><span class="hljs-comment">//extension Router where T == NSViewController &#123; //不要约定死,否则其子类不能调用</span><br><span class="hljs-keyword">extension</span> <span class="hljs-title class_">Router</span> <span class="hljs-keyword">where</span> <span class="hljs-type">T</span>: <span class="hljs-type">NSViewController</span> &#123;<br>    <span class="hljs-keyword">func</span> <span class="hljs-title function_">show</span>(<span class="hljs-params">ctrl</span>: <span class="hljs-type">NSViewController</span>, <span class="hljs-params">type</span> <span class="hljs-params">routerType</span>: <span class="hljs-type">RouterType</span> <span class="hljs-operator">=</span> .normal)&#123;<br>        <span class="hljs-keyword">switch</span> routerType &#123;<br>        <span class="hljs-keyword">case</span> .normal:<br>            <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> ctrl<br>            <span class="hljs-keyword">let</span> window <span class="hljs-operator">=</span> <span class="hljs-type">NSWindow</span>(contentViewController: vc)<br>            window.styleMask <span class="hljs-operator">=</span> [.titled, .closable, .resizable]<br>            window.setContentSize(.<span class="hljs-keyword">init</span>(width: <span class="hljs-type">Helper</span>.ui.app_width, height: <span class="hljs-type">Helper</span>.ui.app_height))<br>    <span class="hljs-comment">//        window.setFrame(.init(x: 0, y: 0, width: Helper.ui.app_width, height: Helper.ui.app_height), display: true)</span><br><span class="hljs-comment">//            window.title = title</span><br>            <span class="hljs-keyword">let</span> windowCtl <span class="hljs-operator">=</span> <span class="hljs-type">NSWindowController</span>(window: window)<br>            windowCtl.showWindow(<span class="hljs-keyword">self</span>.base)<br>        <span class="hljs-keyword">case</span> .modalWindow:<br><span class="hljs-comment">//            ctrl.title = &quot;DDDD&quot;</span><br>            <span class="hljs-keyword">self</span>.base.presentAsModalWindow(ctrl)<br>        <span class="hljs-keyword">case</span> .sheet:<br>            <span class="hljs-keyword">self</span>.base.presentAsSheet(ctrl)<br>        &#125; <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>使用流程如下: 在ViewController 中调用</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs swift"><span class="hljs-keyword">@IBAction</span> <span class="hljs-keyword">func</span> <span class="hljs-title function_">ctl_transfrom</span>(<span class="hljs-keyword">_</span> <span class="hljs-params">sender</span>: <span class="hljs-keyword">Any</span>) &#123;<br>    <span class="hljs-keyword">let</span> btn <span class="hljs-operator">=</span> sender <span class="hljs-keyword">as!</span> <span class="hljs-type">NSButton</span><br>    <br>    <span class="hljs-keyword">let</span> tag <span class="hljs-operator">=</span> btn.tag<br>    <br>    <span class="hljs-keyword">switch</span> tag &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">NormalCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Normal Ctl&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc)<br>        <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br><br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">ModalCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Modal Ctl 1&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc, type: .modalWindow)<br>        <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">ModalCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Modal Ctl 2&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc, type: .sheet)<br>        <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>        <br>        <span class="hljs-keyword">let</span> vc <span class="hljs-operator">=</span> <span class="hljs-type">TableViewCtl</span>()<br>        vc.title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;TableViewCtl&quot;</span><br>        <span class="hljs-keyword">self</span>.router.show(ctrl: vc)<br>    <span class="hljs-keyword">default</span>:<br>        <span class="hljs-keyword">break</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Python 变量赋值的特殊写法(在一行代码中，同时赋值多个变量)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">assign_special</span>():<br>    a = b = c = <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;a = <span class="hljs-subst">&#123;a&#125;</span>, b = <span class="hljs-subst">&#123;b&#125;</span>, c = <span class="hljs-subst">&#123;c&#125;</span>&quot;</span>)  <span class="hljs-comment"># a = 1, b = 1, c = 1</span><br>    d, e, f = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;john&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;d = <span class="hljs-subst">&#123;d&#125;</span>, e = <span class="hljs-subst">&#123;e&#125;</span>, f = <span class="hljs-subst">&#123;f&#125;</span>&quot;</span>)  <span class="hljs-comment"># d = 1, e = 2, f = john</span><br><br></code></pre></td></tr></table></figure>
+<p>上述代码的输出:</p>
+<blockquote>
+<p>a = 1, b = 1, c = 1</p>
+<p>d = 1, e = 2, f = john</p>
+</blockquote>
+<h2 id="Python-标准数据类型">Python-标准数据类型</h2>
+<p>Python 中有六个标准数据类型:</p>
+<ol>
+<li>
+<p>不可变数据:<strong>Number, string, tuple</strong></p>
+<blockquote>
+<p><code>Number</code> 有四种类型: <code>int, float, complex, bool</code>; 这四种类型均继承自<code>numbers.Number</code></p>
+</blockquote>
+</li>
+<li>
+<p>可变数据: <strong>list, dict, set</strong></p>
+</li>
+</ol>
+<blockquote>
+<p><strong>可变类型和不可变类型的特点:</strong></p>
+<p><strong>Immutable Data Types:</strong></p>
+<ul>
+<li>Immutability: Cannot be changed after they are created.Any modification to an immutable obj results in the creation of a new obj.</li>
+<li>Hashable: Can be used as keys in dicts and elements in sets.</li>
+</ul>
+<p><strong>Mutable Date Types:</strong></p>
+<ul>
+<li>Mutability: Can be changed after they are created.(add, remove, etc.)</li>
+<li>Not Hashable: Cannot be used as keys in dicts or elements in sets</li>
+</ul>
+<blockquote>
+<p>“In Python, an object is considered hashable if it has a hash value that remains constant during its lifetime.”</p>
+</blockquote>
+</blockquote>
+<hr>
+<h3 id="Number">Number</h3>
+<blockquote>
+<p>这里只介绍取商运算符和复数，其他略</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">number_type</span>():<br>    a, b, c, d = <span class="hljs-number">20</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1</span> + <span class="hljs-number">3j</span>, <span class="hljs-literal">True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;type:a = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(a)&#125;</span>, type:b = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(b)&#125;</span>, type:c = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(c)&#125;</span>, type:d = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(d)&#125;</span>&quot;</span>)<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    type:a = &lt;class &#x27;int&#x27;&gt;, type:b = &lt;class &#x27;float&#x27;&gt;, type:c = &lt;class &#x27;complex&#x27;&gt;, type:d = &lt;class &#x27;bool&#x27;&gt;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">int</span>, numbers.Number))  <span class="hljs-comment">#True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">float</span>, numbers.Number))  <span class="hljs-comment">#True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">complex</span>, numbers.Number))  <span class="hljs-comment">#True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">bool</span>, numbers.Number))  <span class="hljs-comment">#True</span><br></code></pre></td></tr></table></figure>
+<p>另外将<code>Number</code>中的一个特殊运算符操作<code>//</code>(取商) 做如下展示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">division_notice</span>():<br>    a, b = <span class="hljs-number">2</span>, <span class="hljs-number">4</span><br>    c = a / b  <span class="hljs-comment"># 获取float 值</span><br>    d = a // b  <span class="hljs-comment">#  只取商</span><br>    e = a % b  <span class="hljs-comment">#  取余</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;c = <span class="hljs-subst">&#123;c&#125;</span>, d = <span class="hljs-subst">&#123;d&#125;</span>, e = <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)  <span class="hljs-comment"># c = 0.5, d = 0, e = 2</span><br><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>上述代码输出:<br>
+c = 0.5, d = 0, e = 2</p>
+</blockquote>
+<p>复数:通过<code>j</code>作为数字的后缀，来创建。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">complex_notice</span>():<br>    a = <span class="hljs-number">2j</span><br>    c = <span class="hljs-number">3</span> + <span class="hljs-number">1.5j</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    complex.real 获取实数部分</span><br><span class="hljs-string">    complex.imag  获取虚数部分</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;a = <span class="hljs-subst">&#123;a&#125;</span>, a.real = <span class="hljs-subst">&#123;a.real&#125;</span> , a.imag = <span class="hljs-subst">&#123;a.imag&#125;</span>&quot;</span>)<br>    <span class="hljs-comment">## a = 2j, a.real = 0.0 , a.imag = 2.0</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;c = <span class="hljs-subst">&#123;c&#125;</span>, c.real = <span class="hljs-subst">&#123;c.real&#125;</span> , c.imag = <span class="hljs-subst">&#123;c.imag&#125;</span>&quot;</span>)<br>    <span class="hljs-comment">## c = (3+1.5j), c.real = 3.0 , c.imag = 1.5</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="str-tuple-和-list-dict-set的关系">str,tuple 和 list,dict,set的关系</h2>
+<p><code>String</code>, <code>Tuple</code>, <code>List</code>, <code>Dictionary</code>, and <code>Set</code> in Python share common characteristics because they all inherit from certain base classes that provide these functionalities. The common base classes include:</p>
+<ol>
+<li><strong>Iterable</strong>: All these types inherit from the <code>Iterable</code> class, which <u><strong>allows them to be iterated over.</strong></u></li>
+<li><strong>Container</strong>: They inherit from the <code>Container</code> class, which <u><strong>allows the use of the <code>in</code> keyword to check for containment.</strong></u></li>
+<li><strong>Sized</strong>: They inherit from the <code>Sized</code> class, which provides <u><strong>the <code>len()</code> function to get the number of elements.</strong></u></li>
+</ol>
+<p>Here is a brief overview of the inheritance hierarchy:</p>
+<ul>
+<li><strong>String</strong> (<code>str</code>): Inherits from <code>Sequence</code>, which in turn inherits from <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
+<li><strong>Tuple</strong> (<code>tuple</code>): Inherits from <code>Sequence</code>, which in turn inherits from <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
+<li><strong>List</strong> (<code>list</code>): Inherits from <code>MutableSequence</code>, which in turn inherits from <code>Sequence</code>, <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
+<li><strong>Dictionary</strong> (<code>dict</code>): Inherits from <code>MutableMapping</code>, which in turn inherits from <code>Mapping</code>, <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
+<li><strong>Set</strong> (<code>set</code>): Inherits from <code>MutableSet</code>, which in turn inherits from <code>Set</code>, <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
+</ul>
+<p>这也是为什么 len(),in,iterate 的操作可以在这几个数据类型上使用的原因。</p>
+<p>用代码查看如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">str</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">tuple</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">list</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">dict</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">set</span>, (Iterable, Container, Sized)))<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>上述结果均输出：<code>True</code></p>
+</blockquote>
+
                 
               </div>
             
@@ -312,7 +390,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/MacOS/" class="category-chain-item">MacOS</a>
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
   
   
 
@@ -324,6 +402,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+    </div>
+  
 </div>
 
 
@@ -332,8 +417,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Swift实现前缀功能</div>
-      <div>https://jackiedai.github.io/2024/12/25/015MacOS/002_Swift_Prefix/</div>
+      <div>1. Python 变量和数据类型</div>
+      <div>https://jackiedai.github.io/2025/03/04/011Python/002Python变量和数据类型/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +430,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>December 25, 2024</div>
+          <div>March 4, 2025</div>
         </div>
       
       
@@ -377,18 +462,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/17/016C/002_analyse_static/" title="C/C++ 中 static 的用法全局变量与局部变量">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C/C++ 中 static 的用法全局变量与局部变量</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/24/015MacOS/001_MacModifyWindowSize/" title="MacOS-改变默认Window的尺寸">
-                        <span class="hidden-mobile">MacOS-改变默认Window的尺寸</span>
+                      <a href="/2025/01/17/016C/001_C_Pointers_arr/" title="C语言指针与数组的理解">
+                        <span class="hidden-mobile">C语言指针与数组的理解</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
