@@ -19,16 +19,16 @@
   <meta name="author" content="lingXiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Python变量,数据类型[不可变数据类型:Number,str,tuple][可变数据类型:list,dict,set]">
+    <meta name="description" content="迭代器,生成器(特殊的迭代器)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1. Python 变量和数据类型">
-<meta property="og:url" content="https://jackiedai.github.io/2025/03/04/011Python/002Python%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:title" content="003 - Python迭代器与生成器(iterator &amp; generator)">
+<meta property="og:url" content="https://jackiedai.github.io/2025/03/07/011Python/004Python%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%94%9F%E6%88%90%E5%99%A8/index.html">
 <meta property="og:site_name" content="lingXiao">
-<meta property="og:description" content="Python变量,数据类型[不可变数据类型:Number,str,tuple][可变数据类型:list,dict,set]">
+<meta property="og:description" content="迭代器,生成器(特殊的迭代器)">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/python-logo.png">
-<meta property="article:published_time" content="2025-03-04T03:15:56.000Z">
-<meta property="article:modified_time" content="2025-03-07T05:24:23.131Z">
+<meta property="article:published_time" content="2025-03-07T07:15:56.000Z">
+<meta property="article:modified_time" content="2025-03-10T10:25:27.008Z">
 <meta property="article:author" content="lingXiao">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
   
   
   
-  <title>1. Python 变量和数据类型 - lingXiao</title>
+  <title>003 - Python迭代器与生成器(iterator &amp; generator) - lingXiao</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">1. Python 变量和数据类型</span>
+            <span id="subtitle">003 - Python迭代器与生成器(iterator & generator)</span>
           
         </div>
 
@@ -221,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-04 11:15" pubdate>
-          March 4, 2025 am
+        <time datetime="2025-03-07 15:15" pubdate>
+          March 7, 2025 pm
         </time>
       </span>
     
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          695 words
+          738 words
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          6 mins
+          7 mins
         
       </span>
     
@@ -281,97 +281,63 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">1. Python 变量和数据类型</h1>
+            <h1 id="seo-header">003 - Python迭代器与生成器(iterator &amp; generator)</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Python-变量">Python-变量</h2>
+                <h2 id="迭代器">迭代器</h2>
+<blockquote>
+<p>An iterable is an object capable of returning its members one at a time. Examples include sequence types (like list, str, and tuple) and some non-sequence types (like dict, file objects, and custom classes with an <strong>iter</strong>() or <strong>getitem</strong>() method).</p>
 <ul>
-<li>
-<p>变量不需要声明。变量也没有类型。使用前必须初始化(赋值操作)</p>
-</li>
-<li>
-<p>变量在第一次赋值的时候被创建，创建之后的变量包含以下信息:</p>
+<li>Iterable: An object is considered iterable if it implements the <strong>iter</strong>() method, which returns an iterator.</li>
+<li>Iterator: An object is considered an iterator if it implements both the <strong>iter</strong>() and <strong>next</strong>() methods.</li>
+</ul>
+<p>Python supports a concept of iteration over containers.<br>
+This is implemented using <u>two distinct methods</u>; these are used to allow user-defined classes to support iteration.</p>
+<ul>
+<li>iterator.<strong>iter</strong>() : which return the iterator object itself</li>
+<li>iterator.<strong>next</strong>(): which return the next item from the iterator</li>
+</ul>
+</blockquote>
+<p>简单说:<br>
+Python 内部的迭代器是通过实现迭代协议（即包含 <strong>iter</strong>() 和 <strong>next</strong>() 方法）来工作的。</p>
+<p>迭代器的优点<br>
+惰性求值：迭代器在需要时才生成元素，节省内存。<br>
+无限序列：可以表示无限序列，如生成斐波那契数列。</p>
+<h3 id="创建迭代器iter">创建迭代器iter()</h3>
+<p>​	可以使用内置的<code>iter()</code>函数将可迭代对象(eg. list, tuple)转成迭代器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_iterator_obj_via_iter</span>():<br>    my_list = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>    <span class="hljs-comment"># 获取迭代器</span><br>    my_iter = <span class="hljs-built_in">iter</span>(my_list)<br>    <span class="hljs-comment"># 使用 next() 函数访问迭代器的元素</span><br>    ele = <span class="hljs-built_in">next</span>(my_iter) <span class="hljs-comment"># 1</span><br>    <span class="hljs-built_in">print</span>(ele)<br>    ele = <span class="hljs-built_in">next</span>(my_iter) <span class="hljs-comment"># 2</span><br>    <span class="hljs-built_in">print</span>(ele)<br>    ele = <span class="hljs-built_in">next</span>(my_iter) <span class="hljs-comment"># 3</span><br>    <span class="hljs-built_in">print</span>(ele)<br>    ele = <span class="hljs-built_in">next</span>(my_iter) <span class="hljs-comment"># StopIteration</span><br>    <span class="hljs-built_in">print</span>(ele)<br></code></pre></td></tr></table></figure>
+<p>同过上述代码可知，当迭代完所有的元素之后，会抛出<code>StopIteration</code> 的异常：详细信息如下:</p>
+<blockquote>
+<p>in get_iterator_obj_via_iter<br>
+ele = next(my_iter) # StopIteration</p>
+</blockquote>
+<h3 id="自定义迭代器">自定义迭代器:</h3>
+<p>​	可以通过创建一个类实现<code>__iter__()</code> 和<code>__next()__</code>方法来自定义迭代器。</p>
+<blockquote>
+<p><strong>iter</strong>() 方法：这个方法返回迭代器对象本身。它使得迭代器对象也是一个可迭代对象，可以在 for 循环中使用。</p>
+<p><strong>next</strong>() 方法：这个方法返回迭代器的下一个值。当没有更多的值可以返回时，它应该引发 StopIteration 异常。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyIterator</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, data: <span class="hljs-built_in">list</span></span>):<br>        <span class="hljs-variable language_">self</span>.data = data<br>        <span class="hljs-variable language_">self</span>.index = <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__iter__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        返回当前迭代器对象</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__next__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.index &gt;= <span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.data):<br>            <span class="hljs-keyword">raise</span> StopIteration<br>        result = <span class="hljs-variable language_">self</span>.data[<span class="hljs-variable language_">self</span>.index]<br>        <span class="hljs-variable language_">self</span>.index += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> result<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test_custom_iterator</span>():<br>    my_iter = MyIterator([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> my_iter:<br>        <span class="hljs-built_in">print</span>(item)<br></code></pre></td></tr></table></figure>
+<h3 id="内置迭代器">内置迭代器</h3>
+<p>Python 也提供了许多内置迭代器.<code>range()、enumerate()、zip()</code> 等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 range() 迭代器</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>    <span class="hljs-built_in">print</span>(i)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">0</span><br><span class="hljs-string">1</span><br><span class="hljs-string">2</span><br><span class="hljs-string">3</span><br><span class="hljs-string">4</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br><span class="hljs-comment"># 使用 enumerate() 迭代器</span><br><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]):<br>    <span class="hljs-built_in">print</span>(index, value)<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">0 a</span><br><span class="hljs-string">1 b</span><br><span class="hljs-string">2 c</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br><span class="hljs-keyword">for</span> a, b <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]):<br>    <span class="hljs-built_in">print</span>(a, b)<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">1 a</span><br><span class="hljs-string">2 b</span><br><span class="hljs-string">3 c</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="生成器">生成器</h2>
+<p>生成器是Python中一种特殊的迭代器，使用<code>yield</code>关键字来返回值。生成器允许你在迭代过程中生成值，而不是一次性生成所有值，这使得它们非常适合处理大数据集或无限序列。</p>
+<p>生成器的优点<br>
+惰性求值：生成器在需要时才生成元素，节省内存。<br>
+无限序列：可以表示无限序列，如生成斐波那契数列。<br>
+代码简洁：生成器可以用更少的代码生成序列。</p>
+<p>创建生成器</p>
 <ol>
-<li>变量的标识(内存地址): The identifier used to reference the variable</li>
-<li>变量的类型:这里所说的变量的类型,其实是指Value 的类型。The data type of the value.</li>
-<li>变量的值: The data assigned to the variable.</li>
+<li>生成器函数 ： 使用yield关键字来返回值</li>
+<li>生成器表达式： 类似于列表推导式，但使用圆括号而不是方括号 【如】</li>
 </ol>
-</li>
-</ul>
-<p>Python 变量赋值的特殊写法(在一行代码中，同时赋值多个变量)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">assign_special</span>():<br>    a = b = c = <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;a = <span class="hljs-subst">&#123;a&#125;</span>, b = <span class="hljs-subst">&#123;b&#125;</span>, c = <span class="hljs-subst">&#123;c&#125;</span>&quot;</span>)  <span class="hljs-comment"># a = 1, b = 1, c = 1</span><br>    d, e, f = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;john&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;d = <span class="hljs-subst">&#123;d&#125;</span>, e = <span class="hljs-subst">&#123;e&#125;</span>, f = <span class="hljs-subst">&#123;f&#125;</span>&quot;</span>)  <span class="hljs-comment"># d = 1, e = 2, f = john</span><br><br></code></pre></td></tr></table></figure>
-<p>上述代码的输出:</p>
-<blockquote>
-<p>a = 1, b = 1, c = 1</p>
-<p>d = 1, e = 2, f = john</p>
-</blockquote>
-<h2 id="Python-标准数据类型">Python-标准数据类型</h2>
-<p>Python 中有六个标准数据类型:</p>
-<ol>
-<li>
-<p>不可变数据:<strong>Number, string, tuple</strong></p>
-<blockquote>
-<p><code>Number</code> 有四种类型: <code>int, float, complex, bool</code>; 这四种类型均继承自<code>numbers.Number</code></p>
-</blockquote>
-</li>
-<li>
-<p>可变数据: <strong>list, dict, set</strong></p>
-</li>
-</ol>
-<blockquote>
-<p><strong>可变类型和不可变类型的特点:</strong></p>
-<p><strong>Immutable Data Types:</strong></p>
-<ul>
-<li>Immutability: Cannot be changed after they are created.Any modification to an immutable obj results in the creation of a new obj.</li>
-<li>Hashable: Can be used as keys in dicts and elements in sets.</li>
-</ul>
-<p><strong>Mutable Date Types:</strong></p>
-<ul>
-<li>Mutability: Can be changed after they are created.(add, remove, etc.)</li>
-<li>Not Hashable: Cannot be used as keys in dicts or elements in sets</li>
-</ul>
-<blockquote>
-<p>“In Python, an object is considered hashable if it has a hash value that remains constant during its lifetime.”</p>
-</blockquote>
-</blockquote>
-<hr>
-<h3 id="Number">Number</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">number_type</span>():<br>    a, b, c, d = <span class="hljs-number">20</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1</span> + <span class="hljs-number">3j</span>, <span class="hljs-literal">True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;type:a = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(a)&#125;</span>, type:b = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(b)&#125;</span>, type:c = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(c)&#125;</span>, type:d = <span class="hljs-subst">&#123;<span class="hljs-built_in">type</span>(d)&#125;</span>&quot;</span>)<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    type:a = &lt;class &#x27;int&#x27;&gt;, type:b = &lt;class &#x27;float&#x27;&gt;, type:c = &lt;class &#x27;complex&#x27;&gt;, type:d = &lt;class &#x27;bool&#x27;&gt;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">int</span>, numbers.Number))  <span class="hljs-comment">#True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">float</span>, numbers.Number))  <span class="hljs-comment">#True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">complex</span>, numbers.Number))  <span class="hljs-comment">#True</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">bool</span>, numbers.Number))  <span class="hljs-comment">#True</span><br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>这里只介绍取商运算符和复数，其他略</p>
-</blockquote>
-<p>将<code>Number</code>中的一个特殊运算符操作<code>//</code>(取商) 做如下展示:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">division_notice</span>():<br>    a, b = <span class="hljs-number">2</span>, <span class="hljs-number">4</span><br>    c = a / b  <span class="hljs-comment"># 获取float 值</span><br>    d = a // b  <span class="hljs-comment">#  只取商</span><br>    e = a % b  <span class="hljs-comment">#  取余</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;c = <span class="hljs-subst">&#123;c&#125;</span>, d = <span class="hljs-subst">&#123;d&#125;</span>, e = <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)  <span class="hljs-comment"># c = 0.5, d = 0, e = 2</span><br><br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>上述代码输出:<br>
-c = 0.5, d = 0, e = 2</p>
-</blockquote>
-<p>复数:通过<code>j</code>作为数字的后缀，来创建。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">complex_notice</span>():<br>    a = <span class="hljs-number">2j</span><br>    c = <span class="hljs-number">3</span> + <span class="hljs-number">1.5j</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    complex.real 获取实数部分</span><br><span class="hljs-string">    complex.imag  获取虚数部分</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;a = <span class="hljs-subst">&#123;a&#125;</span>, a.real = <span class="hljs-subst">&#123;a.real&#125;</span> , a.imag = <span class="hljs-subst">&#123;a.imag&#125;</span>&quot;</span>)<br>    <span class="hljs-comment">## a = 2j, a.real = 0.0 , a.imag = 2.0</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;c = <span class="hljs-subst">&#123;c&#125;</span>, c.real = <span class="hljs-subst">&#123;c.real&#125;</span> , c.imag = <span class="hljs-subst">&#123;c.imag&#125;</span>&quot;</span>)<br>    <span class="hljs-comment">## c = (3+1.5j), c.real = 3.0 , c.imag = 1.5</span><br></code></pre></td></tr></table></figure>
-<hr>
-<h2 id="str-tuple-和-list-dict-set的关系">str,tuple 和 list,dict,set的关系</h2>
-<p><code>String</code>, <code>Tuple</code>, <code>List</code>, <code>Dictionary</code>, and <code>Set</code> in Python share common characteristics because they all inherit from certain base classes that provide these functionalities. The common base classes include:</p>
-<ol>
-<li><strong>Iterable</strong>: All these types inherit from the <code>Iterable</code> class, which <u><strong>allows them to be iterated over.</strong></u></li>
-<li><strong>Container</strong>: They inherit from the <code>Container</code> class, which <u><strong>allows the use of the <code>in</code> keyword to check for containment.</strong></u></li>
-<li><strong>Sized</strong>: They inherit from the <code>Sized</code> class, which provides <u><strong>the <code>len()</code> function to get the number of elements.</strong></u></li>
-</ol>
-<p>Here is a brief overview of the inheritance hierarchy:</p>
-<ul>
-<li><strong>String</strong> (<code>str</code>): Inherits from <code>Sequence</code>, which in turn inherits from <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
-<li><strong>Tuple</strong> (<code>tuple</code>): Inherits from <code>Sequence</code>, which in turn inherits from <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
-<li><strong>List</strong> (<code>list</code>): Inherits from <code>MutableSequence</code>, which in turn inherits from <code>Sequence</code>, <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
-<li><strong>Dictionary</strong> (<code>dict</code>): Inherits from <code>MutableMapping</code>, which in turn inherits from <code>Mapping</code>, <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
-<li><strong>Set</strong> (<code>set</code>): Inherits from <code>MutableSet</code>, which in turn inherits from <code>Set</code>, <code>Iterable</code>, <code>Container</code>, and <code>Sized</code>.</li>
-</ul>
-<p>这也是为什么 len(),in,iterate 的操作可以在这几个数据类型上使用的原因。</p>
-<p>用代码查看如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">str</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">tuple</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">list</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">dict</span>, (Iterable, Container, Sized)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">set</span>, (Iterable, Container, Sized)))<br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>上述结果均输出：<code>True</code></p>
-</blockquote>
+<h3 id="生成器函数">生成器函数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">simple_generator</span>():<br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span><br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span><br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span><br>    <br><span class="hljs-comment"># 使用生成器</span><br>gen = simple_generator()<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(gen))  <span class="hljs-comment"># 输出: 1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(gen))  <span class="hljs-comment"># 输出: 2</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(gen))  <span class="hljs-comment"># 输出: 3</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fibonacci_generator</span>():<br>    a, b = <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-keyword">yield</span> a<br>        a, b = b, a + b<br><br><span class="hljs-comment"># 使用生成器</span><br>fib_gen = fibonacci_generator()<br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(fib_gen))<br><span class="hljs-comment"># 输出:</span><br><span class="hljs-comment"># 0</span><br><span class="hljs-comment"># 1</span><br><span class="hljs-comment"># 1</span><br><span class="hljs-comment"># 2</span><br><span class="hljs-comment"># 3</span><br><span class="hljs-comment"># 5</span><br><span class="hljs-comment"># 8</span><br><span class="hljs-comment"># 13</span><br><span class="hljs-comment"># 21</span><br><span class="hljs-comment"># 34</span><br></code></pre></td></tr></table></figure>
+<h3 id="生成器表达式">生成器表达式</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">gen_expr = (x * x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>))<br><span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> gen_expr:<br>    <span class="hljs-built_in">print</span>(value)<br><span class="hljs-comment"># 输出:</span><br><span class="hljs-comment"># 0</span><br><span class="hljs-comment"># 1</span><br><span class="hljs-comment"># 4</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -417,8 +383,8 @@ c = 0.5, d = 0, e = 2</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>1. Python 变量和数据类型</div>
-      <div>https://jackiedai.github.io/2025/03/04/011Python/002Python变量和数据类型/</div>
+      <div>003 - Python迭代器与生成器(iterator &amp; generator)</div>
+      <div>https://jackiedai.github.io/2025/03/07/011Python/004Python迭代器与生成器/</div>
     </div>
     <div class="license-meta">
       
@@ -430,7 +396,7 @@ c = 0.5, d = 0, e = 2</p>
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 4, 2025</div>
+          <div>March 7, 2025</div>
         </div>
       
       
@@ -462,18 +428,12 @@ c = 0.5, d = 0, e = 2</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/07/011Python/003Python%E6%8E%A8%E5%AF%BC%E5%BC%8F/" title="002-推导式(Comprehension)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">002-推导式(Comprehension)</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/17/016C/001_C_Pointers_arr/" title="C语言指针与数组的理解">
-                        <span class="hidden-mobile">C语言指针与数组的理解</span>
+                      <a href="/2025/03/07/011Python/003Python%E6%8E%A8%E5%AF%BC%E5%BC%8F/" title="002-推导式(Comprehension)">
+                        <span class="hidden-mobile">002-推导式(Comprehension)</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
