@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>Shell 脚本自动将图片生成,Appicons</title>
+    <link href="/2025/09/18/007unix_shell/Shell_covert_img/"/>
+    <url>/2025/09/18/007unix_shell/Shell_covert_img/</url>
+    
+    <content type="html"><![CDATA[<p>Xcode 在 MacOS 程式开发设置Appicons 的时候，需要设置多种规格的尺寸，过程比较繁琐。<br>现只需要一张 1024 x 1024 像素的图片，通过调用本脚本，会实现所有符合规格的尺寸用来设置图标。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/zsh</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">一键PNG图片尺寸生成器</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">用法：./resize.sh input.png</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">检查依赖项</span><br>if ! command -v convert &amp;&gt; /dev/null; then<br>    echo &quot;错误：需要安装ImageMagick！&quot;<br>    echo &quot;请使用以下命令安装：&quot;<br>    echo &quot;sudo apt-get install imagemagick  # Debian/Ubuntu&quot;<br>    echo &quot;或&quot;<br>    echo &quot;sudo brew install imagemagick     # macOS&quot;<br>    exit 1<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">验证输入参数</span><br>if [ $# -ne 1 ]; then<br>    echo &quot;用法：$0 &lt;输入文件.png&gt;&quot;<br>    exit 1<br>fi<br><br>input_file=&quot;$1&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">检查文件有效性</span><br>if [ ! -f &quot;$input_file&quot; ]; then<br>    echo &quot;错误：文件 &#x27;$input_file&#x27; 不存在&quot;<br>    exit 1<br>fi<br><br>if ! file &quot;$input_file&quot; | grep -qi &quot;png&quot;; then<br>    echo &quot;错误：文件必须是PNG格式&quot;<br>    exit 1<br>fi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">定义目标尺寸数组</span><br>sizes=(16x16 32x32 64x64 128x128 256x256 512x512 1024x1024)<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">获取不带扩展名的文件名</span><br>filename=$(basename -- &quot;$input_file&quot;)<br>filename=&quot;$&#123;filename%.*&#125;&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">创建输出目录</span><br>output_dir=&quot;./$&#123;filename&#125;_resized&quot;<br>mkdir -p &quot;$output_dir&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">处理每个尺寸</span><br>for size in &quot;$&#123;sizes[@]&#125;&quot;; do<br>    output_path=&quot;$&#123;output_dir&#125;/$&#123;filename&#125;_$&#123;size&#125;.png&quot;<br>    <br>    # 使用ImageMagick进行高质量缩放<br>    convert &quot;$input_file&quot; \<br>        -resize &quot;$size&quot; \<br>        -background none \<br>        -gravity center \<br>        -extent &quot;$size&quot; \<br>        -unsharp 0.5x0.5+0.5+0.008 \<br>        &quot;$output_path&quot;<br><br>    echo &quot;已生成：$output_path&quot;<br>done<br><br>echo &quot;所有尺寸生成完成！输出目录：$output_dir&quot;<br></code></pre></td></tr></table></figure><p>代码用法</p><blockquote><p>sh …/covert_png.sh …/icon.png<br>生成的目录在 <code>User</code> 下 <code>**_resized</code></p></blockquote><p>代码解释</p><blockquote><p>为什么使用<code>&amp;&gt;</code>而不是<code>&gt;&gt;</code>？</p><ol><li><code>&amp;&gt;</code> 是一个重定向操作符，用于将标准输出（stdout）和标准错误（stderr）同时重定向到同一个目标.</li><li><code>&gt;&gt;</code>，则只能重定向标准输出，而标准错误仍然会显示在终端上.</li></ol></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Unix/Shell</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>unix</tag>
+      
+      <tag>shell</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>006Python-threading</title>
+    <link href="/2025/03/18/011Python/007Python-threading/"/>
+    <url>/2025/03/18/011Python/007Python-threading/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>参考链接:</p><p><a href="https://docs.python.org/3.10/library/threading.html?highlight=threading#module-threading">官方文档</a></p><p><a href="https://www.runoob.com/python3/python3-multithreading.html">Runoob参考</a></p></blockquote><blockquote><p>TODO:</p><p>多线程介绍</p><p>线程同步技术</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>005-装饰器.py</title>
     <link href="/2025/03/11/011Python/006Python-%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
     <url>/2025/03/11/011Python/006Python-%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
@@ -129,11 +181,11 @@
   
   
   <entry>
-    <title>C/C++ 中 static 的用法全局变量与局部变量</title>
-    <link href="/2025/01/17/016C/002_analyse_static/"/>
-    <url>/2025/01/17/016C/002_analyse_static/</url>
+    <title>C语言指针与数组的理解</title>
+    <link href="/2025/01/17/016C/001_C_Pointers_arr/"/>
+    <url>/2025/01/17/016C/001_C_Pointers_arr/</url>
     
-    <content type="html"><![CDATA[<p>详细内容请参考:<a href="https://www.runoob.com/w3cnote/cpp-static-usage.html">https://www.runoob.com/w3cnote/cpp-static-usage.html</a><br><a href="https://www.runoob.com/w3cnote/cpp-static-usage.html">点我直达</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Pls refer to the link <a href="https://web.archive.org/web/20180827131006/http://home.earthlink.net/~momotuk/pointers.pdf">https://web.archive.org/web/20180827131006/http://home.earthlink.net/~momotuk/pointers.pdf</a></p>]]></content>
     
     
     <categories>
@@ -148,11 +200,11 @@
   
   
   <entry>
-    <title>C语言指针与数组的理解</title>
-    <link href="/2025/01/17/016C/001_C_Pointers_arr/"/>
-    <url>/2025/01/17/016C/001_C_Pointers_arr/</url>
+    <title>C/C++ 中 static 的用法全局变量与局部变量</title>
+    <link href="/2025/01/17/016C/002_analyse_static/"/>
+    <url>/2025/01/17/016C/002_analyse_static/</url>
     
-    <content type="html"><![CDATA[<p>Pls refer to the link <a href="https://web.archive.org/web/20180827131006/http://home.earthlink.net/~momotuk/pointers.pdf">https://web.archive.org/web/20180827131006/http://home.earthlink.net/~momotuk/pointers.pdf</a></p>]]></content>
+    <content type="html"><![CDATA[<p>详细内容请参考:<a href="https://www.runoob.com/w3cnote/cpp-static-usage.html">https://www.runoob.com/w3cnote/cpp-static-usage.html</a><br><a href="https://www.runoob.com/w3cnote/cpp-static-usage.html">点我直达</a></p>]]></content>
     
     
     <categories>
