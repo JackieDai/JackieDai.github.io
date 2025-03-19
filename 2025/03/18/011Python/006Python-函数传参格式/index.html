@@ -19,16 +19,16 @@
   <meta name="author" content="lingXiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Python中多线程处理">
+    <meta name="description" content="函数的传参格式，以及每种传参的使用方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="006Python-threading">
-<meta property="og:url" content="https://jackiedai.github.io/2025/03/18/011Python/007Python-threading/index.html">
+<meta property="og:title" content="Python-函数传参格式">
+<meta property="og:url" content="https://jackiedai.github.io/2025/03/18/011Python/006Python-%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E6%A0%BC%E5%BC%8F/index.html">
 <meta property="og:site_name" content="lingXiao">
-<meta property="og:description" content="Python中多线程处理">
+<meta property="og:description" content="函数的传参格式，以及每种传参的使用方法">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/python-logo.png">
-<meta property="article:published_time" content="2025-03-18T02:13:56.000Z">
-<meta property="article:modified_time" content="2025-03-18T02:25:10.806Z">
+<meta property="article:published_time" content="2025-03-18T03:15:56.000Z">
+<meta property="article:modified_time" content="2025-03-19T02:58:21.781Z">
 <meta property="article:author" content="lingXiao">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
   
   
   
-  <title>006Python-threading - lingXiao</title>
+  <title>Python-函数传参格式 - lingXiao</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">006Python-threading</span>
+            <span id="subtitle">Python-函数传参格式</span>
           
         </div>
 
@@ -221,7 +221,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-18 10:13" pubdate>
+        <time datetime="2025-03-18 11:15" pubdate>
           March 18, 2025 am
         </time>
       </span>
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          22 words
+          504 words
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          1 mins
+          5 mins
         
       </span>
     
@@ -281,21 +281,69 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">006Python-threading</h1>
+            <h1 id="seo-header">Python-函数传参格式</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>参考链接:</p>
-<p><a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#module-threading">官方文档</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-multithreading.html">Runoob参考</a></p>
+<p>Python 中参数传递本质是传递对象的引用。</p>
+<ul>
+<li><strong>修改可变对象（如列表）会影响外部变量。</strong></li>
+<li>重新赋值不会影响外部变量（因为引用指向了新对象）。</li>
+</ul>
+<p>在 Python 中，当传递<strong>不可变对象</strong>（如整数、字符串、元组等）作为参数时，<strong>函数内部对参数的修改不会影响外部变量</strong>。这是因为不可变对象本身无法被就地修改，所有的“修改”操作都会生成新的对象，而外部的变量依然指向原来的对象。</p>
 </blockquote>
-<blockquote>
-<p>TODO:</p>
-<p>多线程介绍</p>
-<p>线程同步技术</p>
-</blockquote>
+<h2 id="基本参数类型">基本参数类型</h2>
+<ul>
+<li>
+<p>位置参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a, b, c</span>):<br>    <span class="hljs-built_in">print</span>(a, b, c)<br><br>func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)  <span class="hljs-comment"># 输出: 1 2 3</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>关键字参数：通过关键字可以不按照位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">func(b=<span class="hljs-number">2</span>, a=<span class="hljs-number">1</span>, c=<span class="hljs-number">3</span>)  <span class="hljs-comment"># 输出: 1 2 3</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>默认参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a, b=<span class="hljs-number">0</span></span>):<br>    <span class="hljs-built_in">print</span>(a + b)<br><br>func(<span class="hljs-number">5</span>)      <span class="hljs-comment"># 输出: 5 (b使用默认值0)</span><br>func(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)   <span class="hljs-comment"># 输出: 8</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="可变长度参数">可变长度参数</h2>
+<ul>
+<li>
+<p>任意数量位置参数(<code>*args</code>): 接受多个<u>位置参数,打包成元祖</u></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">*args</span>):<br>    <span class="hljs-built_in">print</span>(args)<br><br>func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)  <span class="hljs-comment"># 输出: (1, 2, 3)</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>任意数量关键字参数(<code>**kwargs</code>): 接收多个<u>关键字参数,打包为字典</u></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">**kwargs</span>):<br>    <span class="hljs-built_in">print</span>(kwargs)<br><br>func(a=<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>)  <span class="hljs-comment"># 输出: &#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 2&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="参数组合规则">参数组合规则</h2>
+<ul>
+<li>
+<p>必须遵循如下顺序:</p>
+<p>位置参数 -&gt; 默认参数 -&gt; <code>*args</code> -&gt; 仅关键字参数 -&gt; <code>**kwargs</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a, b=<span class="hljs-number">0</span>, *args, c, d=<span class="hljs-number">1</span>, ​**kwargs</span>):<br>    <span class="hljs-built_in">print</span>(a, b, args, c, d, kwargs)<br><br>func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, c=<span class="hljs-number">5</span>, d=<span class="hljs-number">6</span>, e=<span class="hljs-number">7</span>)<br><span class="hljs-comment"># 输出: 1 2 (3,4) 5 6 &#123;&#x27;e&#x27;: 7&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>强制关键字参数(使用<code>*</code>分割)</p>
+<p>在<code>*</code>符号之后的参数必须使用关键字传递</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a, *, b</span>):<br>    <span class="hljs-built_in">print</span>(a, b)<br><br>func(<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>)  <span class="hljs-comment"># 正确</span><br>func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)    <span class="hljs-comment"># 报错：takes 1 positional argument but 2 were given</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="参数解包-调用时">参数解包(调用时)</h2>
+<ul>
+<li>
+<p>解包<strong>可迭代对象</strong>(<code>*</code>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a,b,c</span>):<br>  <span class="hljs-built_in">print</span>(a,b,c)<br><br>args = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>func(*args) <span class="hljs-comment">##  等价于 func(1, 2, 3), 输出 1,2,3</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>解包字典(<code>**</code>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">kwargs = &#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;b&#x27;</span>:<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;c&#x27;</span>:<span class="hljs-number">3</span>&#125;<br>func(**kwargs) <span class="hljs-comment">## # 等价于 func(a=1, b=2, c=3), 输出 1,2,3</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
 
                 
               </div>
@@ -341,8 +389,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>006Python-threading</div>
-      <div>https://jackiedai.github.io/2025/03/18/011Python/007Python-threading/</div>
+      <div>Python-函数传参格式</div>
+      <div>https://jackiedai.github.io/2025/03/18/011Python/006Python-函数传参格式/</div>
     </div>
     <div class="license-meta">
       
@@ -396,8 +444,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/11/011Python/006Python-%E8%A3%85%E9%A5%B0%E5%99%A8/" title="005-装饰器.py">
-                        <span class="hidden-mobile">005-装饰器.py</span>
+                      <a href="/2025/03/18/011Python/008Python-threading1/" title="006Python-threading__1">
+                        <span class="hidden-mobile">006Python-threading__1</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

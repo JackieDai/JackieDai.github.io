@@ -19,16 +19,16 @@
   <meta name="author" content="lingXiao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一行代码的表达式">
+    <meta name="description" content="Python中多线程处理,基础概念,创建方式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="004-lambda.py">
-<meta property="og:url" content="https://jackiedai.github.io/2025/03/11/011Python/005Python-lambda/index.html">
+<meta property="og:title" content="006Python-threading__1">
+<meta property="og:url" content="https://jackiedai.github.io/2025/03/18/011Python/008Python-threading1/index.html">
 <meta property="og:site_name" content="lingXiao">
-<meta property="og:description" content="一行代码的表达式">
+<meta property="og:description" content="Python中多线程处理,基础概念,创建方式">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/python-logo.png">
-<meta property="article:published_time" content="2025-03-11T03:15:56.000Z">
-<meta property="article:modified_time" content="2025-03-19T02:28:54.037Z">
+<meta property="article:published_time" content="2025-03-18T02:13:56.000Z">
+<meta property="article:modified_time" content="2025-03-19T05:14:36.086Z">
 <meta property="article:author" content="lingXiao">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
   
   
   
-  <title>004-lambda.py - lingXiao</title>
+  <title>006Python-threading__1 - lingXiao</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">004-lambda.py</span>
+            <span id="subtitle">006Python-threading__1</span>
           
         </div>
 
@@ -221,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-11 11:15" pubdate>
-          March 11, 2025 am
+        <time datetime="2025-03-18 10:13" pubdate>
+          March 18, 2025 am
         </time>
       </span>
     
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          244 words
+          432 words
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          3 mins
+          4 mins
         
       </span>
     
@@ -281,32 +281,84 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">004-lambda.py</h1>
+            <h1 id="seo-header">006Python-threading__1</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="语法">语法</h2>
+                <p>In CPython, due to the <strong><u>Global Interpreter Lock</u></strong>, only one thread can execute Python code at once(even though certain performance-oriented libraries might overcome this limitation).</p>
+<p>But now,threading is still an appropriate model if you want to run multiple I/O-bound tasks simultaneously.</p>
+<p>Python通过<code>threading</code>模块来实现多线程，内部核心类是<code>threading.Thread</code></p>
 <blockquote>
-<p>lambda_expr ::=  lambda [parameter_list]: expression</p>
+<p>参考链接:</p>
+<p><a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#module-threading">官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-multithreading.html">Runoob参考</a></p>
 </blockquote>
 <blockquote>
-<p>官方文档介绍:</p>
-<p>Lambda expressions (sometimes called lambda forms) are used to create anonymous functions.</p>
-</blockquote>
-<p>简单说:<br>
-1. 匿名函数<br>
-2. 只有一句代码<br>
-3. 通常在需要函数作为参数的情况下使用</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># lambda_expr_nocond example</span><br>lambda_expr_nocond = <span class="hljs-keyword">lambda</span> x: x * <span class="hljs-number">2</span><br><span class="hljs-built_in">print</span>(lambda_expr_nocond(<span class="hljs-number">5</span>))  <span class="hljs-comment"># Output: 10</span><br><span class="hljs-built_in">print</span>(lambda_expr_nocond(<span class="hljs-number">3</span>))  <span class="hljs-comment"># Output: 6</span><br><br><span class="hljs-comment"># 多个参数</span><br>x = <span class="hljs-keyword">lambda</span> a, b, c: a + b + c<br><span class="hljs-built_in">print</span>(x(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>))  <span class="hljs-comment"># Output: 13</span><br><br><span class="hljs-comment"># 将函数与内置函数一起使用</span><br>numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>squared_numbers = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> num: num ** <span class="hljs-number">2</span>, numbers))<br><span class="hljs-built_in">print</span>(squared_numbers)  <span class="hljs-comment"># Output: [1, 4, 9, 16, 25]</span><br><br>numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>]<br>even_numbers = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">filter</span>(<span class="hljs-keyword">lambda</span> x: x % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>, numbers))<br><span class="hljs-built_in">print</span>(even_numbers)  <span class="hljs-comment"># 输出：[2, 4, 6, 8]</span><br></code></pre></td></tr></table></figure>
-<p>应用场景:</p>
+<p>The <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread"><code>Thread</code></a> class represents an activity that is run in a separate thread of control.</p>
+<p>There are two ways to specify the activity:</p>
+<ul>
+<li>
+<p>by passing a callable object to the constructor;</p>
+</li>
+<li>
+<p>by overriding the <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.run"><code>run()</code></a> method in a subclass.</p>
 <blockquote>
-<p>比如在<code>PyQt</code> 在信号传值的时候，可以使用lambda 匿名函数进行传递</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/JackieDai/firstPyQt">参考个人工程</a></p>
+<p>No other methods (except for the constructor) should be overridden in a subclass.</p>
+<p>In other words, <em>only</em> override the <code>__init__()</code> and <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.run"><code>run()</code></a> methods of this class.</p>
 </blockquote>
-<p>在项目中</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_uop</span>(<span class="hljs-params">self, sn</span>):<br>				<span class="hljs-comment">### ... code omited ...</span><br>        uop_thread.finished.connect(<span class="hljs-keyword">lambda</span> response_text: check_uop_finish(<span class="hljs-variable language_">self</span>, response_text))<br>        uop_thread.start()<br>        <span class="hljs-comment">### ... code omited ...</span><br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">check_uop_finish</span>(<span class="hljs-params">self, res</span>):<br>        status = <span class="hljs-literal">False</span><br>        <span class="hljs-comment">### ... code omited ...</span><br></code></pre></td></tr></table></figure>
-<p>上述代码中<code>connect(...)</code>需要函数名称作为参数，但是需要调用的函数需要参数；此时可以使用<code>lambda</code>匿名一个新函数来完成参数传递</p>
+</li>
+</ul>
+<p>Once a thread object is created, its activity must be started by calling the thread’s <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.start"><code>start()</code></a> method. This invokes the <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.run"><code>run()</code></a> method in a separate thread of control.</p>
+<p>Once the thread’s activity is started, the thread is considered ‘alive’. It stops being alive when its <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.run"><code>run()</code></a> method terminates – either normally, or by raising an unhandled exception.</p>
+<p>The <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.is_alive"><code>is_alive()</code></a> method tests whether the thread is alive.</p>
+<p>Other threads can call a thread’s <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.join"><code>join()</code></a> method. This blocks the calling thread until the thread whose <a target="_blank" rel="noopener" href="https://docs.python.org/3.10/library/threading.html?highlight=threading#threading.Thread.join"><code>join()</code></a> method is called is terminated.</p>
+</blockquote>
+<h2 id="多线程基础">多线程基础</h2>
+<p>创建线程的两种方式</p>
+<ol>
+<li>
+<p>根据<code>Thread</code>构造函数直接实例化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">print_numbers</span>():<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>        <span class="hljs-built_in">print</span>(i)<br>        time.sleep(<span class="hljs-number">1</span>)<br><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test001</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;---1&quot;</span>)<br>    thread = threading.Thread(target=print_numbers)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;---2&quot;</span>)<br>    thread.start()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;---3&quot;</span>)<br>    thread.join()  <span class="hljs-comment">## 等待线程终止。默认情况下，join()会一直阻塞，直到被调用线程终止。如果指定了timeout参数，则最多等待timeout秒。</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;---4&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+<p>其输出如下:</p>
+<blockquote>
+<p>—1<br>
+—2<br>
+0<br>
+—3<br>
+1<br>
+2<br>
+3<br>
+4<br>
+—4</p>
+</blockquote>
+<p>从上可知，<code>start</code>方法之后，<code>thread</code>就会去处理其内部的任务；<code>join</code>会阻塞当前线程，知道我们创建的<code>thread</code>调用终止，才会继续执行当前线程(主线程)；</p>
+<blockquote>
+<p><code>threading</code>模块里有很多好用的方法，比如查看当前线程<code>threading.current_thread()</code>，具体可以查看官方文档。</p>
+</blockquote>
+</li>
+<li>
+<p>继承<code>Thread</code>并重写<code>__init__</code>(如果需要额外参数) 和 <code>run()</code> 方法.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python">exit_flag = <span class="hljs-literal">False</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread</span>(threading.Thread):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, thread_id, name, delay</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.thread_id = thread_id<br>        <span class="hljs-variable language_">self</span>.name = name<br>        <span class="hljs-variable language_">self</span>.delay = delay<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Starting <span class="hljs-subst">&#123;self.name&#125;</span>&quot;</span>)<br>        print_time(<span class="hljs-variable language_">self</span>.name, <span class="hljs-variable language_">self</span>.delay, <span class="hljs-number">5</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Exiting <span class="hljs-subst">&#123;self.name&#125;</span>&quot;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">print_time</span>(<span class="hljs-params">thread_name, delay, counter</span>):<br>    <span class="hljs-keyword">while</span> counter:<br>        <span class="hljs-keyword">if</span> exit_flag:<br>            thread_name.exit()<br>        time.sleep(delay)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;thread_name&#125;</span> : <span class="hljs-subst">&#123;time.ctime(time.time())&#125;</span>&quot;</span>)<br>        counter -= <span class="hljs-number">1</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test002</span>():<br>    thread1 = MyThread(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;Thread-1&quot;</span>, <span class="hljs-number">1</span>)<br>    thread2 = MyThread(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;Thread-2&quot;</span>, <span class="hljs-number">2</span>)<br>    thread1.start()<br>    thread2.start()<br>    thread1.join()<br>    thread2.join()<br></code></pre></td></tr></table></figure>
+<p>运行上述代码输出如下:</p>
+<blockquote>
+<p>Starting Thread-1<br>
+Starting Thread-2<br>
+Thread-1 : Wed Mar 19 13:11:45 2025<br>
+Thread-2 : Wed Mar 19 13:11:46 2025<br>
+Thread-1 : Wed Mar 19 13:11:46 2025<br>
+Thread-1 : Wed Mar 19 13:11:47 2025<br>
+Thread-2 : Wed Mar 19 13:11:48 2025<br>
+Thread-1 : Wed Mar 19 13:11:48 2025<br>
+Thread-1 : Wed Mar 19 13:11:49 2025<br>
+Exiting Thread-1<br>
+Thread-2 : Wed Mar 19 13:11:50 2025<br>
+Thread-2 : Wed Mar 19 13:11:52 2025<br>
+Thread-2 : Wed Mar 19 13:11:54 2025<br>
+Exiting Thread-2</p>
+</blockquote>
+</li>
+</ol>
 
                 
               </div>
@@ -352,8 +404,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>004-lambda.py</div>
-      <div>https://jackiedai.github.io/2025/03/11/011Python/005Python-lambda/</div>
+      <div>006Python-threading__1</div>
+      <div>https://jackiedai.github.io/2025/03/18/011Python/008Python-threading1/</div>
     </div>
     <div class="license-meta">
       
@@ -365,7 +417,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 11, 2025</div>
+          <div>March 18, 2025</div>
         </div>
       
       
@@ -397,9 +449,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/11/011Python/007Python-%E8%A3%85%E9%A5%B0%E5%99%A8/" title="005-装饰器.py">
+                      <a href="/2025/03/18/011Python/006Python-%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E6%A0%BC%E5%BC%8F/" title="Python-函数传参格式">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">005-装饰器.py</span>
+                        <span class="hidden-mobile">Python-函数传参格式</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -407,8 +459,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/07/011Python/004Python%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%94%9F%E6%88%90%E5%99%A8/" title="003 - Python迭代器与生成器(iterator &amp; generator)">
-                        <span class="hidden-mobile">003 - Python迭代器与生成器(iterator &amp; generator)</span>
+                      <a href="/2025/03/18/011Python/008Python-threading3/" title="006Python-threading__3">
+                        <span class="hidden-mobile">006Python-threading__3</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
