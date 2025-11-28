@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/python-logo.png">
 <meta property="article:published_time" content="2024-08-20T03:15:56.000Z">
-<meta property="article:modified_time" content="2024-09-05T01:20:27.307Z">
+<meta property="article:modified_time" content="2025-08-08T02:08:09.546Z">
 <meta property="article:author" content="lingXiao">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          1.3k words
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          9 mins
+          12 mins
         
       </span>
     
@@ -421,6 +421,34 @@
 <h4 id="总结">总结</h4>
 <p>通过设置<code>pyenv global system</code>，你可以让<code>pyenv</code>使用系统预装的Python版本作为全局解释器。这样做可以避免干扰系统的默认Python环境，同时仍然可以在需要时使用<code>pyenv</code>管理的其他Python版本。</p>
 <h5 id=""></h5>
+<blockquote>
+<p>通过 pyenv 来管理 Python版本环境的，但是当</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">~ % pyenv versions<br>  <span class="hljs-keyword">system</span><br>* <span class="hljs-number">3.10</span><span class="hljs-number">.18</span> (<span class="hljs-built_in">set</span> <span class="hljs-keyword">by</span> /Users/lingxiao/.python-<span class="hljs-built_in">version</span>)<br>~ % pyenv <span class="hljs-built_in">global</span> <span class="hljs-keyword">system</span><br>~ % pyenv versions     <br>  <span class="hljs-keyword">system</span><br>* <span class="hljs-number">3.10</span><span class="hljs-number">.18</span> (<span class="hljs-built_in">set</span> <span class="hljs-keyword">by</span> /Users/lingxiao/.python-<span class="hljs-built_in">version</span>)<br>~ % <br></code></pre></td></tr></table></figure>
+<p>pyenv global 之后没有设置成功，怎么处理?</p>
+<hr>
+<p>使用 <code>pyenv global system</code> 后，<code>pyenv versions</code> 仍然显示 <code>* 3.10.18 (set by /Users/lingxiao/.python-version)</code>，说明你当前的 Python 版本仍然受 <strong>项目目录下的 <code>.python-version</code> 文件</strong> 影响。</p>
+<h3 id="🔍-解释一下：">🔍 解释一下：</h3>
+<p><code>pyenv</code> 会按以下优先级确定使用哪个 Python 版本：</p>
+<ol>
+<li><code>PYENV_VERSION</code> 环境变量（最高优先级）</li>
+<li>当前目录下的 <code>.python-version</code> 文件（通过 <code>pyenv local</code> 设置）</li>
+<li>全局版本设置（<code>~/.pyenv/version</code>，通过 <code>pyenv global</code> 设置）</li>
+<li>系统默认版本</li>
+</ol>
+<p>你当前的输出：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs applescript">pgsql<br><br><br>复制编辑<br>* <span class="hljs-number">3.10</span><span class="hljs-number">.18</span> (<span class="hljs-keyword">set</span> <span class="hljs-keyword">by</span> /Users/lingxiao/.python-<span class="hljs-built_in">version</span>)<br></code></pre></td></tr></table></figure>
+<p>说明：在你当前目录（<code>/Users/lingxiao</code> 或其父目录）下存在 <code>.python-version</code> 文件，内容为 <code>3.10.18</code>，所以它覆盖了你设置的 global。</p>
+<h3 id="✅-解决方法：">✅ 解决方法：</h3>
+<h4 id="方法一：删除-python-version-文件（推荐）">方法一：删除 <code>.python-version</code> 文件（推荐）</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash<br><br><br>复制编辑<br><span class="hljs-built_in">rm</span> ~/.python-version<br></code></pre></td></tr></table></figure>
+<p>然后再运行：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">bash<br><br><br>复制编辑<br>pyenv <span class="hljs-built_in">global</span> <span class="hljs-keyword">system</span><br></code></pre></td></tr></table></figure>
+<p>再验证：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">bash</span><br><span class="hljs-keyword"></span><br><br>复制编辑<br>pyenv versions<br></code></pre></td></tr></table></figure>
+<p>应该就会看到：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">pgsql<br><br><br>复制编辑<br>* <span class="hljs-keyword">system</span> (<span class="hljs-built_in">set</span> <span class="hljs-keyword">by</span> ~/.pyenv/<span class="hljs-built_in">version</span>)<br></code></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
 <h5 id="-2"></h5>
 
                 
