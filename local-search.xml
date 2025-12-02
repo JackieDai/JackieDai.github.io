@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Comprehensive Of Datasture</title>
+    <link href="/2025/12/01/011Python/012Comprehensive_Datasture/"/>
+    <url>/2025/12/01/011Python/012Comprehensive_Datasture/</url>
+    
+    <content type="html"><![CDATA[<p>There are two things to keep in mind for each of data types you are using:</p><ul><li><p>Are they mutable?</p><blockquote><p>Mutability is about whether or not we can change an object once it has been created. A list can be changed so it is mutable. However, strings cannot be changed without creating a completely new object, so they are immutable.</p></blockquote></li><li><p>Are they ordered?</p><blockquote><p>Order is about whether the order of the elements in an object matters, and whether this position of an element can be used to access the element. Both strings and lists are ordered. We can use the order to access parts of a list and string.</p></blockquote></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Understanding Axis In Pandas</title>
     <link href="/2025/11/28/011Python/011Understand_Axis_In_Pandas/"/>
     <url>/2025/11/28/011Python/011Understand_Axis_In_Pandas/</url>

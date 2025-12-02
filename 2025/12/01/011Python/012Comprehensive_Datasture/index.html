@@ -19,25 +19,24 @@
   <meta name="author" content="Lenthiu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="the axis parameter is crucial for specifying the dimension along which an operation should be performed.">
+    <meta name="description" content="The data type is neithor mutable&#x2F;immutable, nor ordered&#x2F;unordered.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Understanding Axis In Pandas">
-<meta property="og:url" content="https://jackiedai.github.io/2025/11/28/011Python/011Understand_Axis_In_Pandas/index.html">
+<meta property="og:title" content="Comprehensive Of Datasture">
+<meta property="og:url" content="https://jackiedai.github.io/2025/12/01/011Python/012Comprehensive_Datasture/index.html">
 <meta property="og:site_name" content="Lenthiu&#39;s Blog">
-<meta property="og:description" content="the axis parameter is crucial for specifying the dimension along which an operation should be performed.">
+<meta property="og:description" content="The data type is neithor mutable&#x2F;immutable, nor ordered&#x2F;unordered.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jackiedai.github.io/img/python-logo.png">
-<meta property="article:published_time" content="2025-11-28T01:13:56.000Z">
-<meta property="article:modified_time" content="2025-11-28T01:31:00.555Z">
+<meta property="article:published_time" content="2025-12-01T01:13:56.000Z">
+<meta property="article:modified_time" content="2025-12-02T00:13:13.795Z">
 <meta property="article:author" content="Lenthiu">
 <meta property="article:tag" content="python">
-<meta property="article:tag" content="pandas">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jackiedai.github.io/img/python-logo.png">
   
   
   
-  <title>Understanding Axis In Pandas - Lenthiu&#39;s Blog</title>
+  <title>Comprehensive Of Datasture - Lenthiu&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Understanding Axis In Pandas</span>
+            <span id="subtitle">Comprehensive Of Datasture</span>
           
         </div>
 
@@ -222,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-28 09:13" pubdate>
-          November 28, 2025 am
+        <time datetime="2025-12-01 09:13" pubdate>
+          December 1, 2025 am
         </time>
       </span>
     
@@ -234,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          103 words
+          12 words
         
       </span>
     
@@ -282,23 +281,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Understanding Axis In Pandas</h1>
+            <h1 id="seo-header">Comprehensive Of Datasture</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Basic-Concepts">Basic Concepts</h2>
+                <p>There are two things to keep in mind for each of data types you are using:</p>
 <ul>
-<li><code>axis = 0</code>: Refers to rows, Operations are performed on each column.</li>
-<li><code>axis = 1</code>: Refers to columns, Operations are performed on each row.</li>
-</ul>
-<h2 id="Examples">Examples</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br>df = pd.DataFrame(&#123;<br>    <span class="hljs-string">&#x27;A&#x27;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <br>    <span class="hljs-string">&#x27;B&#x27;</span>: [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], <br>    <span class="hljs-string">&#x27;C&#x27;</span>: [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]<br>    &#125;)<br><br>sum_0 = df.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">0</span>) <span class="hljs-comment"># axis = 0, means rows,  Column-wise sum</span><br><span class="hljs-built_in">print</span>(sum_0)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">A     6</span><br><span class="hljs-string">B    15</span><br><span class="hljs-string">C    24</span><br><span class="hljs-string">dtype: int64</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br>sum_1 = df.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>) <span class="hljs-comment"># axis = 1, means columns, Row-wise sum</span><br><span class="hljs-built_in">print</span>(sum_1)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">0    12</span><br><span class="hljs-string">1    15</span><br><span class="hljs-string">2    18</span><br><span class="hljs-string">dtype: int64</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<li>
+<p>Are they mutable?</p>
 <blockquote>
-<p><code>Column-wise</code><br>
-<code>Row-wise</code><br>
-“-wise” 是一个常见的英语后缀，加在名词后构成副词，表示“就……而言”或“按照……的方式”</p>
+<p>Mutability is about whether or not we can change an object once it has been created. A list can be changed so it is mutable. However, strings cannot be changed without creating a completely new object, so they are immutable.</p>
 </blockquote>
+</li>
+<li>
+<p>Are they ordered?</p>
+<blockquote>
+<p>Order is about whether the order of the elements in an object matters, and whether this position of an element can be used to access the element. Both strings and lists are ordered. We can use the order to access parts of a list and string.</p>
+</blockquote>
+</li>
+</ul>
 
                 
               </div>
@@ -334,8 +336,6 @@
       
         <a href="/tags/python/" class="print-no-link">#python</a>
       
-        <a href="/tags/pandas/" class="print-no-link">#pandas</a>
-      
     </div>
   
 </div>
@@ -346,8 +346,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Understanding Axis In Pandas</div>
-      <div>https://jackiedai.github.io/2025/11/28/011Python/011Understand_Axis_In_Pandas/</div>
+      <div>Comprehensive Of Datasture</div>
+      <div>https://jackiedai.github.io/2025/12/01/011Python/012Comprehensive_Datasture/</div>
     </div>
     <div class="license-meta">
       
@@ -359,7 +359,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 28, 2025</div>
+          <div>December 1, 2025</div>
         </div>
       
       
@@ -391,18 +391,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/12/01/011Python/012Comprehensive_Datasture/" title="Comprehensive Of Datasture">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Comprehensive Of Datasture</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/14/010%E6%9D%82%E8%AE%B0/0004/" title="2025年中总结">
-                        <span class="hidden-mobile">2025年中总结</span>
+                      <a href="/2025/11/28/011Python/011Understand_Axis_In_Pandas/" title="Understanding Axis In Pandas">
+                        <span class="hidden-mobile">Understanding Axis In Pandas</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
